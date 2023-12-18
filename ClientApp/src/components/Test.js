@@ -1,7 +1,12 @@
 import {Component} from "react";
 
 export class Test extends Component {
-    render() {return(
-<h1>Test...</h1>
-    )}
+    render() {
+        return (
+            <div>
+                <h1>Login pagina</h1>
+                <p>Dit is een kleine beschrijving van de Test-component.</p>
+            </div>
+        );
+    }
 }
