@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AccessibilityContext>(opt => opt.UseInMemoryDatabase("AccessibilityDB"));
-builder.Services.AddSwaggerGen();
+//builder.Services.AddSwaggerGen();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
 
@@ -20,9 +20,10 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-
-app.UseSwagger();
+/*
+ app.UseSwagger();
 app.UseSwaggerUI();
+*/
 app.MapControllers();
 
 app.UseHttpsRedirection();
