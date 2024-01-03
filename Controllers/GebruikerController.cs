@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ProjectAccessibility.Context;
 using ProjectAccessibility.Models;
 
 namespace ProjectAccessibility.Controllers
@@ -7,28 +9,24 @@ namespace ProjectAccessibility.Controllers
     [ApiController]
     public class GebruikerController : ControllerBase
     {
-        private readonly GebruikerRepository _gebruikerRepository;
+        private readonly GebruikerContext _dbContext;
 
-        public GebruikerController(GebruikerRepository gebruikerRepository)
+        public GebruikerController(GebruikerContext dbContext)
         {
-            _gebruikerRepository = gebruikerRepository;
+            _dbContext = dbContext;
         }
 
         // GET: api/Gebruiker/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            Gebruiker gebruiker = _gebruikerRepository.GetGebruikerById(id);
 
-            if (gebruiker == null)
-            {
-                return NotFound();
-            }
-
+            Gebruiker gebruiker = _dbContext.Gebruikers
+                .Single(g => g.Gcode == id);
+            
             return Ok(gebruiker);
         }
 
-        // POST: api/Gebruiker
         [HttpPost]
         public IActionResult Post([FromBody] GebruikerRequestModel requestModel)
         {
@@ -36,37 +34,61 @@ namespace ProjectAccessibility.Controllers
             {
                 return BadRequest();
             }
+            
+            Gebruiker newGebruiker = new Gebruiker
+            {
+                Email = requestModel.Email,
+                Wachtwoord = requestModel.Wachtwoord,
+                UserType = requestModel.UserType
+            };
 
-            _gebruikerRepository.CreateGebruiker(requestModel.Email, requestModel.Wachtwoord);
-
-            return StatusCode(201);
+            _dbContext.Gebruikers.Add(newGebruiker);
+            _dbContext.SaveChanges();
+            
+            return StatusCode(201, newGebruiker);
         }
 
         // PUT: api/Gebruiker/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Gebruiker gebruiker)
+        public IActionResult Put(int id, [FromBody] GebruikerRequestModel requestModel)
         {
-            if (gebruiker == null || id != gebruiker.Gcode)
+            if (requestModel == null)
             {
-                return BadRequest(); // 400 Bad Request if the input is invalid
+                return BadRequest();
             }
 
-            // Update the user in the database using the repository
-            // Handle the result, e.g., return 204 No Content if the update is successful
-            // or return 404 Not Found if the user with the given ID is not found
-            // ...
+            // Find the existing Gebruiker with the given ID
+            var existingGebruiker = _dbContext.Gebruikers.Find(id);
 
-            return NoContent(); // 204 No Content
+            if (existingGebruiker == null)
+            {
+                return NotFound(); // 404 Not Found
+            }
+            
+            existingGebruiker.Email = requestModel.Email;
+            existingGebruiker.Wachtwoord = requestModel.Wachtwoord;
+            existingGebruiker.UserType = requestModel.UserType;
+            
+            _dbContext.Entry(existingGebruiker).State = EntityState.Modified;
+            _dbContext.SaveChanges();
+
+            return Ok(existingGebruiker); // 200 OK
         }
-
+        
         // DELETE: api/Gebruiker/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            // Delete the user from the database using the repository
-            // Handle the result, e.g., return 204 No Content if the delete is successful
-            // or return 404 Not Found if the user with the given ID is not found
-            // ...
+            var gebruikerToDelete = _dbContext.Gebruikers.Find(id);
+
+            if (gebruikerToDelete == null)
+            {
+                return NotFound(); // 404 Not Found
+            }
+            
+            _dbContext.Gebruikers.Remove(gebruikerToDelete);
+            
+            _dbContext.SaveChanges();
 
             return NoContent(); // 204 No Content
         }

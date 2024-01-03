@@ -1,15 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using MySqlConnector;
+using ProjectAccessibility.Context;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<GebruikerRepository>(provider =>
-{
-    var connectionString = builder.Configuration.GetConnectionString("Default");
-    return new GebruikerRepository(connectionString);
+builder.Services.AddDbContext<GebruikerContext>(options =>{
+    options.UseNpgsql("User Id=postgres;Password=GaomsRWOhc9Vr38J;Server=db.tezmskemtfwvdzusobph.supabase.co;Port=5432;Database=postgres");
 });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
