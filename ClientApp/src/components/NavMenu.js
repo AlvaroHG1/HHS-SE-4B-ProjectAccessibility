@@ -3,6 +3,7 @@ import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from '
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
 
+
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
 
@@ -24,29 +25,30 @@ export class NavMenu extends Component {
   render() {
     return (
         <header>
-          <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" container
-                  light>
+          <Navbar className="navbar-expand-sm navbar-toggleable-sm bg-blackborder-bottom box-shadow mb-3" container light>
             <img src="/image/Logoacces.jpg" alt="Logo" className="logo-image"/>
             <NavbarBrand tag={Link} to="/">ProjectAccessibility</NavbarBrand>
             <NavbarToggler onClick={this.toggleNavbar} className="mr-2"/>
-            <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
-              <ul className="navbar-nav flex-grow">
-                <NavItem>
-                  <NavLink tag={Link} className="text-white" to="/">Home</NavLink>
-                </NavItem>
-                {/*<NavItem>*/}
-                {/*  <NavLink tag={Link} className="text-dark" to="/counter">Counter</NavLink>*/}
-                {/*</NavItem>*/}
-                {/*<NavItem>*/}
-                {/*  <NavLink tag={Link} className="text-dark" to="/fetch-data">Fetch data</NavLink>*/}
-                {/*</NavItem>*/}
-                <NavItem>
-                  <NavLink tag={Link} className="text-white" to="/Login">Login</NavLink>
-                </NavItem>
-              </ul>
-            </Collapse>
+            <div className="container nav-container">
+              <input className="checkbox" type="checkbox" name="" id=""/>
+              <div className="hamburger-lines">
+                <span className="line line1"></span>
+                <span className="line line2"></span>
+                <span className="line line3"></span>
+              </div>
+              <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
+                <ul className="navbar-nav flex-grow">
+                  <NavItem>
+                    <NavLink tag={Link} className="text-white" to="/">Home</NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink tag={Link} className="text-white" to="/Login">Login</NavLink>
+                  </NavItem>
+                </ul>
+              </Collapse>
+            </div>
           </Navbar>
         </header>
     );
   }
-}
+  }
