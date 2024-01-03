@@ -4,7 +4,6 @@ namespace ProjectAccessibility.Models;
 [Table("Ervaringdeskundige")]
 public class Ervaringdeskundige : Gebruiker
 {
-    public Gebruiker Gebruiker;
     public string Voornaam { get; set; }
     public string Achternaam { get; set; }
     public string Telefoonnummer { get; set; }

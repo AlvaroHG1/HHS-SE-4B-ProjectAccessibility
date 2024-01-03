@@ -2,7 +2,6 @@ namespace ProjectAccessibility.Models;
 
 public class Bedrijf : Gebruiker
 {
-    public Gebruiker Gebruiker;
     public string Rol { get; set; }
     public string Locatie { get; set; }
     public string Bedrijfsinformatie { get; set; }

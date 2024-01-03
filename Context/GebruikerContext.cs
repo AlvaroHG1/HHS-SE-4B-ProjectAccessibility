@@ -50,24 +50,9 @@ namespace ProjectAccessibility.Context
             
             modelBuilder.Entity<Onderzoeksresultaat>()
                 .HasKey(o => new { o.Ocode, o.Ecode });
-            
+
             modelBuilder.Entity<HeeftOnderzoek>()
                 .HasKey(ho => new { ho.Bcode, ho.Ocode });
-
-            modelBuilder.Entity<Ervaringdeskundige>()
-                .HasOne(e => e.Gebruiker)
-                .WithOne()
-                .HasForeignKey<Ervaringdeskundige>(e => e.Gcode);
-
-            modelBuilder.Entity<Bedrijf>()
-                .HasOne(b => b.Gebruiker)
-                .WithOne()
-                .HasForeignKey<Bedrijf>(b => b.Gcode);
-
-            modelBuilder.Entity<Beheerder>()
-                .HasOne(b => b.Gebruiker)
-                .WithOne()
-                .HasForeignKey<Beheerder>(b => b.Gcode);
             
             modelBuilder.Entity<HeeftVoogd>()
                 .HasOne(hv => hv.Voogd)
@@ -140,19 +125,19 @@ namespace ProjectAccessibility.Context
                 .HasForeignKey(hh => hh.Ecode);
             
             modelBuilder.Entity<Ervaringdeskundige>()
-                .ToTable("ervaringdeskundigen");
+                .ToTable("Ervaringdeskundigen");
 
             modelBuilder.Entity<Bedrijf>()
-                .ToTable("bedrijven");
+                .ToTable("Bedrijven");
 
             modelBuilder.Entity<Beheerder>()
-                .ToTable("beheerders");
-
+                .ToTable("Beheerders"); 
 
             base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Gebruiker> Gebruikers { get; set; }
+        public DbSet<Beheerder> Beheerders { get; set; }
         public DbSet<Aandoening> Aandoeningen { get; set; }
         public DbSet<Beperking> Beperkingen { get; set; }
         public DbSet<Hulpmiddel> Hulpmiddelen { get; set; }
