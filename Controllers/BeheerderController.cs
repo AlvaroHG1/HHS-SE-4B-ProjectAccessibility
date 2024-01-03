@@ -51,9 +51,9 @@ namespace ProjectAccessibility.Controllers
             return StatusCode(201, newBeheerder);
         }
 
-        /*// PUT: api/Gebruiker/5
+        // PUT: api/Gebruiker/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] GebruikerRequestModel requestModel)
+        public IActionResult Put(int id, [FromBody] BeheerderRequestModel requestModel)
         {
             if (requestModel == null)
             {
@@ -61,39 +61,41 @@ namespace ProjectAccessibility.Controllers
             }
 
             // Find the existing Gebruiker with the given ID
-            var existingGebruiker = _dbContext.Gebruikers.Find(id);
+            var existingBeheerder = _dbContext.Beheerders.Find(id);
 
-            if (existingGebruiker == null)
+            if (existingBeheerder == null)
             {
                 return NotFound(); // 404 Not Found
             }
 
-            existingGebruiker.Email = requestModel.Email;
-            existingGebruiker.Wachtwoord = requestModel.Wachtwoord;
-            existingGebruiker.UserType = requestModel.UserType;
+            existingBeheerder.Email = requestModel.Email;
+            existingBeheerder.Wachtwoord = requestModel.Wachtwoord;
+            existingBeheerder.Voornaam = requestModel.Voornaam;
+            existingBeheerder.Achternaam = requestModel.Achternaam;
+            existingBeheerder.Rol = requestModel.Rol;
 
-            _dbContext.Entry(existingGebruiker).State = EntityState.Modified;
+            _dbContext.Entry(existingBeheerder).State = EntityState.Modified;
             _dbContext.SaveChanges();
 
-            return Ok(existingGebruiker); // 200 OK
+            return Ok(existingBeheerder); // 200 OK
         }
 
         // DELETE: api/Gebruiker/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var gebruikerToDelete = _dbContext.Gebruikers.Find(id);
+            var beheerderToDelete = _dbContext.Beheerders.Find(id);
 
-            if (gebruikerToDelete == null)
+            if (beheerderToDelete == null)
             {
                 return NotFound(); // 404 Not Found
             }
 
-            _dbContext.Gebruikers.Remove(gebruikerToDelete);
+            _dbContext.Beheerders.Remove(beheerderToDelete);
 
             _dbContext.SaveChanges();
 
             return NoContent(); // 204 No Content
-        }*/
+        }
     }
 }
