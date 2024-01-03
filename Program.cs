@@ -1,13 +1,16 @@
 using Microsoft.EntityFrameworkCore;
-using ProjectAccessibility.Context;
+using MySqlConnector;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<AccessibilityContext>(opt => opt.UseInMemoryDatabase("AccessibilityDB"));
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<GebruikerRepository>(provider =>
+{
+    var connectionString = builder.Configuration.GetConnectionString("Default");
+    return new GebruikerRepository(connectionString);
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
 
@@ -20,10 +23,10 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-/*
- app.UseSwagger();
+
+app.UseSwagger();
 app.UseSwaggerUI();
-*/
+
 app.MapControllers();
 
 app.UseHttpsRedirection();
