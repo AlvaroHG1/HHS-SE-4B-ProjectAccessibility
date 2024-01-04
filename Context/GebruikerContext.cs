@@ -58,72 +58,72 @@ namespace ProjectAccessibility.Context
                 .HasKey(ho => new { ho.Bcode, ho.Ocode });
             
             modelBuilder.Entity<HeeftVoogd>()
-                .HasOne(hv => hv.Voogd)
+                .HasOne<Voogd>()
                 .WithMany()
                 .HasForeignKey(hv => hv.Vcode);
 
             modelBuilder.Entity<HeeftVoogd>()
-                .HasOne(hv => hv.Ervaringdeskundige)
+                .HasOne<Ervaringdeskundige>()
                 .WithMany()
                 .HasForeignKey(hv => hv.Ecode);
             
             modelBuilder.Entity<HeeftOnderzoek>()
-                .HasOne(ho => ho.Onderzoek)
+                .HasOne<Onderzoek>()
                 .WithMany()
                 .HasForeignKey(ho => ho.Ocode);
 
             modelBuilder.Entity<HeeftOnderzoek>()
-                .HasOne(ho => ho.Bedrijf)
+                .HasOne<Bedrijf>()
                 .WithMany()
                 .HasForeignKey(ho => ho.Bcode);
             
             modelBuilder.Entity<Onderzoeksresultaat>()
-                .HasOne(or => or.Onderzoek)
+                .HasOne<Onderzoek>()
                 .WithMany()
                 .HasForeignKey(or => or.Ocode);
 
             modelBuilder.Entity<Onderzoeksresultaat>()
-                .HasOne(or => or.Ervaringdeskundige)
+                .HasOne<Ervaringdeskundige>()
                 .WithMany()
                 .HasForeignKey(or => or.Ecode);
             
             modelBuilder.Entity<HeeftType>()
-                .HasOne(ht => ht.Onderzoekstype)
+                .HasOne<Onderzoekstype>()
                 .WithMany()
                 .HasForeignKey(ht => ht.Otcode);
 
             modelBuilder.Entity<HeeftType>()
-                .HasOne(ht => ht.Onderzoek)
+                .HasOne<Onderzoek>()
                 .WithMany()
                 .HasForeignKey(ht => ht.Ocode);
             
             modelBuilder.Entity<VoorkeurType>()
-                .HasOne(vt => vt.Onderzoekstype)
+                .HasOne<Onderzoek>()
                 .WithMany()
                 .HasForeignKey(vt => vt.Otcode);
 
             modelBuilder.Entity<VoorkeurType>()
-                .HasOne(vt => vt.Ervaringdeskundige)
+                .HasOne<Ervaringdeskundige>()
                 .WithMany()
                 .HasForeignKey(vt => vt.Ecode);
             
             modelBuilder.Entity<HeeftBeperking>()
-                .HasOne(hb => hb.Beperking)
+                .HasOne<Beperking>()
                 .WithMany()
                 .HasForeignKey(hb => hb.Bcode);
 
             modelBuilder.Entity<HeeftBeperking>()
-                .HasOne(hb => hb.Ervaringdeskundige)
+                .HasOne<Ervaringdeskundige>()
                 .WithMany()
                 .HasForeignKey(hb => hb.Ecode);
             
             modelBuilder.Entity<HeeftHulpmiddel>()
-                .HasOne(hh => hh.Hulpmiddel)
+                .HasOne<Hulpmiddel>()
                 .WithMany()
                 .HasForeignKey(hh => hh.Hcode);
 
             modelBuilder.Entity<HeeftHulpmiddel>()
-                .HasOne(hh => hh.Ervaringdeskundige)
+                .HasOne<Ervaringdeskundige>()
                 .WithMany()
                 .HasForeignKey(hh => hh.Ecode);
 

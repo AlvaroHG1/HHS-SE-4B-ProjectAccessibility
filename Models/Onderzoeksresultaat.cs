@@ -7,6 +7,4 @@ public class Onderzoeksresultaat
     public int Ecode { get; set; }
     public DateTime? Datum { get; set; }
     public string Antwoord { get; set; }
-    public Onderzoek Onderzoek { get; set; }
-    public Ervaringdeskundige Ervaringdeskundige { get; set; }
 }
