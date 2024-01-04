@@ -1,7 +1,6 @@
 ﻿a.navbar-brand {
   white-space: normal;
   text-align: center;
-  word-break: break-all;
     color: white;
 }
 
@@ -13,14 +12,21 @@ html {
     font-size: 16px;
   }
 }
-
+.logo-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 15px;
+}
+.login-image{
+    width: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 15px;
+}
 .navbar{
     background-color: #111329;
-}
-
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0);
 }
 .logo-image {
     width: 50px;
@@ -41,14 +47,14 @@ html {
     justify-content: space-around;
     padding-top: 120px;
     height: 100vh;
-    box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
+    background: #131B56;
     margin-left: -40px;
     padding-left: 50px;
     text-align: center;
 }
-
 .navbar {
     width: 100%;
+    height: 62px; 
     box-shadow: 0 1px 4px rgb(146 161 176 / 15%);
 }
 
@@ -59,8 +65,10 @@ html {
     height: 62px;
 }
 
-.navbar .menu-items {
+.navbar .nav-container .logo {
     display: flex;
+    align-items: center;
+    margin-left: 20px;
 }
 
 .navbar .nav-container li {
@@ -110,14 +118,14 @@ html {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    cursor: pointer; 
 }
-
 .nav-container .hamburger-lines .line {
     display: block;
     height: 4px;
     width: 100%;
     border-radius: 10px;
-    background: #0e2431;
+    background: #ffffff;
 }
 
 .nav-container .hamburger-lines .line1 {
@@ -136,7 +144,6 @@ html {
 
 .navbar .menu-items {
     padding-top: 120px;
-    box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
     height: 100vh;
     width: 100%;
     transform: translate(-150%);
@@ -169,4 +176,58 @@ html {
 .nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
     transform: rotate(-45deg);
 }
+/* Voeg overgangen toe voor vloeiende animatie */
+.hamburger-lines .line {
+    transition: transform 0.3s ease-in-out;
+}
 
+/* Maak de tekst in het menu wit en geef het een subtiele schaduw */
+.menu-items a {
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Voeg een overgang toe voor het menu-item hover-effect */
+.menu-items a:hover {
+    font-weight: bolder;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Verplaats het menu naar rechts en laat het de hele schermvullende breedte innemen */
+.navbar .menu-items {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 50%;
+    background: #131B56;
+    padding: 20px;
+    text-align: right;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Verberg de menu-items bij standaardstatus en verschuif deze naar links bij uitklappen */
+.navbar .menu-items.collapsed {
+    transform: translateX(100%);
+}
+
+/* Zorg ervoor dat de tekst in het midden wordt uitgelijnd */
+.menu-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Voeg een vloeiende overgang toe aan het logo en login-image */
+.logo-image,
+.login-image {
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Verplaats het logo en de login-image naar links als het menu wordt uitgeklapt */
+.navbar .menu-items.expanded ~ .logo-image,
+.navbar .menu-items.expanded ~ .login-image {
+    transform: translateX(50%);
+}
