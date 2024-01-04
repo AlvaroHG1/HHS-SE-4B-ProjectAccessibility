@@ -37,13 +37,14 @@ public class ErvaringdeskundigeController : ControllerBase
             Voornaam = requestModel.Voornaam,
             Achternaam = requestModel.Achternaam,
             Email = requestModel.Email,
-            Telefoonnummer = requestModel.Telefoonnummer,
             Wachtwoord = requestModel.Wachtwoord,
+            Telefoonnummer = requestModel.Telefoonnummer,
             Straatnaam = requestModel.Straatnaam,
             Postcode = requestModel.Postcode,
             Huisnummer = requestModel.Huisnummer,
             Commercieel = requestModel.Commercieel,
-            Contactvoorkeur = requestModel.Contactvoorkeur
+            Contactvoorkeur = requestModel.Contactvoorkeur,
+            Plaats = requestModel.Plaats
         };
 
         _dbContext.Ervaringdeskundiges.Add(newErvaringdeskundige);
@@ -59,8 +60,7 @@ public class ErvaringdeskundigeController : ControllerBase
         {
             return BadRequest();
         }
-
-        // Find the existing Gebruiker with the given ID
+        
         var existingErvaringdeskundige = _dbContext.Ervaringdeskundiges.Find(id);
 
         if (existingErvaringdeskundige == null)

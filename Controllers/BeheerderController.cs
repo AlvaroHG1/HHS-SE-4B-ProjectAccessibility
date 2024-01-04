@@ -53,8 +53,7 @@ namespace ProjectAccessibility.Controllers
             {
                 return BadRequest();
             }
-
-            // Find the existing Gebruiker with the given ID
+            
             var existingBeheerder = _dbContext.Beheerders.Find(id);
 
             if (existingBeheerder == null)
