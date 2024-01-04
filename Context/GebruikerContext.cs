@@ -138,6 +138,7 @@ namespace ProjectAccessibility.Context
 
         public DbSet<Gebruiker> Gebruikers { get; set; }
         public DbSet<Beheerder> Beheerders { get; set; }
+        public DbSet<Ervaringdeskundige> Ervaringdeskundiges { get; set; }
         public DbSet<Aandoening> Aandoeningen { get; set; }
         public DbSet<Beperking> Beperkingen { get; set; }
         public DbSet<Hulpmiddel> Hulpmiddelen { get; set; }

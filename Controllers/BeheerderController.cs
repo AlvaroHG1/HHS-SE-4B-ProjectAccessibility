@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.SqlServer.Server;
 using ProjectAccessibility.Context;
 using ProjectAccessibility.Models;
 
@@ -32,11 +31,6 @@ namespace ProjectAccessibility.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] BeheerderRequestModel requestModel)
         {
-            if (requestModel == null || string.IsNullOrEmpty(requestModel.Email) || string.IsNullOrEmpty(requestModel.Wachtwoord))
-            {
-                return BadRequest("Email and Wachtwoord are required");
-            }
-
             Beheerder newBeheerder = new Beheerder()
             {
                 Voornaam = requestModel.Voornaam,
