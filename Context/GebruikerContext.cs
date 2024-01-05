@@ -42,6 +42,9 @@ namespace ProjectAccessibility.Context
             modelBuilder.Entity<HeeftType>()
                 .HasKey(ht => new { ht.Otcode, ht.Ocode });
             
+            modelBuilder.Entity<HeeftAandoening>()
+                .HasKey(ha => new { ha.Ecode, ha.Acode });
+            
             modelBuilder.Entity<VoorkeurType>()
                 .HasKey(vt => new { vt.Otcode, vt.Ecode });
             
@@ -66,6 +69,16 @@ namespace ProjectAccessibility.Context
                 .HasOne<Ervaringdeskundige>()
                 .WithMany()
                 .HasForeignKey(hv => hv.Ecode);
+            
+            modelBuilder.Entity<HeeftAandoening>()
+                .HasOne<Aandoening>()
+                .WithMany()
+                .HasForeignKey(ha => ha.Acode);
+
+            modelBuilder.Entity<HeeftAandoening>()
+                .HasOne<Ervaringdeskundige>()
+                .WithMany()
+                .HasForeignKey(ha => ha.Ecode);
             
             modelBuilder.Entity<HeeftOnderzoek>()
                 .HasOne<Onderzoek>()
@@ -165,6 +178,7 @@ namespace ProjectAccessibility.Context
         public DbSet<HeeftType> HeeftTypes { get; set; }
         public DbSet<VoorkeurType> VoorkeurTypes { get; set; }
         public DbSet<HeeftHulpmiddel> HeeftHulpmiddelen { get; set; }
+        public DbSet<HeeftAandoening> HeeftAandoeningen { get; set; }
         public DbSet<Chat> Chats { get; set; }
     }
 }
