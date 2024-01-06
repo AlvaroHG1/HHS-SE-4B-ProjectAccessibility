@@ -37,7 +37,7 @@ public class ErvaringdeskundigeController : ControllerBase
             Voornaam = requestModel.Voornaam,
             Achternaam = requestModel.Achternaam,
             Email = requestModel.Email,
-            Wachtwoord = requestModel.Wachtwoord,
+            Wachtwoord = Utils.HashPassword(requestModel.Wachtwoord),
             Telefoonnummer = requestModel.Telefoonnummer,
             Straatnaam = requestModel.Straatnaam,
             Postcode = requestModel.Postcode,
@@ -52,7 +52,7 @@ public class ErvaringdeskundigeController : ControllerBase
         return StatusCode(201, newErvaringdeskundige);
     }
 
-    // PUT: api/Gebruiker/5
+    // PUT: api/Ervaringdeskundige/?
     [HttpPut("{id}")]
     public IActionResult Put(int id, [FromBody] ErvaringdeskundigeRequestModel requestModel)
     {
@@ -72,7 +72,7 @@ public class ErvaringdeskundigeController : ControllerBase
         existingErvaringdeskundige.Achternaam = requestModel.Achternaam;
         existingErvaringdeskundige.Email = requestModel.Email;
         existingErvaringdeskundige.Telefoonnummer = requestModel.Telefoonnummer;
-        existingErvaringdeskundige.Wachtwoord = requestModel.Wachtwoord;
+        existingErvaringdeskundige.Wachtwoord = Utils.HashPassword(requestModel.Wachtwoord);
         existingErvaringdeskundige.Straatnaam = requestModel.Straatnaam;
         existingErvaringdeskundige.Postcode = requestModel.Postcode;
         existingErvaringdeskundige.Huisnummer = requestModel.Huisnummer;
@@ -85,7 +85,7 @@ public class ErvaringdeskundigeController : ControllerBase
         return Ok(existingErvaringdeskundige); // 200 OK
     }
 
-    // DELETE: api/Gebruiker/5
+    // DELETE: api/Ervaringdeskundige/5
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {

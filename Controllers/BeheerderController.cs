@@ -16,7 +16,7 @@ namespace ProjectAccessibility.Controllers
             _dbContext = dbContext;
         }
 
-        // GET: api/Beheerder/5
+        // GET: api/Beheerder/?
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
@@ -37,7 +37,7 @@ namespace ProjectAccessibility.Controllers
                 Achternaam = requestModel.Achternaam,
                 Rol = requestModel.Rol,
                 Email = requestModel.Email,
-                Wachtwoord = requestModel.Wachtwoord
+                Wachtwoord = Utils.HashPassword(requestModel.Wachtwoord)
             };
 
             _dbContext.Beheerders.Add(newBeheerder);
@@ -45,7 +45,7 @@ namespace ProjectAccessibility.Controllers
             return StatusCode(201, newBeheerder);
         }
 
-        // PUT: api/Gebruiker/5
+        // PUT: api/Beheerder/?
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] BeheerderRequestModel requestModel)
         {
@@ -65,7 +65,7 @@ namespace ProjectAccessibility.Controllers
             existingBeheerder.Wachtwoord = requestModel.Wachtwoord;
             existingBeheerder.Voornaam = requestModel.Voornaam;
             existingBeheerder.Achternaam = requestModel.Achternaam;
-            existingBeheerder.Rol = requestModel.Rol;
+            existingBeheerder.Rol = Utils.HashPassword(requestModel.Rol);
 
             _dbContext.Entry(existingBeheerder).State = EntityState.Modified;
             _dbContext.SaveChanges();
@@ -73,7 +73,7 @@ namespace ProjectAccessibility.Controllers
             return Ok(existingBeheerder); // 200 OK
         }
 
-        // DELETE: api/Gebruiker/5
+        // DELETE: api/Beheerder/?
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
