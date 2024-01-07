@@ -1,13 +1,13 @@
 using Npgsql.Internal.TypeHandlers.DateTimeHandlers;
+using NuGet.Packaging.Signing;
 
 namespace ProjectAccessibility.Models;
 
-public class Onderzoek
+public class OnderzoeksRequestModel
 {
-    public int Ocode { get; set; }
-    public string Titel { get; set; }
-    public string Beschrijving { get; set; }
-    public string Locatie { get; set; }
+    public String Titel { get; set; }
+    public String Beschrijving { get; set; }
+    public String Locatie { get; set; }
     public TimestampTzHandler Startdatum { get; set; }
     public TimestampTzHandler Einddatum { get; set; }
 }
