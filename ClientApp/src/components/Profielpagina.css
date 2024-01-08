@@ -1,0 +1,48 @@
+.Profielpagina-container {
+        background-color: rgba(217, 235, 247, 0.7);
+        border-radius: 25px;
+        margin-top: -15px;
+        margin-left: -231px;
+        margin-right: -231px;
+}
+.Profielpagina-container h1 {
+        /* Style for h1 elements inside Profielpagina-container */
+        padding-left: 15px;
+        padding-top: 10px;
+        color: #131B56;
+        font-weight: bold;
+        font-size: 50px;
+        :focus {
+                outline: 2px solid #0066cc; /* Add a visible focus outline */
+        }
+}
+.Profielpagina-container h2 {
+        /* Style for h2 elements inside Profielpagina-container */
+        padding-left: 15px;
+        color: #131B56;
+        font-weight: bold;
+        font-size: 40px;
+}
+.Profielpagina-container h3 {
+        /* Style for h3 elements inside Profielpagina-container */
+        padding-left: 15px;
+        color: #131B56;
+        font-weight: bold;
+        font-size: 30px;
+}
+.Profielpagina-container h4 {
+        /* Style for h4 elements inside Profielpagina-container */
+        padding-left: 15px;
+        color: #131B56;
+        font-weight: normal;
+        font-size: 30px;
+}
+
+.Info-container {
+                display: flex;
+                align-items: center;
+}
+
+.Info-container div {
+                margin-right: 10px; /* Adjust the margin as needed */
+}

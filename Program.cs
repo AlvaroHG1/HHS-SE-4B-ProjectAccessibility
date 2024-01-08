@@ -1,19 +1,32 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using MySqlConnector;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using ProjectAccessibility.Context;
-
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add CORS policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+});
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<GebruikerContext>(options =>{
+builder.Services.AddDbContext<GebruikerContext>(options =>
+{
     options.UseNpgsql("User Id=postgres;Password=GaomsRWOhc9Vr38J;Server=db.tezmskemtfwvdzusobph.supabase.co;Port=5432;Database=postgres");
 });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
 
 var app = builder.Build();
+
+// Configure CORS before adding other middleware
+app.UseCors("AllowAllOrigins");
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -22,16 +35,12 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-
 app.UseSwagger();
 app.UseSwaggerUI();
-
-app.MapControllers();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-
 
 app.MapControllerRoute(
     name: "default",

@@ -2,6 +2,7 @@ import { Counter } from "./components/Counter";
 import { FetchData } from "./components/FetchData";
 import { Home } from "./components/Home";
 import { Login } from "./components/Login";
+import { Profielpagina } from "./components/Profielpagina";
 
 const AppRoutes = [
   {
@@ -19,6 +20,10 @@ const AppRoutes = [
   {
     path: '/login',
     element: <Login />
+  },
+  {
+    path: '/profielpagina',
+    element: <Profielpagina />
   }
 ];
 
