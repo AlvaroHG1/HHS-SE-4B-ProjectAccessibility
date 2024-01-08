@@ -6,17 +6,28 @@ export class Home extends Component {
   static displayName = Home.name;
 
   render() {
-    return (
+    return ( /*begin v/d container*/
+        
+        <div>
+            <div className="box-welkomOmschrijving">
 
-        <div className="box-welcomOmschrijving">
-
-            <h1>Welkom bij Stichting Accessibility</h1>
+                <h1>Welkom bij Stichting Accessibility</h1>
                 <h2>Onze website "AccessiHub" werkt aan het optimaliseren
-                    van de toegankelijkheid voor websites om een inclusieve 
+                    van de toegankelijkheid voor websites om een inclusieve
                     online ervaring te bieden aan iedereen!</h2>
+            </div>
 
+            <div className="box-meldJeAan">
+                <h1> Meld je aan!</h1>
+            </div>
+            
+            <div className="box-welkomOmschrijving"> 
 
-        </div>
-  );
+                <h3>Samen met onze partners en klanten werken we 
+                    aan een inclusieve samenleving die toegankelijk is voor iedereen!</h3>
+            </div>
+
+        </div> /*einde v/d container*/
+    );
   }
-  }
+}
