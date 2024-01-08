@@ -31,7 +31,6 @@ public class OnderzoekstypeController : ControllerBase
     {
         Onderzoekstype newOnderzoekstype = new Onderzoekstype()
         {
-            Otcode = requestModel.Otcode,
             Type = requestModel.Type 
                    
         };
@@ -55,8 +54,7 @@ public class OnderzoekstypeController : ControllerBase
         {
             return NotFound(); 
         }
-
-        existingOnderzoekstype.Otcode = requestModel.Otcode;
+        
         existingOnderzoekstype.Type = requestModel.Type;
 
         _dbContext.Entry(existingOnderzoekstype).State = EntityState.Modified;
