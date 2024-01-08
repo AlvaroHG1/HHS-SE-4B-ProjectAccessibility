@@ -1,3 +1,5 @@
+using ProjectAccessibility.Models.ReturnModels;
+
 namespace ProjectAccessibility.Controllers;
 
 using Microsoft.AspNetCore.Mvc;
@@ -24,8 +26,16 @@ public class ErvaringdeskundigeController : ControllerBase
         Ervaringdeskundige ervaringdeskundige = _dbContext.Ervaringdeskundiges
             .Single(e => e.Gcode == id);
 
+        ErvaringdeskundigeReturnModel returnModel = new ErvaringdeskundigeReturnModel()
+        {
+            Ervaringdeskundige = ervaringdeskundige,
+            Beperkingen = _dbContext.HeeftBeperkingen
+                .Where(hb => hb.Ecode == id).ToList()
 
-        return Ok(ervaringdeskundige);
+        };
+        
+
+        return Ok(returnModel);
     }
 
     [HttpPost]
