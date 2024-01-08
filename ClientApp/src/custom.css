@@ -1,6 +1,6 @@
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+  color: #131B56;
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {

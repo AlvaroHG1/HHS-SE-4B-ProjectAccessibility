@@ -3,6 +3,7 @@ import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from '
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
 
+
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
 
@@ -15,36 +16,51 @@ export class NavMenu extends Component {
     };
   }
 
-  toggleNavbar () {
+  toggleNavbar() {
     this.setState({
-      collapsed: !this.state.collapsed
+      collapsed: !this.state.collapsed,
+      isMenuOpen: !this.state.isMenuOpen,
+      expanded: !this.state.expanded
     });
   }
 
-  render() {
+  
+
+
+  render(){
     return (
-      <header>
-        <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" container light>
-          <NavbarBrand tag={Link} to="/">ProjectAccessibility</NavbarBrand>
-          <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-          <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
-            <ul className="navbar-nav flex-grow">
-              <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
-              </NavItem>
-              {/*<NavItem>*/}
-              {/*  <NavLink tag={Link} className="text-dark" to="/counter">Counter</NavLink>*/}
-              {/*</NavItem>*/}
-              {/*<NavItem>*/}
-              {/*  <NavLink tag={Link} className="text-dark" to="/fetch-data">Fetch data</NavLink>*/}
-              {/*</NavItem>*/}
-              <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/Test">Login</NavLink>
-              </NavItem>
-            </ul>
-          </Collapse>
-        </Navbar>
-      </header>
+        <header>
+          <Navbar className="navbar-expand-sm navbar-toggleable-sm bg-blackborder-bottom box-shadow mb-3" container
+                  light>
+            <img src="/image/Logoacces.jpg" alt="Logo" className="logo-image"/>
+            <NavbarBrand to="/">ProjectAccessibility</NavbarBrand>
+            <NavbarToggler onClick={this.toggleNavbar} className="mr-2"/>
+            <div className="container nav-container">
+              <input className="checkbox" type="checkbox" id="menuToggle" checked={!this.state.collapsed}
+                     onChange={this.toggleNavbar}/>
+              <div className="hamburger-lines" onClick={this.toggleNavbar}>
+                <span className="line line1"></span>
+                <span className="line line2"></span>
+                <span className="line line3"></span>
+              </div>
+              <Collapse
+                  className={`d-sm-inline-flex flex-sm-row-reverse  menu-items ${this.state.expanded ? 'expanded' : 'collapsed'}`}
+                  isOpen={!this.state.collapsed}
+                  navbar
+              >
+                <ul className="navbar-nav flex-grow">
+                  <NavItem>
+                    <a id="Home" className="menu-item"><NavLink tag={Link} className="text-white" to="/">Home</NavLink></a>
+                  </NavItem>
+                  <NavItem>
+                    <a id="Login" className="menu-item"><NavLink tag={Link} className="text-white" to="/Login">Login</NavLink></a>
+                  </NavItem>
+                </ul>
+              </Collapse>
+            </div>
+            <img src="/image/man%20wit.png" alt="Login" className="login-image"/>
+          </Navbar>
+        </header>
     );
   }
 }
