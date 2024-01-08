@@ -1,7 +1,7 @@
 namespace ProjectAccessibility.Models;
 
-public class VoorkeurType
+public class HeeftHulpmiddelRequestModel
 {
-    public int Otcode { get; set; }
+    public int Hcode { get; set; }
     public int Ecode { get; set; }
 }
