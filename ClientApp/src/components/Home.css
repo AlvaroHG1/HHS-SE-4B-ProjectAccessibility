@@ -1,4 +1,38 @@
-body{
+body { /*settings for the backrgound*/
     background: #131B56;
     color: white;
+}
+
+.box-welcomOmschrijving {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    font-family: "Arial", sans-serif;
+    align-items: center;
+    justify-content: center;
+    border-radius: 54px;
+    background: #2B50EC;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    width: 1050px;
+    height: 175px;
+    flex-shrink: 0;
+}
+
+.box-welcomOmschrijving h1 {
+    color: #20c8a8;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0 0 20px 0; /* Added margin-bottom to create space between header and text */
+}
+.box-welcomOmschrijving h2{
+    color: #FFFFFF;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+    line-height: normal;
+    margin: 0 0 20px 0; /* Added margin-bottom to create space between header and text */
 }
