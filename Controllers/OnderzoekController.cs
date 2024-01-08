@@ -32,7 +32,8 @@ public class OnderzoekController : ControllerBase
     public IActionResult Post([FromBody] OnderzoekRequestModel requestModel)
     {
         Onderzoek newOnderzoek = new Onderzoek()
-        {
+        { 
+           Otcode = requestModel.Otcode,
            Titel = requestModel.Titel,
            Beschrijving = requestModel.Beschrijving,
            Locatie = requestModel.Locatie,
@@ -61,6 +62,7 @@ public class OnderzoekController : ControllerBase
             return NotFound();
         }
 
+        existingOnderzoek.Otcode = requestModel.Otcode;
         existingOnderzoek.Titel = requestModel.Titel;
         existingOnderzoek.Beschrijving = requestModel.Beschrijving;
         existingOnderzoek.Locatie = requestModel.Locatie;
