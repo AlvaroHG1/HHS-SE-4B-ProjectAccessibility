@@ -8,11 +8,11 @@ namespace ProjectAccessibility.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class OnderzoeksController : ControllerBase
+public class OnderzoekController : ControllerBase
 {
     private readonly GebruikerContext _dbContext;
 
-    public OnderzoeksController(GebruikerContext dbContext)
+    public OnderzoekController(GebruikerContext dbContext)
     {
         _dbContext = dbContext;
     }
@@ -29,7 +29,7 @@ public class OnderzoeksController : ControllerBase
     }
     
     [HttpPost]
-    public IActionResult Post([FromBody] OnderzoeksRequestModel requestModel)
+    public IActionResult Post([FromBody] OnderzoekRequestModel requestModel)
     {
         Onderzoek newOnderzoek = new Onderzoek()
         {
@@ -47,7 +47,7 @@ public class OnderzoeksController : ControllerBase
     }
     
     [HttpPut("{id}")]
-    public IActionResult Put(int id, [FromBody] OnderzoeksRequestModel requestModel)
+    public IActionResult Put(int id, [FromBody] OnderzoekRequestModel requestModel)
     {
         if (requestModel == null)
         {

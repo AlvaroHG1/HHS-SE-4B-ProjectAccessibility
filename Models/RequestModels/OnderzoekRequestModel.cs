@@ -3,7 +3,7 @@ using NuGet.Packaging.Signing;
 
 namespace ProjectAccessibility.Models;
 
-public class OnderzoeksRequestModel
+public class OnderzoekRequestModel
 {
     public String Titel { get; set; }
     public String Beschrijving { get; set; }
