@@ -1,13 +1,15 @@
 using Microsoft.EntityFrameworkCore;
+using MySqlConnector;
 using ProjectAccessibility.Context;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<AccessibilityContext>(opt => opt.UseInMemoryDatabase("AccessibilityDB"));
 builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<GebruikerContext>(options =>{
+    options.UseNpgsql("User Id=postgres;Password=GaomsRWOhc9Vr38J;Server=db.tezmskemtfwvdzusobph.supabase.co;Port=5432;Database=postgres");
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
 
@@ -20,10 +22,10 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-/*
- app.UseSwagger();
+
+app.UseSwagger();
 app.UseSwaggerUI();
-*/
+
 app.MapControllers();
 
 app.UseHttpsRedirection();

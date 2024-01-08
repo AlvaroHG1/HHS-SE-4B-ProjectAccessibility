@@ -8,8 +8,8 @@ export class Login extends Component {
             <div className="login-container">
                 <div>
                 <h1>Login</h1>
-                <h2>Gebruikersnaam</h2>
-                <input type="text" placeholder="Gebruikersnaam"></input>
+                <h2>Email</h2>
+                <input type="text" placeholder="Email"></input>
                 <h2>Wachtwoord</h2>
                 <input type="password" placeholder="Wachtwoord"></input>
                 <h2>Wachtwoord vergeten?</h2>
