@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.JavaScript;
 using Npgsql.Internal.TypeHandlers.DateTimeHandlers;
 using NuGet.Packaging.Signing;
 
@@ -8,6 +9,6 @@ public class OnderzoekRequestModel
     public String Titel { get; set; }
     public String Beschrijving { get; set; }
     public String Locatie { get; set; }
-    public TimestampTzHandler Startdatum { get; set; }
-    public TimestampTzHandler Einddatum { get; set; }
+    public DateOnly Startdatum { get; set; }
+    public DateOnly Einddatum { get; set; }
 }
