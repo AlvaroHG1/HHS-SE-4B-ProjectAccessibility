@@ -25,13 +25,40 @@ public class ErvaringdeskundigeController : ControllerBase
 
         Ervaringdeskundige ervaringdeskundige = _dbContext.Ervaringdeskundiges
             .Single(e => e.Gcode == id);
+        
+        var beperkingNames = _dbContext.HeeftBeperkingen
+            .Where(hb => hb.Ecode == id)
+            .Join(
+                _dbContext.Beperkingen,
+                hb => hb.Bcode,
+                b => b.Bcode,
+                (hb, b) => b.Naam)
+            .ToList();
 
+        var hulpmiddelNames = _dbContext.HeeftHulpmiddelen
+            .Where(hh => hh.Ecode == id)
+            .Join(
+                _dbContext.Hulpmiddelen,
+                hh => hh.Hcode,
+                h => h.Hcode,
+                (hh, h) => h.Naam)
+            .ToList();
+
+        var aandoeningNames = _dbContext.HeeftAandoeningen
+            .Where(ha => ha.Ecode == id)
+            .Join(
+                _dbContext.Aandoeningen,
+                ha => ha.Acode,
+                a => a.Acode,
+                (ha, a) => a.Naam)
+            .ToList();
+        
         ErvaringdeskundigeReturnModel returnModel = new ErvaringdeskundigeReturnModel()
         {
             Ervaringdeskundige = ervaringdeskundige,
-            Beperkingen = _dbContext.HeeftBeperkingen
-                .Where(hb => hb.Ecode == id).ToList()
-
+            Beperkingen = beperkingNames,
+            Hulpmiddellen = hulpmiddelNames,
+            Aandoeningen = aandoeningNames
         };
         
 
