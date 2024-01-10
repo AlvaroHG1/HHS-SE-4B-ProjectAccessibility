@@ -6,7 +6,6 @@ namespace ProjectAccessibility.Models;
 
 public class OnderzoekRequestModel
 {
-    public int Otcode { get; set; }
     public String Titel { get; set; }
     public String Beschrijving { get; set; }
     public String Locatie { get; set; }

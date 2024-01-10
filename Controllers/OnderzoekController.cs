@@ -17,6 +17,7 @@ public class OnderzoekController : ControllerBase
         _dbContext = dbContext;
     }
     
+    // GET: api/Onderzoek/?
     [HttpGet("{id}")]
     public IActionResult Get(int id)
     {
@@ -28,12 +29,12 @@ public class OnderzoekController : ControllerBase
         return Ok(onderzoek);
     }
     
+    // POST: api/Onderzoek/?
     [HttpPost]
     public IActionResult Post([FromBody] OnderzoekRequestModel requestModel)
     {
         Onderzoek newOnderzoek = new Onderzoek()
         { 
-           Otcode = requestModel.Otcode,
            Titel = requestModel.Titel,
            Beschrijving = requestModel.Beschrijving,
            Locatie = requestModel.Locatie,
@@ -47,6 +48,7 @@ public class OnderzoekController : ControllerBase
         return StatusCode(201, newOnderzoek);
     }
     
+    // PUT: api/Onderzoek/?
     [HttpPut("{id}")]
     public IActionResult Put(int id, [FromBody] OnderzoekRequestModel requestModel)
     {
@@ -61,8 +63,7 @@ public class OnderzoekController : ControllerBase
         {
             return NotFound();
         }
-
-        existingOnderzoek.Otcode = requestModel.Otcode;
+        
         existingOnderzoek.Titel = requestModel.Titel;
         existingOnderzoek.Beschrijving = requestModel.Beschrijving;
         existingOnderzoek.Locatie = requestModel.Locatie;
@@ -75,6 +76,7 @@ public class OnderzoekController : ControllerBase
         return Ok(existingOnderzoek);
     }
     
+    // DELETE: api/Onderzoek/?
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {
