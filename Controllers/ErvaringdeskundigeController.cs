@@ -52,13 +52,23 @@ public class ErvaringdeskundigeController : ControllerBase
                 a => a.Acode,
                 (ha, a) => a.Naam)
             .ToList();
+
+        var voorkeurTypeNames = _dbContext.VoorkeurTypes
+            .Where(vt => vt.Ecode == id)
+            .Join(
+                _dbContext.Onderzoekstypes,
+                vt => vt.Otcode,
+                ot => ot.Otcode,
+                (vt, ot) => ot.Type)
+            .ToList();
         
         ErvaringdeskundigeReturnModel returnModel = new ErvaringdeskundigeReturnModel()
         {
             Ervaringdeskundige = ervaringdeskundige,
             Beperkingen = beperkingNames,
             Hulpmiddellen = hulpmiddelNames,
-            Aandoeningen = aandoeningNames
+            Aandoeningen = aandoeningNames,
+            VoorkeurTypes = voorkeurTypeNames
         };
         
 

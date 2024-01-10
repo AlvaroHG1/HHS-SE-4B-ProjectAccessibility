@@ -1,65 +1,60 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Build.Construction;
 using Microsoft.EntityFrameworkCore;
 using ProjectAccessibility.Context;
 using ProjectAccessibility.Models;
 
-namespace ProjectAccessibility.Controllers
+namespace ProjectAccessibility.Controllers;
 
+[Route("api/[controller]")]
+[ApiController]
+public class VoorkeurTypeController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class VoorkeurTypeController : ControllerBase
+    private readonly GebruikerContext _dbContext;
+
+    public VoorkeurTypeController(GebruikerContext dbContext)
     {
-        private readonly GebruikerContext _dbContext;
-
-        public VoorkeurTypeController(GebruikerContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
-
-        // GET: api/VoorkeurType/?
-        [HttpGet("{Ecode}")]
-        public IActionResult Get(int Bcode)
-        {
-            
-            var voorkeurTypes = _dbContext.VoorkeurTypes
-                .Where(vt => vt.Otcode == Bcode).ToList();
-            
-            return Ok(voorkeurTypes);
-        }
+        _dbContext = dbContext;
+    }
+    
+    [HttpGet("{id}")]
+    public IActionResult Get(int id)
+    {
+        VoorkeurType voorkeurType = _dbContext.VoorkeurTypes    
+            .Single(vt => vt.Ecode == id);
         
-        // POST: api/VoorkeurType/?
-        [HttpPost]
-        public IActionResult Post([FromBody] VoorkeurTypeRequestModel requestModel)
+        return Ok(voorkeurType);
+    }
+    
+    [HttpPost]
+    public IActionResult Post([FromBody] VoorkeurTypeRequestModel requestModel)
+    {
+        VoorkeurType newVoorkeurtype = new VoorkeurType()
         {
-            VoorkeurType newVoorkeurType = new VoorkeurType()
-            {
-                Otcode = requestModel.Otcode,
-                Ecode = requestModel.Ecode
-            };
+            Otcode = requestModel.Otcode,
+            Ecode = requestModel.Ecode
+                   
+        };
 
-            _dbContext.VoorkeurTypes.Add(newVoorkeurType);
-            _dbContext.SaveChanges();
-            return StatusCode(201, newVoorkeurType);
+        _dbContext.VoorkeurTypes.Add(newVoorkeurtype);
+        _dbContext.SaveChanges();
+        return StatusCode(201, newVoorkeurtype);
+    }
+    
+    [HttpDelete("{id}")]
+    public IActionResult Delete(int id)
+    {
+        var voorkeurTypeToDelete = _dbContext.VoorkeurTypes.Find(id);
+
+        if (voorkeurTypeToDelete == null)
+        {
+            return NotFound();
         }
 
-        // DELETE: api/VoorkeurType/5
-        [HttpDelete]
-        public IActionResult Delete([FromBody] VoorkeurTypeRequestModel requestModel)
-        {
-            VoorkeurType? voorkeurTypeToDelete = _dbContext.VoorkeurTypes
-                .SingleOrDefault(vt => vt.Otcode == requestModel.Otcode && vt.Ecode == requestModel.Ecode);
+        _dbContext.VoorkeurTypes.Remove(voorkeurTypeToDelete);
 
-            if (voorkeurTypeToDelete == null)
-            {
-                return NotFound();
-            }
+        _dbContext.SaveChanges();
 
-            _dbContext.VoorkeurTypes.Remove(voorkeurTypeToDelete);
-
-            _dbContext.SaveChanges();
-
-            return NoContent();
-        }
+        return NoContent();
     }
 }

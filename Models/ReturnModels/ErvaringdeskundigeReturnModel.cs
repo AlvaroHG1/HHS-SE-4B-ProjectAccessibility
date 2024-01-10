@@ -7,5 +7,6 @@ public class ErvaringdeskundigeReturnModel
     public List<string> Hulpmiddellen { get; set; }
     
     public List<string> Aandoeningen { get; set; }
+    public List<string> VoorkeurTypes { get; set; }
     
 }
