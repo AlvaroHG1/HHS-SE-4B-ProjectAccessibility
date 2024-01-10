@@ -17,6 +17,7 @@ public class OnderzoekstypeController : ControllerBase
         _dbContext = dbContext;
     }
     
+    // GET: api/OnderzoeksType/?
     [HttpGet("{id}")]
     public IActionResult Get(int id)
     {
@@ -26,6 +27,7 @@ public class OnderzoekstypeController : ControllerBase
         return Ok(onderzoekstype);
     }
     
+    // POST: api/OnderzoeksType/?
     [HttpPost]
     public IActionResult Post([FromBody] OnderzoekstypeRequestModel requestModel)
     {
@@ -40,29 +42,7 @@ public class OnderzoekstypeController : ControllerBase
         return StatusCode(201, newOnderzoekstype);
     }
     
-    [HttpPut("{id}")]
-    public IActionResult Put(int id, [FromBody] OnderzoekstypeRequestModel requestModel)
-    {
-        if (requestModel == null)
-        {
-            return BadRequest();
-        }
-        
-        var existingOnderzoekstype = _dbContext.Onderzoekstypes.Find(id);
-
-        if (existingOnderzoekstype == null)
-        {
-            return NotFound(); 
-        }
-        
-        existingOnderzoekstype.Type = requestModel.Type;
-
-        _dbContext.Entry(existingOnderzoekstype).State = EntityState.Modified;
-        _dbContext.SaveChanges();
-
-        return Ok(existingOnderzoekstype);
-    }
-    
+    // DELETE: api/OnderzoeksType/?
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {
