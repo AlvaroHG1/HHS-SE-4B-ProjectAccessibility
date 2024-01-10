@@ -69,6 +69,7 @@ public class ErvaringdeskundigeController : ControllerBase
             Hulpmiddellen = hulpmiddelNames,
             Aandoeningen = aandoeningNames,
             VoorkeurTypes = voorkeurTypeNames
+            
         };
         
 
