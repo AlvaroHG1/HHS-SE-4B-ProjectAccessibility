@@ -48,6 +48,31 @@ namespace ProjectAccessibility.Controllers
             _dbContext.SaveChanges();
             return StatusCode(201, newOpenChat);
         }
+        
+        // PUT: api/Chat/?
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody] OpenChatRequestModel requestModel)
+        {
+            if (requestModel == null)
+            {
+                return BadRequest();
+            }
+            
+            var existingOpenChat = _dbContext.OpenChats.Find(id);
+
+            if (existingOpenChat == null)
+            {
+                return NotFound(); // 404 Not Found
+            }
+
+            existingOpenChat.SenderGCode = requestModel.SenderGCode;
+            existingOpenChat.RecieverGCode = requestModel.RecieverGCode;
+
+            _dbContext.Entry(existingOpenChat).State = EntityState.Modified;
+            _dbContext.SaveChanges();
+
+            return Ok(existingOpenChat); // 200 OK
+        }
 
         // DELETE: api/Chat/?
         [HttpDelete("{id}")]

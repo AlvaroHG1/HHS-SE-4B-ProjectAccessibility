@@ -156,12 +156,12 @@ namespace ProjectAccessibility.Context
             modelBuilder.Entity<OpenChat>()
                 .HasOne<Gebruiker>()
                 .WithMany()
-                .HasForeignKey(c => c.SenderGCode);
+                .HasForeignKey(oc => oc.SenderGCode);
 
             modelBuilder.Entity<OpenChat>()
                 .HasOne<Gebruiker>()
                 .WithMany()
-                .HasForeignKey(c => c.RecieverGCode);
+                .HasForeignKey(oc => oc.RecieverGCode);
             
             modelBuilder.Entity<Ervaringdeskundige>()
                 .ToTable("Ervaringdeskundigen");
@@ -193,7 +193,7 @@ namespace ProjectAccessibility.Context
         public DbSet<VoorkeurType> VoorkeurTypes { get; set; }
         public DbSet<HeeftHulpmiddel> HeeftHulpmiddelen { get; set; }
         public DbSet<HeeftAandoening> HeeftAandoeningen { get; set; }
-        public DbSet<OpenChat> OpenChats { get; set; }
         public DbSet<Chat> Chats { get; set; }
+        public DbSet<OpenChat> OpenChats { get; set; }
     }
 }

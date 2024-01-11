@@ -228,15 +228,15 @@ namespace ProjectAccessibility.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime?>("Einddatum")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateOnly>("Einddatum")
+                        .HasColumnType("date");
 
                     b.Property<string>("Locatie")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime?>("Startdatum")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateOnly>("Startdatum")
+                        .HasColumnType("date");
 
                     b.Property<string>("Titel")
                         .IsRequired()
@@ -287,6 +287,29 @@ namespace ProjectAccessibility.Migrations
                     b.HasKey("Otcode");
 
                     b.ToTable("Onderzoekstypes");
+                });
+
+            modelBuilder.Entity("ProjectAccessibility.Models.OpenChat", b =>
+                {
+                    b.Property<int>("OCcode")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("OCcode"));
+
+                    b.Property<int>("RecieverGCode")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("SenderGCode")
+                        .HasColumnType("integer");
+
+                    b.HasKey("OCcode");
+
+                    b.HasIndex("RecieverGCode");
+
+                    b.HasIndex("SenderGCode");
+
+                    b.ToTable("OpenChats");
                 });
 
             modelBuilder.Entity("ProjectAccessibility.Models.Voogd", b =>
@@ -537,6 +560,21 @@ namespace ProjectAccessibility.Migrations
                     b.HasOne("ProjectAccessibility.Models.Onderzoek", null)
                         .WithMany()
                         .HasForeignKey("Ocode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ProjectAccessibility.Models.OpenChat", b =>
+                {
+                    b.HasOne("ProjectAccessibility.Models.Gebruiker", null)
+                        .WithMany()
+                        .HasForeignKey("RecieverGCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProjectAccessibility.Models.Gebruiker", null)
+                        .WithMany()
+                        .HasForeignKey("SenderGCode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
