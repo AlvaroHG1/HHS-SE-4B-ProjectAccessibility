@@ -38,6 +38,15 @@ namespace ProjectAccessibility.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] OpenChatRequestModel requestModel)
         {
+
+            int recieverGCode = requestModel.RecieverGCode;
+            int senderGCode = requestModel.SenderGCode;
+            
+            if (_dbContext.OpenChats.SingleOrDefault(oc => oc.RecieverGCode == recieverGCode && oc.SenderGCode == senderGCode) != null)
+            {
+                return BadRequest();
+            }
+            
             OpenChat newOpenChat = new OpenChat()
             {
                 SenderGCode = requestModel.SenderGCode,
