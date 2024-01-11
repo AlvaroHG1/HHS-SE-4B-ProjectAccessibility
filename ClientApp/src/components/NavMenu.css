@@ -3,7 +3,9 @@
   text-align: center;
     color: white;
 }
-
+.navbar-nav flex-grow{
+    justify-content: flex-end;
+}
 html {
   font-size: 14px;
 }
@@ -11,13 +13,6 @@ html {
   html {
     font-size: 16px;
   }
-}
-.logo-image {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-right: 15px;
 }
 .login-image{
     width: 50px;
@@ -30,7 +25,7 @@ html {
 }
 .logo-image {
     width: 50px;
-    height: 50px;
+    height: 43px;
     border-radius: 50%;
     overflow: hidden;
     margin-right: 15px;
@@ -44,13 +39,19 @@ html {
 .navbar .menu-items {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: flex-start; /* Adjust alignment as needed */
     padding-top: 120px;
     height: 100vh;
+    width: 100%;
     background: #131B56;
-    margin-left: -40px;
     padding-left: 50px;
     text-align: center;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+}
+.navbar .menu-items.collapsed {
+    transform: translateX(-100%);
 }
 .navbar {
     width: 100%;
@@ -176,24 +177,21 @@ html {
 .nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
     transform: rotate(-45deg);
 }
-/* Voeg overgangen toe voor vloeiende animatie */
 .hamburger-lines .line {
     transition: transform 0.3s ease-in-out;
 }
 
-/* Maak de tekst in het menu wit en geef het een subtiele schaduw */
 .menu-items a {
     color: #fff;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);\padding: 10px; /* Add padding to the links for better spacing */
+    display: block; /* Make each link a block element to force them to appear on a new line */
 }
 
-/* Voeg een overgang toe voor het menu-item hover-effect */
 .menu-items a:hover {
     font-weight: bolder;
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Verplaats het menu naar rechts en laat het de hele schermvullende breedte innemen */
 .navbar .menu-items {
     position: fixed;
     top: 0;
@@ -207,12 +205,10 @@ html {
     transition: transform 0.3s ease-in-out;
 }
 
-/* Verberg de menu-items bij standaardstatus en verschuif deze naar links bij uitklappen */
 .navbar .menu-items.collapsed {
     transform: translateX(100%);
 }
 
-/* Zorg ervoor dat de tekst in het midden wordt uitgelijnd */
 .menu-items {
     display: flex;
     flex-direction: column;
@@ -220,13 +216,11 @@ html {
     align-items: center;
 }
 
-/* Voeg een vloeiende overgang toe aan het logo en login-image */
 .logo-image,
 .login-image {
     transition: transform 0.3s ease-in-out;
 }
 
-/* Verplaats het logo en de login-image naar links als het menu wordt uitgeklapt */
 .navbar .menu-items.expanded ~ .logo-image,
 .navbar .menu-items.expanded ~ .login-image {
     transform: translateX(50%);
