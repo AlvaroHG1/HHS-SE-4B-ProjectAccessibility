@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProjectAccessibility.Context;
 using ProjectAccessibility.Models;
+using ProjectAccessibility.Models.ReturnModels;
 
 namespace ProjectAccessibility.Controllers
 {
@@ -26,12 +27,40 @@ namespace ProjectAccessibility.Controllers
         public IActionResult Get(int id)
         {
 
-            List<OpenChat> openChats = _dbContext.OpenChats
-                .Where(oc => oc.RecieverGCode == id || oc.SenderGCode == id)
+            var openChatCodes = _dbContext.OpenChats
+                .Where(oc => oc.SenderGCode == id)
+                .Select(oc => oc.RecieverGCode)
+                .ToList();
+
+            List<OpenChatReturnModel> openChatsWithUsers = openChatCodes
+                .Select(gcode =>
+                {
+                    OpenChatReturnModel returnModel = new OpenChatReturnModel();
+
+                    var ervaringdeskundige = _dbContext.Ervaringdeskundiges.Find(gcode);
+                    var bedrijf = _dbContext.Bedrijven.Find(gcode);
+                    var beheerder = _dbContext.Beheerders.Find(gcode);
+
+                    if (ervaringdeskundige != null)
+                    {
+                        returnModel.Naam = ervaringdeskundige.Voornaam;
+                        returnModel.Type = "Ervaringsdeskundige";
+                    }
+                    else if (bedrijf != null)
+                    {
+                        returnModel.Naam = bedrijf.Naam;
+                        returnModel.Type = "Bedrijf";
+                    }
+                    else if (beheerder != null)
+                    {
+                        returnModel.Naam = beheerder.Voornaam;
+                        returnModel.Type = "Beheerder";
+                    }
+                    return returnModel;
+                })
                 .ToList();
             
-            
-            return Ok(openChats);
+            return Ok(openChatsWithUsers);
         }
 
         // POST: api/Chat/?
@@ -39,48 +68,31 @@ namespace ProjectAccessibility.Controllers
         public IActionResult Post([FromBody] OpenChatRequestModel requestModel)
         {
 
-            int recieverGCode = requestModel.RecieverGCode;
-            int senderGCode = requestModel.SenderGCode;
+            int recieverGCode = requestModel.SecondGCode;
+            int senderGCode = requestModel.FirstGCode;
             
             if (_dbContext.OpenChats.SingleOrDefault(oc => oc.RecieverGCode == recieverGCode && oc.SenderGCode == senderGCode) != null)
             {
                 return BadRequest();
             }
             
-            OpenChat newOpenChat = new OpenChat()
+            OpenChat newSenderOpenChat = new OpenChat()
             {
-                SenderGCode = requestModel.SenderGCode,
-                RecieverGCode = requestModel.RecieverGCode
+                SenderGCode = requestModel.FirstGCode,
+                RecieverGCode = requestModel.SecondGCode
+            };
+            
+            OpenChat newRecieverOpenChat = new OpenChat()
+            {
+                SenderGCode = requestModel.SecondGCode,
+                RecieverGCode = requestModel.FirstGCode
             };
 
-            _dbContext.OpenChats.Add(newOpenChat);
+            _dbContext.OpenChats.Add(newSenderOpenChat);
             _dbContext.SaveChanges();
-            return StatusCode(201, newOpenChat);
-        }
-        
-        // PUT: api/Chat/?
-        [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] OpenChatRequestModel requestModel)
-        {
-            if (requestModel == null)
-            {
-                return BadRequest();
-            }
-            
-            var existingOpenChat = _dbContext.OpenChats.Find(id);
-
-            if (existingOpenChat == null)
-            {
-                return NotFound(); // 404 Not Found
-            }
-
-            existingOpenChat.SenderGCode = requestModel.SenderGCode;
-            existingOpenChat.RecieverGCode = requestModel.RecieverGCode;
-
-            _dbContext.Entry(existingOpenChat).State = EntityState.Modified;
+            _dbContext.OpenChats.Add(newRecieverOpenChat);
             _dbContext.SaveChanges();
-
-            return Ok(existingOpenChat); // 200 OK
+            return StatusCode(201);
         }
 
         // DELETE: api/Chat/?

@@ -46,9 +46,8 @@ export class Chats extends Component {
                     <div className="chat-list">
                         {OpenChat.map((chat) => (
                             <div key={chat.oCcode} className="chat-item">
-                                <h2>{`Naam: ${chat.oCcode}`}</h2>
-                                <p>{`Description: ${chat.senderGCode}`}</p>
-                                <p>{`Receiver: ${chat.recieverGCode}`}</p>
+                                <h2>{`Naam: ${chat.naam}`}</h2>
+                                <p>{`Description: ${chat.type}`}</p>
                             </div>
                         ))}
                     </div>

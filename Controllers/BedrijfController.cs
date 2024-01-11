@@ -33,6 +33,7 @@ namespace ProjectAccessibility.Controllers
         {
             Bedrijf newBedrijf = new Bedrijf()
             {
+                Naam = requestModel.Naam,
                 Link = requestModel.Link,
                 Bedrijfsinformatie = requestModel.Bedrijfsinformatie,
                 Rol = requestModel.Rol,
@@ -61,6 +62,7 @@ namespace ProjectAccessibility.Controllers
                 return NotFound(); // 404 Not Found
             }
 
+            existingBedrijf.Naam = requestModel.Naam;
             existingBedrijf.Link = requestModel.Link;
             existingBedrijf.Bedrijfsinformatie = requestModel.Bedrijfsinformatie;
             existingBedrijf.Locatie = requestModel.Locatie;

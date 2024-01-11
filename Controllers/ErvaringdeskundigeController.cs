@@ -77,8 +77,7 @@ public class ErvaringdeskundigeController : ControllerBase
     [HttpPost]
     public IActionResult Post([FromBody] ErvaringdeskundigeRequestModel requestModel)
     {
-
-        if (_dbContext.Gebruikers.Single(e => e.Email == requestModel.Email) != null)
+        if (_dbContext.Gebruikers.SingleOrDefault(e => e.Email == requestModel.Email) != null)
         {
             return Problem("Email already exists");
         }
