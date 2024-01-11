@@ -1,42 +1,47 @@
 .Profielpagina-container {
         background-color: rgba(217, 235, 247, 0.7);
         border-radius: 25px;
-        margin-top: -15px;
+        margin-top: -1.5rem;
         align-self: auto;
 }
+
 .Profielpagina-container h1 {
-        padding-left: 15px;
-        padding-top: 15px;
+        padding-left: 1.5rem;
+        padding-top: 1.5rem;
         color: #131B56;
         font-weight: bold;
-        font-size: 50px;
+        font-size: 3rem;
 }
+
 .Profielpagina-container h2 {
-        padding-left: 15px;
-        margin-top: 30px;
+        padding-left: 1.5rem;
+        margin-top: 3rem;
         color: #131B56;
         font-weight: bold;
-        font-size: 40px;
+        font-size: 1.75rem;
 }
+
 .Profielpagina-container h3 {
-        padding-left: 15px;
+        padding-left: 1.5rem;
         color: #131B56;
         font-weight: bold;
-        font-size: 30px;
+        font-size: 1.5rem;
 }
+
 .Profielpagina-container h4 {
-        padding-left: 15px;
+        padding-left: 1.5rem;
         color: #131B56;
         font-weight: normal;
-        font-size: 30px;
+        font-size: 1.5rem;
 }
+
 .Profielpagina-container h4.specialh4 {
         /* Stijl voor h4 elements met de values voor contactvoorkeur en commercieel geïnteresseerd */
-        margin-top: 30px;
-        padding-left: 15px;
+        margin-top: 3rem;
+        padding-left: 1.5rem;
         color: #131B56;
         font-weight: normal;
-        font-size: 30px;
+        font-size: 1.5rem;
 }
 
 .Info-container {
@@ -45,25 +50,27 @@
 }
 
 .Info-container div {
-        padding-left: 15px;
-        margin-right: 10px; 
+        padding-left: 1.5rem;
+        margin-right: 1rem;
 }
+
 .Info-container2 {
         display: flex;
         align-items: center;
 }
 
 .Info-container2 div {
-        margin-right: 10px;
+        margin-right: 1rem;
 }
 
 .Profielpagina-container ul {
-        list-style-type: disc; 
-        margin-left: 15px; 
+        list-style-type: disc;
+        margin-left: 1.5rem;
 }
+
 .Profielpagina-container ul li {
-        margin-left: 10px;
+        margin-left: 1rem;
         color: #131B56;
         font-weight: normal;
-        font-size: 30px; 
+        font-size: 1.5rem;
 }
