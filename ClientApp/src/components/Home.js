@@ -7,7 +7,7 @@ export class Home extends Component {
 
   render() {
     return ( /*begin v/d container*/
-        
+
         <div>
             <div className="box-welkomOmschrijving">
 
@@ -20,13 +20,17 @@ export class Home extends Component {
             <div className="box-meldJeAan">
                 <h1> Meld je aan!</h1>
             </div>
-            
-            <div className="box-welkomOmschrijving"> 
 
-                <h3>Samen met onze partners en klanten werken we 
-                    aan een inclusieve samenleving die toegankelijk is voor iedereen!</h3>
+            <div className="box-meldJeAan">
+                <h2> Ontdek hoe je morgen aan de slag kunt gaan
+                    als onderzoeker</h2>
             </div>
 
+            <div className="box-welkomOmschrijving">
+
+                <h3>Samen met onze partners en klanten werken we
+                    aan een inclusieve samenleving die toegankelijk is voor iedereen!</h3>
+            </div>
         </div> /*einde v/d container*/
     );
   }
