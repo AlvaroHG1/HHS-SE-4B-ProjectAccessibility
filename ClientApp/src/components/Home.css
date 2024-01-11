@@ -49,19 +49,22 @@ body {
     text-align: center; /* Center-align the text */
 }
 
+.box-meldJeAan{
+    display: flex;
+    align-items: center;
+}
+
 .box-meldJeAan h1{
     display: flex;
-    border-radius: 30px; /* Reduced border-radius */
-    width: 374px; /*BREEDTE VAN DE BOX*/
+    border-radius: 30px; /*voor de afgerondde randen*/
+    width: 374px; 
     height: 100px;
     flex-direction: column;
     justify-content: center;
     flex-shrink: 0;
     background-color: #108670;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-}
 
-.box-meldJeAan h1 {
     color: #D9EBF7;
     text-align: center;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.80);
@@ -71,28 +74,29 @@ body {
     font-weight: 400;
     line-height: normal;
     text-decoration-line: underline;
-    margin: 100px 0 100px 0; /* Smaller margin */
-}
+    margin: 100px 0 100px 60px; /* Aangepaste margin met een negatieve waarde voor margin-left */}
 
 .box-meldJeAan h2{
     display: flex;
-    width: 374px; /*BREEDTE VAN DE BOX*/
+    width: 474px; /*BREEDTE VAN DE BOX*/
+    border-radius: 30px; /*voor de afgerondde randen*/
     height: 100px;
     flex-direction: column;
     justify-content: center;
     flex-shrink: 0;
-    background-color: #108670;
+    background-color: rgba(16, 134, 112, 0.30);
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-}
 
-.box-meldJeAan h2 {
     color: #D9EBF7;
-    text-align: center;
+    text-align: right; /*of center ???*/
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.80);
     font-family: "Arial", sans-serif;
     font-size: 30px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    margin: 0 0 100px 0; /* Smaller margin */
+    margin: 100px 0 100px 0; /* Smaller margin */
+    margin-left: -30px;
 }
+
+

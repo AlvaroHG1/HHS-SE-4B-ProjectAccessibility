@@ -18,12 +18,13 @@ export class Home extends Component {
             </div>
 
             <div className="box-meldJeAan">
-                <h1> Meld je aan!</h1>
-            </div>
-
-            <div className="box-meldJeAan">
-                <h2> Ontdek hoe je morgen aan de slag kunt gaan
+                <div>
+                    <h1> Meld je aan!</h1>
+                </div>
+                <div>
+                    <h2> Ontdek hoe je morgen aan de slag kunt gaan
                     als onderzoeker</h2>
+                </div>
             </div>
 
             <div className="box-welkomOmschrijving">
