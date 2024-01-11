@@ -8,7 +8,7 @@ public static class Utils
     {
         var passwordHash = BCrypt.HashPassword(password);
         return passwordHash;
-    }
+}
 
     public static bool PasswordMatch(string enteredPassword, string hashedPassword)
     {
