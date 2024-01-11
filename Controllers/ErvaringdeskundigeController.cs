@@ -22,7 +22,6 @@ public class ErvaringdeskundigeController : ControllerBase
     [HttpGet("{id}")]
     public IActionResult Get(int id)
     {
-
         Ervaringdeskundige ervaringdeskundige = _dbContext.Ervaringdeskundiges
             .Single(e => e.Gcode == id);
         
@@ -78,6 +77,11 @@ public class ErvaringdeskundigeController : ControllerBase
     [HttpPost]
     public IActionResult Post([FromBody] ErvaringdeskundigeRequestModel requestModel)
     {
+
+        if (_dbContext.Gebruikers.Single(e => e.Email == requestModel.Email) != null)
+        {
+            return Problem("Email already exists");
+        }
 
         Ervaringdeskundige newErvaringdeskundige = new Ervaringdeskundige() 
         {
