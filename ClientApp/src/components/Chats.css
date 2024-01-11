@@ -1,0 +1,18 @@
+.chat-container{
+   background: rgb(217, 235, 247, 0.7);
+    width: 20%;
+    float : left;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+   margin-left: -244px;
+    margin-top: -20px;
+}
+.achtergrond{
+      background: #D9EBF7;
+      width: 181vh;
+ height: 111vh;
+
+
+}
+/*   background: rgb(217, 235, 247, 0.7); */

@@ -35,6 +35,9 @@ namespace ProjectAccessibility.Context
             
             modelBuilder.Entity<Voogd>()
                 .HasKey(v => v.Vcode);
+
+            modelBuilder.Entity<OpenChat>()
+                .HasKey(oc => oc.OCcode);
             
             modelBuilder.Entity<HeeftVoogd>()
                 .HasKey(hv => new { hv.Vcode, hv.Ecode });
@@ -150,6 +153,16 @@ namespace ProjectAccessibility.Context
                 .WithMany()
                 .HasForeignKey(c => c.RecieverGCode);
             
+            modelBuilder.Entity<OpenChat>()
+                .HasOne<Gebruiker>()
+                .WithMany()
+                .HasForeignKey(oc => oc.SenderGCode);
+
+            modelBuilder.Entity<OpenChat>()
+                .HasOne<Gebruiker>()
+                .WithMany()
+                .HasForeignKey(oc => oc.RecieverGCode);
+            
             modelBuilder.Entity<Ervaringdeskundige>()
                 .ToTable("Ervaringdeskundigen");
 
@@ -181,5 +194,6 @@ namespace ProjectAccessibility.Context
         public DbSet<HeeftHulpmiddel> HeeftHulpmiddelen { get; set; }
         public DbSet<HeeftAandoening> HeeftAandoeningen { get; set; }
         public DbSet<Chat> Chats { get; set; }
+        public DbSet<OpenChat> OpenChats { get; set; }
     }
 }

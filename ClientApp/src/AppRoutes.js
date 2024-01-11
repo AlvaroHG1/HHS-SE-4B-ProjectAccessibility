@@ -2,6 +2,7 @@ import { Counter } from "./components/Counter";
 import { FetchData } from "./components/FetchData";
 import { Home } from "./components/Home";
 import { Login } from "./components/Login";
+import { Chats} from "./components/Chats";
 import { Profielpagina } from "./components/Profielpagina";
 
 const AppRoutes = [
@@ -22,9 +23,13 @@ const AppRoutes = [
     element: <Login />
   },
   {
+        path: '/chats',
+        element: <Chats />
+  },
+  {
     path: '/profielpagina',
     element: <Profielpagina />
-  }
+    }
 ];
 
 export default AppRoutes;
