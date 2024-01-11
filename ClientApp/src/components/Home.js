@@ -12,7 +12,7 @@ export class Home extends Component {
             <div className="box-welkomOmschrijving">
 
                 <h1>Welkom bij Stichting Accessibility</h1>
-                <h2>Onze website "AccessiHub" werkt aan het optimaliseren
+                <h2>Onze website "ProjectAccessibility" werkt aan het optimaliseren
                     van de toegankelijkheid voor websites om een inclusieve
                     online ervaring te bieden aan iedereen!</h2>
             </div>
@@ -23,7 +23,16 @@ export class Home extends Component {
                 </div>
                 <div>
                     <h2> Ontdek hoe je morgen aan de slag kunt gaan
-                    als onderzoeker</h2>
+                        als onderzoeker</h2>
+                </div>
+            </div>
+
+            <div className="box-startJeOnderzoek">
+                <div>
+                    <h1> Ontdek hoe je morgen aan de slag kunt  gaan als bedrijf</h1>
+                </div>
+                <div>
+                    <h2>Start je onderzoek!</h2>
                 </div>
             </div>
 

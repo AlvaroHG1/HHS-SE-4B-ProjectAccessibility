@@ -11,11 +11,11 @@ body {
     justify-content: center;
     border-radius: 30px; /* Reduced border-radius */
     background: #2B50EC;
-    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15); /* Reduced box-shadow */
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.15); /* Reduced box-shadow */
     width: 800px; /* Reduced width */
     height: 150px; /* Reduced height */
     flex-shrink: 0;
-    margin-left: 100px; /*zet de vierkanten in het midden*/
+    margin: 0 auto;
 }
 
 .box-welkomOmschrijving h1 {
@@ -28,57 +28,61 @@ body {
 
 .box-welkomOmschrijving h2 {
     color: #FFFFFF;
-    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
     font-size: 40px; /* Reduced font-size */
     margin: 0 0 10px 0; /* Smaller margin */
 }
 
 .box-welkomOmschrijving h2 {
     color: #FFFFFF;
-    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
     font-size: 20px;
     margin: 0; /* Reset margin */
     text-align: center; /* Center-align the text */
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 .box-welkomOmschrijving h3 {
     color: #FFFFFF;
-    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     font-size: 30px;
-    margin: 0; /* Reset margin */
-    text-align: center; /* Center-align the text */
+    margin: 0;
+    text-align: center;
 }
 
 .box-meldJeAan{
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
-.box-meldJeAan h1{
+.box-meldJeAan h1 {
     display: flex;
-    border-radius: 30px; /*voor de afgerondde randen*/
-    width: 374px; 
+    justify-content: center; 
+    align-items: center; 
+    border-radius: 30px;
+    width: 340px;
     height: 100px;
     flex-direction: column;
-    justify-content: center;
     flex-shrink: 0;
     background-color: #108670;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-
     color: #D9EBF7;
     text-align: center;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.80);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.80);
     font-family: "Arial", sans-serif;
     font-size: 30px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     text-decoration-line: underline;
-    margin: 100px 0 100px 60px; /* Aangepaste margin met een negatieve waarde voor margin-left */}
+    margin: 100px 0; /* Aangepaste boven- en ondermarge */
+}
 
 .box-meldJeAan h2{
     display: flex;
-    width: 474px; /*BREEDTE VAN DE BOX*/
+    width: 500px;
     border-radius: 30px; /*voor de afgerondde randen*/
     height: 100px;
     flex-direction: column;
@@ -86,17 +90,68 @@ body {
     flex-shrink: 0;
     background-color: rgba(16, 134, 112, 0.30);
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    padding: 30px;
 
     color: #D9EBF7;
     text-align: right; /*of center ???*/
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.80);
     font-family: "Arial", sans-serif;
-    font-size: 30px;
+    font-size: 28px; /*LETTERTYPE GROOTTE*/
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    margin: 100px 0 100px 0; /* Smaller margin */
-    margin-left: -30px;
+    margin: 100px 0 100px -30px;
 }
 
+.box-startJeOnderzoek{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+.box-startJeOnderzoek h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    width: 500px;
+    height: 100px;
+    flex-direction: column;
+    flex-shrink: 0;
+    background-color: rgba(16, 134, 112, 0.30);                   /*background-color: #108670;*/
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    color: #D9EBF7;
+    text-align: left;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.80);
+    font-family: "Arial", sans-serif;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 100px 0; /* Aangepaste boven- en ondermarge */
+    padding: 25px;
+}
+
+.box-startJeOnderzoek h2{
+    display: flex;
+    width: 374px;
+    border-radius: 30px; /*voor de afgerondde randen*/
+    height: 100px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    background-color: #108670;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    padding: 30px;
+
+    color: #D9EBF7;
+    text-align: center; /*of center ???*/
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.80);
+    font-family: "Arial", sans-serif;
+    font-size: 28px; /*LETTERTYPE GROOTTE*/
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration-line: underline;
+    margin: 100px 0 100px -30px;
+}
