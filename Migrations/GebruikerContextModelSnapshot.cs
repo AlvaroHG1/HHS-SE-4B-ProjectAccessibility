@@ -376,6 +376,10 @@ namespace ProjectAccessibility.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("Naam")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Rol")
                         .IsRequired()
                         .HasColumnType("text");

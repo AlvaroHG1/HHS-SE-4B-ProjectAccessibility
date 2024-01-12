@@ -2,6 +2,6 @@ namespace ProjectAccessibility.Models;
 
 public class OpenChatRequestModel
 {
-    public int SenderGCode { get; set; }
-    public int RecieverGCode { get; set; }
+    public int FirstGCode { get; set; }
+    public int SecondGCode { get; set; }
 }
