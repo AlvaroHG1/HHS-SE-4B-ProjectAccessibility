@@ -1,0 +1,55 @@
+.register-ervaringdeskundige-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    height: 50rem;
+    margin: 0 auto 2rem;;
+    padding: 2rem;
+    background-color: rgba(217, 235, 247, 0.70);
+    border-radius: 1rem;
+}
+.register-ervaringdeskundige-container h1{
+    color: #131B56;
+    font-weight: bold;
+    font-size: 4rem;
+    margin-top: -1rem;
+}
+.register-ervaringdeskundige-container h2{
+    align-self: flex-start;
+    color: #131B56;
+    font-size: 1.5rem;
+}
+.register-ervaringdeskundige-container input{
+    align-self: flex-start;
+    margin-top: -0.5rem;
+    margin-bottom: 0.5rem;
+    width: 60%;
+}
+.street-number-container {
+    align-self: flex-start;
+    width: 60%;
+}
+.register-ervaringdeskundige-container input#straatnaam {
+    align-self: flex-start;
+    margin-top: -0.5rem;
+    margin-bottom: 0.5rem;
+    width: 65%;
+    margin-right: 2%;
+}
+
+.register-ervaringdeskundige-container input#huisnummer {
+    align-self: flex-start;
+    margin-top: -0.5rem;
+    margin-bottom: 0.5rem;
+    width: 33%;
+}
+.registreer-ervaringdeskundige-button{
+    background-color: #108670;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    padding-left: 8rem;
+    padding-right: 8rem;
+    color: white;
+    font-size: xx-large;
+}

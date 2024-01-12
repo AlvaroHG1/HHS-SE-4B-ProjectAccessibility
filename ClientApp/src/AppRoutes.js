@@ -4,6 +4,9 @@ import { Home } from "./components/Home";
 import { Login } from "./components/Login";
 import { Chats} from "./components/Chats";
 import { Profielpagina } from "./components/Profielpagina";
+import { RegisterErvaringdeskundige} from "./components/RegisterErvaringdeskundige";
+import { Register} from "./components/Register";
+import { RegisterBedrijf} from "./components/RegisterBedrijf";
 
 const AppRoutes = [
   {
@@ -23,13 +26,25 @@ const AppRoutes = [
     element: <Login />
   },
   {
-        path: '/chats',
-        element: <Chats />
+    path: '/chats',
+    element: <Chats />
   },
   {
     path: '/profielpagina',
     element: <Profielpagina />
-    }
+  },
+  {
+    path: '/registreer-ervaringdeskundige',
+    element: <RegisterErvaringdeskundige />
+  },
+  {
+    path: '/registreer',
+    element: <Register/>
+  },
+  {
+    path: '/registreer-bedrijf',
+    element: <RegisterBedrijf/>
+  }
 ];
 
 export default AppRoutes;

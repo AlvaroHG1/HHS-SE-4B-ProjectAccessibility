@@ -1,8 +1,8 @@
 .Profielpagina-container {
         background-color: rgba(217, 235, 247, 0.7);
-        border-radius: 25px;
         margin-top: -1.5rem;
         align-self: auto;
+        margin-bottom: -1.5rem;
 }
 
 .Profielpagina-container h1 {

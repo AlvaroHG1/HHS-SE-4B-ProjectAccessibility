@@ -1,0 +1,37 @@
+.register-bedrijf-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    height: 40rem;
+    margin: 0 auto 2rem;;
+    padding: 2rem;
+    background-color: rgba(217, 235, 247, 0.70);
+    border-radius: 1rem;
+}
+.register-bedrijf-container h1{
+    color: #131B56;
+    font-weight: bold;
+    font-size: 4rem;
+    margin-top: -1rem;
+}
+.register-bedrijf-container h2{
+    align-self: flex-start;
+    color: #131B56;
+    font-size: 1.5rem;
+}
+.register-bedrijf-container input{
+    align-self: flex-start;
+    margin-top: -0.5rem;
+    margin-bottom: 0.5rem;
+    width: 60%;
+}
+.registreer-bedrijf-button{
+    background-color: #108670;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    padding-left: 8rem;
+    padding-right: 8rem;
+    color: white;
+    font-size: xx-large;
+}

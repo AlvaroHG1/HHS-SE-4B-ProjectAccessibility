@@ -1,17 +1,71 @@
-.login-buttons {
-    
-}
-
 .login-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    height: 50vh;
-    width: 100vh;
-    padding: 20px;
-    background-color: #d9ebf7;
-    color: #131b56;
-    text-align: center;
-    border-radius: 10px;
+    width: 70%; 
+    height: 20rem;
+    margin: 0 auto 2rem;; 
+    padding: 2rem; 
+    background-color: rgba(217, 235, 247, 0.70);
+    border-radius: 1rem; 
+}
+.login-container h1{
+    color: #131B56;
+    font-weight: bold;
+    margin-top: -1rem;
+}
+.login-container h2{
+    color: #131B56;
+}
+.login-container h3{
+    color: #131B56;
+    margin-top: 1rem;
+    font-size: medium;
+    text-decoration: underline;
+}
+.login-button{
+    background-color: #108670;
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    color: white;
+}
+.signup-button{
+    background-color: #108670;
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    color: white;
+}
+.login-met-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    height: 15rem;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #00008C;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+}
+.login-met-container h4{
+    color: #21CEA1;
+    font-size: 2.5rem;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+}
+.image-container {
+    display: flex;
+}
+
+.image-container img {
+    max-width: 20rem; 
+    height: auto; 
+    margin-right: 1rem;
+    border-radius: 1rem;
 }

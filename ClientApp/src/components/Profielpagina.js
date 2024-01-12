@@ -11,7 +11,7 @@ import './Profielpagina.css';
 
                 async componentDidMount() {
                         try {
-                                const response = await fetch('https://localhost:7216/api/Ervaringdeskundige/3', {
+                                const response = await fetch(`https://localhost:7216/api/Ervaringdeskundige/3`, {
                                         method: 'GET',
                                         headers: {
                                                 'Accept': 'application/json',
