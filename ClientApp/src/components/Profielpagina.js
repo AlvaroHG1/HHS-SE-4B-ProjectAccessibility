@@ -1,40 +1,45 @@
 import React, { Component } from 'react';
 import './Profielpagina.css';
-        export class Profielpagina extends Component {
+export class Profielpagina extends Component {
 
-                constructor(props) {
-                        super(props);
-                        this.state = {
-                                ervaringdeskundige: null,
-                        };
-                }
+        constructor(props) {
+                super(props);
+                this.state = {
+                        ervaringdeskundige: null,
+                };
+        }
+        getUserId() {
+            return '3';
+        }
 
-                async componentDidMount() {
-                        try {
-                                const response = await fetch(`https://localhost:7216/api/Ervaringdeskundige/3`, {
-                                        method: 'GET',
-                                        headers: {
-                                                'Accept': 'application/json',
-                                                'Content-Type': 'application/json'
-                                        }
-                                });
-                                console.log('Fetch response:', response);
-                                if (!response.ok) {
-                                        console.error(`Error: ${response.status} - ${response.statusText}`);
-                                        return;
-                                }
-                                
-                                const ervaringdeskundigeData = await response.json();
-                                
-                                this.setState({ ervaringdeskundige: ervaringdeskundigeData });
-                                console.log('ervaringdeskundige:', ervaringdeskundigeData);
-                                
-                        } catch (error) {
-                                console.error('Exception during fetch:', error); 
-                        }
+        async componentDidMount() {
+                try {
+                    const userId = this.getUserId();
+                    
+                    const response = await fetch(`https://localhost:7216/api/Ervaringdeskundige/${userId}`, {
+                            method: 'GET',
+                            headers: {
+                                    'Accept': 'application/json',
+                                    'Content-Type': 'application/json'
+                            }
+                    });
+                    console.log('Fetch response:', response);
+                    if (!response.ok) {
+                            console.error(`Error: ${response.status} - ${response.statusText}`);
+                            return;
+                    }
+                    
+                    const ervaringdeskundigeData = await response.json();
+                    
+                    this.setState({ ervaringdeskundige: ervaringdeskundigeData });
+                    console.log('ervaringdeskundige:', ervaringdeskundigeData);
+                        
+                } catch (error) {
+                        console.error('Exception during fetch:', error); 
                 }
+        }
                 
-render() {
+    render() {
         const {ervaringdeskundige} = this.state;
         console.log('ervaringdeskundige:', ervaringdeskundige);
         if (!ervaringdeskundige) {
