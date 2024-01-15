@@ -1,12 +1,12 @@
 ﻿a.navbar-brand {
-  white-space: normal;
   text-align: center;
     color: white;
 }
 a.navbar-brand:hover {
-    font-weight: bold;
-    background-color: rgba(255, 255, 255, 0.74);
+    color: #d0d0d0;
+    
 }
+
 .navbar-nav flex-grow{
     justify-content: flex-end;
 }
@@ -90,10 +90,6 @@ html {
     padding: 0.7rem;
 }
 
-.navbar .nav-container a:hover{
-    font-weight: bolder;
-}
-
 .nav-container {
     display: block;
     position: relative;
@@ -156,7 +152,7 @@ html {
     flex-direction: column;
     margin-left: -40px;
     padding-left: 50px;
-    transition: transform 0.3s ease-in-out; /* Adjusted transition property */
+    transition: transform 0.3s ease-in-out; 
     text-align: center;
 }
 
@@ -187,8 +183,8 @@ html {
 
 .menu-items a {
     color: #fff;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);\padding: 10px; /* Add padding to the links for better spacing */
-    display: block; /* Make each link a block element to force them to appear on a new line */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);\padding: 10px; 
+    display: block; 
 }
 
 .menu-items a:hover {
@@ -202,7 +198,7 @@ html {
     right: 0;
     height: 100vh;
     width: 50%;
-    background: #131B56;
+    background: #111329;
     padding: 20px;
     text-align: right;
     transform: translateX(100%);

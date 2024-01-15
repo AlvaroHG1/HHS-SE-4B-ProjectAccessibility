@@ -44,7 +44,8 @@ export class NavMenu extends Component {
               light
           >
             <img src="/image/Logoacces.jpg" alt="Logo" className="logo-image" />
-            <NavbarBrand to="/">ProjectAccessibility</NavbarBrand>
+            <a  href="https://localhost:44466/"> 
+              <NavbarBrand to="/">ProjectAccessibility</NavbarBrand></a>
             <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
             <div className="container nav-container">
               <div className="hamburger-lines" onClick={this.toggleNavbar}>
@@ -61,49 +62,27 @@ export class NavMenu extends Component {
               >
                 <ul className="navbar-nav flex-grow">
                   <NavItem>
-                    <NavLink
-                        tag={Link}
-                        className="text-white"
-                        to="/"
-                        onClick={() => this.closeNavbar()}
-                    >
-                      Home
+                    <NavLink tag={Link} className="text-white" to="/" onClick={() => this.closeNavbar()}>Home
                     </NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink
-                        tag={Link}
-                        className="text-white"
-                        to="/Login"
-                        onClick={() => this.closeNavbar()}
-                    >
-                      Login
+                    <NavLink tag={Link} className="text-white" to="/Login" onClick={() => this.closeNavbar()}>Login
                     </NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink
-                        tag={Link}
-                        className="text-white"
-                        to="/Profielpagina"
-                        onClick={() => this.closeNavbar()}
-                    >
-                      Profielpagina
+                    <NavLink tag={Link} className="text-white" to="/Profielpagina" onClick={() => this.closeNavbar()}>Profielpagina
                     </NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink
-                        tag={Link}
-                        className="text-white"
-                        to="/Chats"
-                        onClick={() => this.closeNavbar()}
-                    >
-                      Chats
+                    <NavLink tag={Link} className="text-white" to="/Chats" onClick={() => this.closeNavbar()}>Chats
                     </NavLink>
                   </NavItem>
                 </ul>
               </Collapse>
             </div>
+            <a href="https://localhost:44466/Login">
             <img src="/image/man%20wit.png" alt="Login" className="login-image" />
+            </a>
           </Navbar>
         </header>
     );
