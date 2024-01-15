@@ -1,6 +1,4 @@
 using System.Runtime.InteropServices.JavaScript;
-using Npgsql.Internal.TypeHandlers.DateTimeHandlers;
-
 namespace ProjectAccessibility.Models;
 
 public class Onderzoek
