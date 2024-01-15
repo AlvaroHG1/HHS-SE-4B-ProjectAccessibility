@@ -11,7 +11,7 @@ export class Profielpagina extends Component {
         getUserId() {
             return '3';
         }
-
+        
         async componentDidMount() {
                 try {
                     const userId = this.getUserId();
