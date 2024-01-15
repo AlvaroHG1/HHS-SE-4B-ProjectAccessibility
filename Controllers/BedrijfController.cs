@@ -36,7 +36,6 @@ namespace ProjectAccessibility.Controllers
                 Naam = requestModel.Naam,
                 Link = requestModel.Link,
                 Bedrijfsinformatie = requestModel.Bedrijfsinformatie,
-                Rol = requestModel.Rol,
                 Email = requestModel.Email,
                 Wachtwoord = Utils.HashPassword(requestModel.Wachtwoord)
             };
@@ -66,7 +65,6 @@ namespace ProjectAccessibility.Controllers
             existingBedrijf.Link = requestModel.Link;
             existingBedrijf.Bedrijfsinformatie = requestModel.Bedrijfsinformatie;
             existingBedrijf.Locatie = requestModel.Locatie;
-            existingBedrijf.Rol = requestModel.Rol;
             existingBedrijf.Email = requestModel.Email;
             existingBedrijf.Wachtwoord = Utils.HashPassword(requestModel.Wachtwoord);
 
