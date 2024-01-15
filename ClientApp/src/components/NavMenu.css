@@ -151,12 +151,12 @@ html {
     padding-top: 120px;
     height: 100vh;
     width: 100%;
-    transform: translate(-150%);
+    transform: translateX(-150%);
     display: flex;
     flex-direction: column;
     margin-left: -40px;
     padding-left: 50px;
-    transition: none;
+    transition: transform 0.3s ease-in-out; /* Adjusted transition property */
     text-align: center;
 }
 
@@ -211,6 +211,17 @@ html {
 
 .navbar .menu-items.collapsed {
     transform: translateX(100%);
+}
+
+.menu-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar .menu-items.expanded {
+    transform: translateX(0);
 }
 
 .menu-items {
