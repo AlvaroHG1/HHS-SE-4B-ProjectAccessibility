@@ -1,0 +1,52 @@
+.onderzoek-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Set it to 100% to take the full height of the container */
+    width: 25%;
+    background: rgb(217, 235, 247, 0.7);
+    border-radius: 15px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.onderzoek-list {
+    overflow-y: scroll;
+    height: 675px; /* Set a fixed height for the onderzoek list */
+    scrollbar-width: thin;
+}
+
+.onderzoek-list::-webkit-scrollbar {
+    width: 12px; /* Set the width of the scrollbar */
+}
+
+.onderzoek-list::-webkit-scrollbar-thumb {
+    background-color: #3498db; /* Set the color of the thumb (the draggable part) */
+    border-radius: 6px; /* Set the border radius for a rounded thumb */
+}
+
+.onderzoek-list::-webkit-scrollbar-track {
+    background-color: rgba(217, 235, 247, 0.7); /* Set the color of the track (the non-draggable part) */
+    border-radius: 8px; /* Set the border radius for rounded corners on the track */
+}
+
+.onderzoek-item {
+    display: block;
+    margin: 5px; /* Optional: Adjust the margin based on your design */
+    padding: 10px;
+    background-color: #3498db; /* Change the background color as needed */
+    color: #fff; /* Set the text color */
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 95%;
+    height: 80px; /* Set the desired height */
+    text-align: center;
+}
+
+.selected {
+    background-color: #166da6;
+}
+
+.onderzoek-item:hover {
+    background-color: #2980b9; /* Change the hover background color as needed */
+}

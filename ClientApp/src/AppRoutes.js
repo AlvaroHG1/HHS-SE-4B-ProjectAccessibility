@@ -7,10 +7,7 @@ import { Profielpagina } from "./components/Profielpagina";
 import { RegisterErvaringdeskundige} from "./components/RegisterErvaringdeskundige";
 import { Register} from "./components/Register";
 import { RegisterBedrijf} from "./components/RegisterBedrijf";
-
-function Onderzoeken() {
-  return null;
-}
+import { Onderzoeken} from "./components/Onderzoeken";
 
 const AppRoutes = [
   {
