@@ -1,8 +1,7 @@
 namespace ProjectAccessibility.Controllers;
-
 using BCrypt.Net;
 
-public static class Utils
+public class Utils
 {
     public static string HashPassword(string password)
     {

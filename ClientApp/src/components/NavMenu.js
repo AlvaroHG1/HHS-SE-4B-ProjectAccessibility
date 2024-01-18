@@ -81,7 +81,7 @@ export class NavMenu extends Component {
               </Collapse>
             </div>
             <a href="https://localhost:44466/Login">
-            <img src="/image/man%20wit.png" alt="Login" className="login-image" />
+              <img src="/image/man%20wit.png" alt="Login" className="login-image"/>
             </a>
           </Navbar>
         </header>

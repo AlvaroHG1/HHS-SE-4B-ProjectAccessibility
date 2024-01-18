@@ -26,7 +26,10 @@
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
         <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.0" />
+        <PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
+        <PackageReference Include="MSTest.TestFramework" Version="3.1.1" />
         <PackageReference Include="MySqlConnector" Version="2.3.3" />
         <PackageReference Include="MySqlConnector.DependencyInjection" Version="2.3.1" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
@@ -46,6 +49,10 @@
       <Folder Include="Areas\UserController\Models\" />
       <Folder Include="Areas\UserController\Views\" />
       <Folder Include="Authorization\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Controllers\LoginController.cs" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
