@@ -6,5 +6,4 @@ public class Bedrijf : Gebruiker
     public string Locatie { get; set; }
     public string Bedrijfsinformatie { get; set; }
     public string Link { get; set; }
-
 }

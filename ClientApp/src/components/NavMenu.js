@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
+import {Collapse, List, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
 
@@ -61,22 +61,28 @@ export class NavMenu extends Component {
                   navbar
               >
                 <ul className="navbar-nav flex-grow">
+                  <li>
                   <NavItem>
                     <NavLink tag={Link} className="text-white" to="/" onClick={() => this.closeNavbar()}>Home
                     </NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink tag={Link} className="text-white" to="/Login" onClick={() => this.closeNavbar()}>Login
+                    <NavLink tag={Link} className="text-white" to="/login" onClick={() => this.closeNavbar()}>Login
                     </NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink tag={Link} className="text-white" to="/Profielpagina" onClick={() => this.closeNavbar()}>Profielpagina
+                    <NavLink tag={Link} className="text-white" to="/profielpagina" onClick={() => this.closeNavbar()}>Profielpagina
                     </NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink tag={Link} className="text-white" to="/Chats" onClick={() => this.closeNavbar()}>Chats
+                    <NavLink tag={Link} className="text-white" to="/chats" onClick={() => this.closeNavbar()}>Chats
                     </NavLink>
                   </NavItem>
+                    <NavItem>
+                      <NavLink tag={Link} className="text-white" to="/onderzoeken" onClick={() => this.closeNavbar()}>Onderzoeken
+                      </NavLink>
+                    </NavItem>
+                    </li>
                 </ul>
               </Collapse>
             </div>

@@ -6,7 +6,7 @@ export class RegisterBedrijf extends Component {
         return (
             <div>
                 <div className="register-bedrijf-container">
-                    <h1>Registreer ervaringdeskundige</h1>
+                    <h1>Registreer Bedrijf</h1>
                     <h2>Bedrijfsnaam</h2>
                     <input type="text" placeholder="Voer uw bedrijfsnaam in..." onChange={null}></input>
                     <h2>locatie</h2>

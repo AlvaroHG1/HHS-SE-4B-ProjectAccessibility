@@ -3,7 +3,7 @@ using ProjectAccessibility.Models;
 
 namespace ProjectAccessibility.Context
 {
-    public class GebruikerContext : DbContext
+    public class GebruikerContext : DbContext 
     {
         public GebruikerContext(DbContextOptions<GebruikerContext> options)
             : base(options)

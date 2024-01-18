@@ -12,8 +12,8 @@ using ProjectAccessibility.Context;
 namespace ProjectAccessibility.Migrations
 {
     [DbContext(typeof(GebruikerContext))]
-    [Migration("20240104154431_test")]
-    partial class test
+    [Migration("20240111210146_Test")]
+    partial class Test
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -110,6 +110,21 @@ namespace ProjectAccessibility.Migrations
                     b.ToTable("Gebruiker");
 
                     b.UseTptMappingStrategy();
+                });
+
+            modelBuilder.Entity("ProjectAccessibility.Models.HeeftAandoening", b =>
+                {
+                    b.Property<int>("Ecode")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Acode")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Ecode", "Acode");
+
+                    b.HasIndex("Acode");
+
+                    b.ToTable("HeeftAandoeningen");
                 });
 
             modelBuilder.Entity("ProjectAccessibility.Models.HeeftBeperking", b =>
@@ -216,15 +231,15 @@ namespace ProjectAccessibility.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime?>("Einddatum")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateOnly>("Einddatum")
+                        .HasColumnType("date");
 
                     b.Property<string>("Locatie")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime?>("Startdatum")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateOnly>("Startdatum")
+                        .HasColumnType("date");
 
                     b.Property<string>("Titel")
                         .IsRequired()
@@ -275,6 +290,29 @@ namespace ProjectAccessibility.Migrations
                     b.HasKey("Otcode");
 
                     b.ToTable("Onderzoekstypes");
+                });
+
+            modelBuilder.Entity("ProjectAccessibility.Models.OpenChat", b =>
+                {
+                    b.Property<int>("OCcode")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("OCcode"));
+
+                    b.Property<int>("RecieverGCode")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("SenderGCode")
+                        .HasColumnType("integer");
+
+                    b.HasKey("OCcode");
+
+                    b.HasIndex("RecieverGCode");
+
+                    b.HasIndex("SenderGCode");
+
+                    b.ToTable("OpenChats");
                 });
 
             modelBuilder.Entity("ProjectAccessibility.Models.Voogd", b =>
@@ -338,6 +376,10 @@ namespace ProjectAccessibility.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Locatie")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Naam")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -424,137 +466,139 @@ namespace ProjectAccessibility.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ProjectAccessibility.Models.HeeftAandoening", b =>
+                {
+                    b.HasOne("ProjectAccessibility.Models.Aandoening", null)
+                        .WithMany()
+                        .HasForeignKey("Acode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProjectAccessibility.Models.Ervaringdeskundige", null)
+                        .WithMany()
+                        .HasForeignKey("Ecode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("ProjectAccessibility.Models.HeeftBeperking", b =>
                 {
-                    b.HasOne("ProjectAccessibility.Models.Beperking", "Beperking")
+                    b.HasOne("ProjectAccessibility.Models.Beperking", null)
                         .WithMany()
                         .HasForeignKey("Bcode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProjectAccessibility.Models.Ervaringdeskundige", "Ervaringdeskundige")
+                    b.HasOne("ProjectAccessibility.Models.Ervaringdeskundige", null)
                         .WithMany()
                         .HasForeignKey("Ecode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Beperking");
-
-                    b.Navigation("Ervaringdeskundige");
                 });
 
             modelBuilder.Entity("ProjectAccessibility.Models.HeeftHulpmiddel", b =>
                 {
-                    b.HasOne("ProjectAccessibility.Models.Ervaringdeskundige", "Ervaringdeskundige")
+                    b.HasOne("ProjectAccessibility.Models.Ervaringdeskundige", null)
                         .WithMany()
                         .HasForeignKey("Ecode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProjectAccessibility.Models.Hulpmiddel", "Hulpmiddel")
+                    b.HasOne("ProjectAccessibility.Models.Hulpmiddel", null)
                         .WithMany()
                         .HasForeignKey("Hcode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Ervaringdeskundige");
-
-                    b.Navigation("Hulpmiddel");
                 });
 
             modelBuilder.Entity("ProjectAccessibility.Models.HeeftOnderzoek", b =>
                 {
-                    b.HasOne("ProjectAccessibility.Models.Bedrijf", "Bedrijf")
+                    b.HasOne("ProjectAccessibility.Models.Bedrijf", null)
                         .WithMany()
                         .HasForeignKey("Bcode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProjectAccessibility.Models.Onderzoek", "Onderzoek")
+                    b.HasOne("ProjectAccessibility.Models.Onderzoek", null)
                         .WithMany()
                         .HasForeignKey("Ocode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Bedrijf");
-
-                    b.Navigation("Onderzoek");
                 });
 
             modelBuilder.Entity("ProjectAccessibility.Models.HeeftType", b =>
                 {
-                    b.HasOne("ProjectAccessibility.Models.Onderzoek", "Onderzoek")
+                    b.HasOne("ProjectAccessibility.Models.Onderzoek", null)
                         .WithMany()
                         .HasForeignKey("Ocode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProjectAccessibility.Models.Onderzoekstype", "Onderzoekstype")
+                    b.HasOne("ProjectAccessibility.Models.Onderzoekstype", null)
                         .WithMany()
                         .HasForeignKey("Otcode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Onderzoek");
-
-                    b.Navigation("Onderzoekstype");
                 });
 
             modelBuilder.Entity("ProjectAccessibility.Models.HeeftVoogd", b =>
                 {
-                    b.HasOne("ProjectAccessibility.Models.Ervaringdeskundige", "Ervaringdeskundige")
+                    b.HasOne("ProjectAccessibility.Models.Ervaringdeskundige", null)
                         .WithMany()
                         .HasForeignKey("Ecode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProjectAccessibility.Models.Voogd", "Voogd")
+                    b.HasOne("ProjectAccessibility.Models.Voogd", null)
                         .WithMany()
                         .HasForeignKey("Vcode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Ervaringdeskundige");
-
-                    b.Navigation("Voogd");
                 });
 
             modelBuilder.Entity("ProjectAccessibility.Models.Onderzoeksresultaat", b =>
                 {
-                    b.HasOne("ProjectAccessibility.Models.Ervaringdeskundige", "Ervaringdeskundige")
+                    b.HasOne("ProjectAccessibility.Models.Ervaringdeskundige", null)
                         .WithMany()
                         .HasForeignKey("Ecode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProjectAccessibility.Models.Onderzoek", "Onderzoek")
+                    b.HasOne("ProjectAccessibility.Models.Onderzoek", null)
                         .WithMany()
                         .HasForeignKey("Ocode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
 
-                    b.Navigation("Ervaringdeskundige");
+            modelBuilder.Entity("ProjectAccessibility.Models.OpenChat", b =>
+                {
+                    b.HasOne("ProjectAccessibility.Models.Gebruiker", null)
+                        .WithMany()
+                        .HasForeignKey("RecieverGCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Onderzoek");
+                    b.HasOne("ProjectAccessibility.Models.Gebruiker", null)
+                        .WithMany()
+                        .HasForeignKey("SenderGCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ProjectAccessibility.Models.VoorkeurType", b =>
                 {
-                    b.HasOne("ProjectAccessibility.Models.Ervaringdeskundige", "Ervaringdeskundige")
+                    b.HasOne("ProjectAccessibility.Models.Ervaringdeskundige", null)
                         .WithMany()
                         .HasForeignKey("Ecode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProjectAccessibility.Models.Onderzoekstype", "Onderzoekstype")
+                    b.HasOne("ProjectAccessibility.Models.Onderzoek", null)
                         .WithMany()
                         .HasForeignKey("Otcode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Ervaringdeskundige");
-
-                    b.Navigation("Onderzoekstype");
                 });
 
             modelBuilder.Entity("ProjectAccessibility.Models.Bedrijf", b =>

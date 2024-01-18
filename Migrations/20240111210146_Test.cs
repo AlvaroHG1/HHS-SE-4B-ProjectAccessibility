@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ProjectAccessibility.Migrations
 {
     /// <inheritdoc />
-    public partial class test : Migration
+    public partial class Test : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -74,8 +74,8 @@ namespace ProjectAccessibility.Migrations
                     Titel = table.Column<string>(type: "text", nullable: false),
                     Beschrijving = table.Column<string>(type: "text", nullable: false),
                     Locatie = table.Column<string>(type: "text", nullable: false),
-                    Startdatum = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    Einddatum = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    Startdatum = table.Column<DateOnly>(type: "date", nullable: false),
+                    Einddatum = table.Column<DateOnly>(type: "date", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -117,6 +117,7 @@ namespace ProjectAccessibility.Migrations
                 columns: table => new
                 {
                     Gcode = table.Column<int>(type: "integer", nullable: false),
+                    Naam = table.Column<string>(type: "text", nullable: false),
                     Rol = table.Column<string>(type: "text", nullable: false),
                     Locatie = table.Column<string>(type: "text", nullable: false),
                     Bedrijfsinformatie = table.Column<string>(type: "text", nullable: false),
@@ -208,6 +209,32 @@ namespace ProjectAccessibility.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "OpenChats",
+                columns: table => new
+                {
+                    OCcode = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    SenderGCode = table.Column<int>(type: "integer", nullable: false),
+                    RecieverGCode = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OpenChats", x => x.OCcode);
+                    table.ForeignKey(
+                        name: "FK_OpenChats_Gebruiker_RecieverGCode",
+                        column: x => x.RecieverGCode,
+                        principalTable: "Gebruiker",
+                        principalColumn: "Gcode",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_OpenChats_Gebruiker_SenderGCode",
+                        column: x => x.SenderGCode,
+                        principalTable: "Gebruiker",
+                        principalColumn: "Gcode",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "HeeftTypes",
                 columns: table => new
                 {
@@ -252,6 +279,30 @@ namespace ProjectAccessibility.Migrations
                         column: x => x.Ocode,
                         principalTable: "Onderzoeken",
                         principalColumn: "Ocode",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HeeftAandoeningen",
+                columns: table => new
+                {
+                    Acode = table.Column<int>(type: "integer", nullable: false),
+                    Ecode = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HeeftAandoeningen", x => new { x.Ecode, x.Acode });
+                    table.ForeignKey(
+                        name: "FK_HeeftAandoeningen_Aandoeningen_Acode",
+                        column: x => x.Acode,
+                        principalTable: "Aandoeningen",
+                        principalColumn: "Acode",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_HeeftAandoeningen_Ervaringdeskundigen_Ecode",
+                        column: x => x.Ecode,
+                        principalTable: "Ervaringdeskundigen",
+                        principalColumn: "Gcode",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -371,10 +422,10 @@ namespace ProjectAccessibility.Migrations
                         principalColumn: "Gcode",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_VoorkeurTypes_Onderzoekstypes_Otcode",
+                        name: "FK_VoorkeurTypes_Onderzoeken_Otcode",
                         column: x => x.Otcode,
-                        principalTable: "Onderzoekstypes",
-                        principalColumn: "Otcode",
+                        principalTable: "Onderzoeken",
+                        principalColumn: "Ocode",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -387,6 +438,11 @@ namespace ProjectAccessibility.Migrations
                 name: "IX_Chat_SenderGCode",
                 table: "Chat",
                 column: "SenderGCode");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HeeftAandoeningen_Acode",
+                table: "HeeftAandoeningen",
+                column: "Acode");
 
             migrationBuilder.CreateIndex(
                 name: "IX_HeeftBeperkingen_Ecode",
@@ -419,6 +475,16 @@ namespace ProjectAccessibility.Migrations
                 column: "Ecode");
 
             migrationBuilder.CreateIndex(
+                name: "IX_OpenChats_RecieverGCode",
+                table: "OpenChats",
+                column: "RecieverGCode");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OpenChats_SenderGCode",
+                table: "OpenChats",
+                column: "SenderGCode");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_VoorkeurTypes_Ecode",
                 table: "VoorkeurTypes",
                 column: "Ecode");
@@ -428,13 +494,13 @@ namespace ProjectAccessibility.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Aandoeningen");
-
-            migrationBuilder.DropTable(
                 name: "Beheerders");
 
             migrationBuilder.DropTable(
                 name: "Chat");
+
+            migrationBuilder.DropTable(
+                name: "HeeftAandoeningen");
 
             migrationBuilder.DropTable(
                 name: "HeeftBeperkingen");
@@ -455,7 +521,13 @@ namespace ProjectAccessibility.Migrations
                 name: "Onderzoeksresultaten");
 
             migrationBuilder.DropTable(
+                name: "OpenChats");
+
+            migrationBuilder.DropTable(
                 name: "VoorkeurTypes");
+
+            migrationBuilder.DropTable(
+                name: "Aandoeningen");
 
             migrationBuilder.DropTable(
                 name: "Beperkingen");
@@ -467,16 +539,16 @@ namespace ProjectAccessibility.Migrations
                 name: "Bedrijven");
 
             migrationBuilder.DropTable(
-                name: "Voogden");
+                name: "Onderzoekstypes");
 
             migrationBuilder.DropTable(
-                name: "Onderzoeken");
+                name: "Voogden");
 
             migrationBuilder.DropTable(
                 name: "Ervaringdeskundigen");
 
             migrationBuilder.DropTable(
-                name: "Onderzoekstypes");
+                name: "Onderzoeken");
 
             migrationBuilder.DropTable(
                 name: "Gebruiker");

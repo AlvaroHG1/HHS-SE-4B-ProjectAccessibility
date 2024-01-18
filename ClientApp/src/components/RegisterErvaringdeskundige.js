@@ -8,9 +8,9 @@ export class RegisterErvaringdeskundige extends Component {
                 <div className="register-ervaringdeskundige-container">
                     <h1>Registreer ervaringdeskundige</h1>
                     <h2>Voornaam</h2>
-                    <input type="text" placeholder="geboortedatum" onChange={null}></input>
+                    <input type="text" placeholder="voornaam" onChange={null}></input>
                     <h2>Achternaam</h2>
-                    <input type="text" placeholder="geboortedatum" onChange={null}></input>
+                    <input type="text" placeholder="achternaam" onChange={null}></input>
                     <h2>Geboortedatum</h2>
                     <input type="text" placeholder="Voer uw geboortedatum in..." onChange={null}></input>
                     <h2>Straatnaam + huisnummer</h2>

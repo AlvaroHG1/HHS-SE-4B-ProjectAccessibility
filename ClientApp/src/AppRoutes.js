@@ -8,6 +8,10 @@ import { RegisterErvaringdeskundige} from "./components/RegisterErvaringdeskundi
 import { Register} from "./components/Register";
 import { RegisterBedrijf} from "./components/RegisterBedrijf";
 
+function Onderzoeken() {
+  return null;
+}
+
 const AppRoutes = [
   {
     index: true,
@@ -44,6 +48,10 @@ const AppRoutes = [
   {
     path: '/registreer-bedrijf',
     element: <RegisterBedrijf/>
+  },
+  {
+    path: '/onderzoeken',
+    element: <Onderzoeken/>
   }
 ];
 
