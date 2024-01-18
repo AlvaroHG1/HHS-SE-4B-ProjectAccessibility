@@ -13,5 +13,5 @@ public class Ervaringdeskundige : Gebruiker
     public string Plaats { get; set; }
     public string Contactvoorkeur { get; set; }
     public bool Commercieel { get; set; }
-    
+    public DateTime Geboortedatum { get; set; }
 }

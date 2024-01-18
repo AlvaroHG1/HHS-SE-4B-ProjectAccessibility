@@ -94,7 +94,8 @@ public class ErvaringdeskundigeController : ControllerBase
             Huisnummer = requestModel.Huisnummer,
             Commercieel = requestModel.Commercieel,
             Contactvoorkeur = requestModel.Contactvoorkeur,
-            Plaats = requestModel.Plaats
+            Plaats = requestModel.Plaats,
+            Geboortedatum = requestModel.Geboortedatum
         };
 
         _dbContext.Ervaringdeskundiges.Add(newErvaringdeskundige);
@@ -112,7 +113,7 @@ public class ErvaringdeskundigeController : ControllerBase
         }
         
         var existingErvaringdeskundige = _dbContext.Ervaringdeskundiges.Find(id);
-
+        
         if (existingErvaringdeskundige == null)
         {
             return NotFound(); // 404 Not Found
@@ -128,6 +129,7 @@ public class ErvaringdeskundigeController : ControllerBase
         existingErvaringdeskundige.Huisnummer = requestModel.Huisnummer;
         existingErvaringdeskundige.Commercieel = requestModel.Commercieel;
         existingErvaringdeskundige.Contactvoorkeur = requestModel.Contactvoorkeur;
+        existingErvaringdeskundige.Geboortedatum = requestModel.Geboortedatum;
 
         _dbContext.Entry(existingErvaringdeskundige).State = EntityState.Modified;
         _dbContext.SaveChanges();

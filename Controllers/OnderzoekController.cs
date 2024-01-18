@@ -39,7 +39,11 @@ public class OnderzoekController : ControllerBase
            Beschrijving = requestModel.Beschrijving,
            Locatie = requestModel.Locatie,
            Startdatum = requestModel.Startdatum,
-           Einddatum = requestModel.Einddatum
+           Einddatum = requestModel.Einddatum,
+           GezochteBeperking = requestModel.GezochteBeperking,
+           GezochtePostcode = requestModel.GezochtePostcode,
+           MinLeeftijd = requestModel.MinLeeftijd,
+           MaxLeeftijd = requestModel.MaxLeeftijd
            
         };
 
@@ -69,6 +73,10 @@ public class OnderzoekController : ControllerBase
         existingOnderzoek.Locatie = requestModel.Locatie;
         existingOnderzoek.Startdatum = requestModel.Startdatum;
         existingOnderzoek.Einddatum = requestModel.Einddatum;
+        existingOnderzoek.GezochteBeperking = requestModel.GezochteBeperking;
+        existingOnderzoek.GezochtePostcode = requestModel.GezochtePostcode;
+        existingOnderzoek.MinLeeftijd = requestModel.MinLeeftijd;
+        existingOnderzoek.MaxLeeftijd = requestModel.MaxLeeftijd;
 
         _dbContext.Entry(existingOnderzoek).State = EntityState.Modified;
         _dbContext.SaveChanges();

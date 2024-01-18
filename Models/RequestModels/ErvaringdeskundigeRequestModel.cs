@@ -13,4 +13,5 @@ public class ErvaringdeskundigeRequestModel
     public bool Commercieel { get; set; }
     public string Email { get; set; }
     public string Wachtwoord { get; set; }
+    public DateTime Geboortedatum { get; set; }
 }
