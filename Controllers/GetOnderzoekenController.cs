@@ -43,8 +43,30 @@ namespace ProjectAccessibility.Controllers
                             beperkingen.Any(b => b.Naam == o.GezochteBeperking))
                 .ToList();
             return Ok(onderzoeken);
-        }
+            
+        } // EINDE Ecode 
 
+
+        [HttpGet("GetByBedrijf/{Bcode}")]
+        public IActionResult GetByBedrijf(int Bcode)
+        {
+            // zoekt alle koppelingen tussen onderzoeken en het opgegeven bedrijf (AKA de bcode)
+            List<HeeftOnderzoek> heeftOnderzoeken = _dbContext.HeeftOnderzoeken
+                .Where(ho => ho.Bcode == Bcode)
+                .ToList();
+
+            // haalt de ocode's op v/d gevonden koppelingen
+            List<int> oCodes = heeftOnderzoeken.Select(ho => ho.Ocode).ToList();
+
+            // zoekt de onderzoeken op basis v/d ocode's
+            List<Onderzoek> onderzoeken = _dbContext.Onderzoeken
+                .Where(o => oCodes.Contains(o.Ocode))
+                .ToList();
+
+            return Ok(onderzoeken);
+        } // EINDE
+        
+        // berekent de leeftijd v.d gebrujker
         private int CalculateAge(DateTime birthDate)
         {
             var today = DateTime.Today;
