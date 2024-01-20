@@ -1,8 +1,15 @@
+.total-container {
+    display: flex;
+}
+
+.onderzoeken-container {
+    flex: 2;
+}
+
 .onderzoek-container {
     display: flex;
     flex-direction: column;
-    height: 100%; /* Set it to 100% to take the full height of the container */
-    width: 25%;
+    width: 100%;
     background: rgb(217, 235, 247, 0.7);
     border-radius: 15px;
     padding: 10px;
@@ -11,35 +18,35 @@
 
 .onderzoek-list {
     overflow-y: scroll;
-    height: 675px; /* Set a fixed height for the onderzoek list */
+    height: 675px;
     scrollbar-width: thin;
 }
 
 .onderzoek-list::-webkit-scrollbar {
-    width: 12px; /* Set the width of the scrollbar */
+    width: 12px;
 }
 
 .onderzoek-list::-webkit-scrollbar-thumb {
-    background-color: #3498db; /* Set the color of the thumb (the draggable part) */
-    border-radius: 6px; /* Set the border radius for a rounded thumb */
+    background-color: #3498db;
+    border-radius: 6px;
 }
 
 .onderzoek-list::-webkit-scrollbar-track {
-    background-color: rgba(217, 235, 247, 0.7); /* Set the color of the track (the non-draggable part) */
-    border-radius: 8px; /* Set the border radius for rounded corners on the track */
+    background-color: rgba(217, 235, 247, 0.7);
+    border-radius: 8px;
 }
 
 .onderzoek-item {
     display: block;
-    margin: 5px; /* Optional: Adjust the margin based on your design */
+    margin: 5px;
     padding: 10px;
-    background-color: #3498db; /* Change the background color as needed */
-    color: #fff; /* Set the text color */
+    background-color: #3498db;
+    color: #fff;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     width: 95%;
-    height: 80px; /* Set the desired height */
+    height: 80px;
     text-align: center;
 }
 
@@ -48,5 +55,63 @@
 }
 
 .onderzoek-item:hover {
-    background-color: #2980b9; /* Change the hover background color as needed */
+    background-color: #2980b9;
 }
+
+.onderzoek-info {
+    display: flex;
+    flex-direction: column;
+    flex: 7;
+    background: rgb(217, 235, 247, 0.7);
+    border-radius: 15px;
+    padding: 10px;
+    margin-left: 25px;
+    margin-right: 30px;
+    position: relative;
+}
+
+.location-container {
+    position: absolute;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    bottom: 0;
+    left: 0;
+    color: #131B56;
+}
+
+.age-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    white-space: nowrap;
+    margin-right: 4%;
+    margin-bottom: 3%;
+    color: #131B56;
+}
+
+.date-container {
+    position: absolute;
+    margin-top: 30%;
+    margin-left: 4.25%;
+    color: #131B56;
+}
+
+.onderzoek-informatie {
+    position: absolute;
+    margin-top: 2%;
+    margin-left: 4.25%;
+    color: #131B56;
+}
+
+.gezochte-beperking {
+    position: absolute;
+    margin-top: 6%;
+}
+
+.gezochte-beperking2 {
+    position: absolute;
+    margin-top: 10.8%;
+}
+
+
+
