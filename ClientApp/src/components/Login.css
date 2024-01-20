@@ -69,3 +69,8 @@
     margin-right: 1rem;
     border-radius: 1rem;
 }
+.error-message{
+    color: red;
+    font-size: small;
+    margin-top: 0.5rem;
+}

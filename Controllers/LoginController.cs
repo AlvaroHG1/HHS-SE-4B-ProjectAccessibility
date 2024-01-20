@@ -17,13 +17,13 @@ public class LoginController : ControllerBase
         _dbContext = dbContext;
     }
 
-    // GET: api/Hulpmiddel/?
+    // GET: api/Login/?
     [HttpGet("{Email}, {Wachtwoord}")]
     public IActionResult Get(String Email, String Wachtwoord)
     {
-        Gebruiker gebruiker = _dbContext.Gebruikers.Single(g => g.Email == Email && g.Wachtwoord == Wachtwoord);
-        
+        Gebruiker? gebruiker =
+            _dbContext.Gebruikers.SingleOrDefault(g => g.Email == Email && g.Wachtwoord == Wachtwoord);
+
         return Ok(gebruiker);
     }
-    
 }
