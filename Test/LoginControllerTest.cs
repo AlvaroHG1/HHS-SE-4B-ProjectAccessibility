@@ -21,9 +21,11 @@ public class LoginControllerTests
         dbContext.Gebruikers.Add(testGebruiker);
 
         // Act
+        // Voer de Get-methode uit met de testgebruiker
         var result = loginController.Get("test@example.com", "password123") as OkObjectResult;
 
         // Assert
+        // Controleer of de resultaatcode 200 is en of de gebruiker overeenkomt met de testgebruiker
         Assert.NotNull(result);
         Assert.Equal(200, result.StatusCode);
 
@@ -37,18 +39,20 @@ public class LoginControllerTests
     public void Get_ReturnsNotFound_WithInvalidCredentials()
     {
         // Arrange
-        var dbContext = new MockGebruikerContext(); // Je moet een mock van je context maken voor testdoeleinden
+        // Je moet een mock van je context maken voor testdoeleinden
+        var dbContext = new MockGebruikerContext(); 
         var loginController = new LoginController(dbContext);
 
         // Act
+        // Voer de Get-methode uit met een niet-bestaande gebruiker
         var result = loginController.Get("nonexistent@example.com", "invalidPassword") as NotFoundResult;
 
         // Assert
+        // Controleer of de resultaatcode 404 is
         Assert.NotNull(result);
         Assert.Equal(404, result.StatusCode);
     }
-
-    // Voeg hier andere tests toe, afhankelijk van je vereisten
+    
 }
 
 // MockGebruikerContext implementeert een mock van GebruikerContext voor testdoeleinden

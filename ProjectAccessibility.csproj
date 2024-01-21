@@ -34,11 +34,11 @@
         <PackageReference Include="MySqlConnector.DependencyInjection" Version="2.3.1" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-        <PackageReference Include="xunit" Version="2.6.6" />
+       <PackageReference Include="xunit" Version="2.6.6" />
         <PackageReference Include="xunit.runner.visualstudio" Version="2.5.6">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
+        </PackageReference> 
     </ItemGroup>
 
     <ItemGroup>
@@ -54,10 +54,7 @@
       <Folder Include="Areas\UserController\Models\" />
       <Folder Include="Areas\UserController\Views\" />
       <Folder Include="Authorization\" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="ProjectAccessibility.csproj" />
+    <Folder Include="Test\" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
