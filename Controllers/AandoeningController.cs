@@ -67,7 +67,7 @@ namespace ProjectAccessibility.Controllers
 
         // DELETE: api/Gebruiker/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(AandoeningRequestModel id)
         {
             var aandoeningToDelete = _dbContext.Aandoeningen.Find(id);
 
