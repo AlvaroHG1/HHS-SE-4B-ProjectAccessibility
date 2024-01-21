@@ -1,10 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjectAccessibility.Context;
 using ProjectAccessibility.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
 
 namespace ProjectAccessibility.Controllers
 {
@@ -67,9 +63,13 @@ namespace ProjectAccessibility.Controllers
         } // EINDE
         
         // berekent de leeftijd v.d gebrujker
-        private int CalculateAge(DateTime birthDate)
+        public int CalculateAge(DateTime birthDate)
         {
             var today = DateTime.Today;
+            
+            if (birthDate > today) {
+                return 0;
+            }
             var age = today.Year - birthDate.Year;
 
             if (birthDate.Date > today.AddYears(-age))
