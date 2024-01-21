@@ -8,7 +8,8 @@ import { RegisterErvaringdeskundige} from "./components/RegisterErvaringdeskundi
 import { Register} from "./components/Register";
 import { RegisterBedrijf} from "./components/RegisterBedrijf";
 import { Onderzoeken} from "./components/Onderzoeken";
-import { BeheerderPortal} from "./components/BeheerderPortal"
+import { BeheerderPortal} from "./components/BeheerderPortal";
+import { BedrijvenOnderzoek} from "./components/BedrijvenOnderzoek";
 import { BedrijvenPortal} from "./components/BedrijvenPortal";
 // import { ProfielUpdaten} from "./components/ProfielUpdaten";
 
@@ -64,6 +65,10 @@ const AppRoutes = [
   {
     path: '/beheerder',
     element: <BeheerderPortal/>
+  },
+  {
+    path: '/bedrijf',
+    element: <BedrijvenOnderzoek/>
   }
 
 ];

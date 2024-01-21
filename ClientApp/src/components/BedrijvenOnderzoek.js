@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Onderzoeken.css';
 
-export class Onderzoeken extends Component {
+export class BedrijvenOnderzoek extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -14,7 +14,7 @@ export class Onderzoeken extends Component {
 
     async componentDidMount() {
         try {
-            const responseOnderzoeken = await fetch('https://localhost:7216/api/GetOnderzoeken/3', {
+            const responseOnderzoeken = await fetch('https://localhost:7216/api/GetOnderzoeken/GetByBedrijf/14', {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -30,7 +30,8 @@ export class Onderzoeken extends Component {
             const openOnderzoeken = await responseOnderzoeken.json();
             console.log(openOnderzoeken.ocode);
             const initialSelectedOnderzoek = openOnderzoeken[0];
-            
+
+            // Make the initial second API call
             await this.fetchOnderzoekData(initialSelectedOnderzoek.ocode);
 
             this.setState({
@@ -73,13 +74,14 @@ export class Onderzoeken extends Component {
         this.setState({ isLoading: true });
 
         try {
-            const response = await fetch(`https://localhost:7216/api/Onderzoek/${onderzoek.ocode}`);
+            const response = await fetch(`https://localhost:7216/api/onderzoek/${onderzoek.ocode}`);
             
             if (!response.ok) {
-               console.error(`Failed to fetch data: ${response.statusText}`);
+                console.error(`Failed to fetch data: ${response.statusText}`);
             }
 
             const data = await response.json();
+            
             this.setState({
                 selectedOnderzoek: onderzoek,
                 onderzoekData: data,

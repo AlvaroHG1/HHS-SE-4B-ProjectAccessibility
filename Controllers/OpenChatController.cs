@@ -22,24 +22,22 @@ namespace ProjectAccessibility.Controllers
             _dbContext = dbContext;
         }
 
-        // GET: api/OpenChat/?
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-
             var openChatCodes = _dbContext.OpenChats
                 .Where(oc => oc.SenderGCode == id)
-                .Select(oc => oc.RecieverGCode)
+                .Select(oc => new { oc.RecieverGCode, oc.SenderGCode })
                 .ToList();
 
             List<OpenChatReturnModel> openChatsWithUsers = openChatCodes
-                .Select(gcode =>
+                .Select(chat =>
                 {
                     OpenChatReturnModel returnModel = new OpenChatReturnModel();
-
-                    var ervaringdeskundige = _dbContext.Ervaringdeskundiges.Find(gcode);
-                    var bedrijf = _dbContext.Bedrijven.Find(gcode);
-                    var beheerder = _dbContext.Beheerders.Find(gcode);
+            
+                    var ervaringdeskundige = _dbContext.Ervaringdeskundiges.Find(chat.RecieverGCode);
+                    var bedrijf = _dbContext.Bedrijven.Find(chat.RecieverGCode);
+                    var beheerder = _dbContext.Beheerders.Find(chat.RecieverGCode);
 
                     if (ervaringdeskundige != null)
                     {
@@ -56,10 +54,14 @@ namespace ProjectAccessibility.Controllers
                         returnModel.Naam = beheerder.Voornaam;
                         returnModel.Type = "Beheerder";
                     }
+
+                    returnModel.SenderGCode = chat.SenderGCode;
+                    returnModel.ReceiverGCode = chat.RecieverGCode;
+
                     return returnModel;
                 })
                 .ToList();
-            
+    
             return Ok(openChatsWithUsers);
         }
 

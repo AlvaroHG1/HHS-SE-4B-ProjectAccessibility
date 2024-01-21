@@ -62,6 +62,7 @@ html {
     text-align: center;
     transform: translateX(-100%);
     transition: transform 0.3s ease-in-out;
+    z-index: 1000;
 }
 .navbar .menu-items.collapsed {
     transform: translateX(-100%);
@@ -70,6 +71,7 @@ html {
     width: 100%;
     height: 10%; 
     box-shadow: 0 1px 4px rgb(146 161 176 / 15%);
+    z-index: 1000;
 }
 
 .nav-container {
@@ -192,7 +194,8 @@ html {
 
 .menu-items a {
     color: #fff;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);\padding: 10px; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    padding: 30px; 
     display: block; 
 }
 
@@ -203,7 +206,7 @@ html {
 
 .navbar .menu-items {
     position: fixed;
-    top: 40px;
+    top: 100px;
     right: 0;
     height: 100vh;
     width: 23.5%;

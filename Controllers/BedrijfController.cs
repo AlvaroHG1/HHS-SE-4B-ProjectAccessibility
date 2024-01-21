@@ -37,7 +37,8 @@ namespace ProjectAccessibility.Controllers
                 Link = requestModel.Link,
                 Bedrijfsinformatie = requestModel.Bedrijfsinformatie,
                 Email = requestModel.Email,
-                Wachtwoord = Utils.HashPassword(requestModel.Wachtwoord)
+                Wachtwoord = Utils.HashPassword(requestModel.Wachtwoord),
+                Locatie = requestModel.Locatie
             };
 
             _dbContext.Bedrijven.Add(newBedrijf);

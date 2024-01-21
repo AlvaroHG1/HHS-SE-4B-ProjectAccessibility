@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProjectAccessibility.Context;
 using ProjectAccessibility.Models;
+using ProjectAccessibility.Models.ReturnModels;
 
 namespace ProjectAccessibility.Controllers
 {
@@ -31,6 +32,48 @@ namespace ProjectAccessibility.Controllers
             
             
             return Ok(chat);
+        }
+        
+        [HttpGet("GetChatsByUsers")]
+        public IActionResult GetChatsByUsers(int senderCode, int receiverCode)
+        {
+            var chats = _dbContext.Chats
+                .Where(c => (c.SenderGCode == senderCode && c.RecieverGCode == receiverCode) ||
+                            (c.SenderGCode == receiverCode && c.RecieverGCode == senderCode))
+                .ToList();
+
+            List<ChatReturnModel> openChatsWithUsers = chats
+                .Select(chat =>
+                {
+                    ChatReturnModel returnModel = new ChatReturnModel();
+            
+                    var ervaringdeskundige = _dbContext.Ervaringdeskundiges.Find(chat.SenderGCode);
+                    var bedrijf = _dbContext.Bedrijven.Find(chat.SenderGCode);
+                    var beheerder = _dbContext.Beheerders.Find(chat.SenderGCode);
+
+                    if (ervaringdeskundige != null)
+                    {
+                        returnModel.SenderName = ervaringdeskundige.Voornaam;
+                    }
+                    else if (bedrijf != null)
+                    {
+                        returnModel.SenderName = bedrijf.Naam;
+                    }
+                    else if (beheerder != null)
+                    {
+                        returnModel.SenderName = beheerder.Voornaam;
+                    }
+
+                    returnModel.SenderGCode = chat.SenderGCode;
+                    returnModel.RecieverGCode = chat.RecieverGCode;
+                    returnModel.DateTime = chat.DateTime;
+                    returnModel.Message = chat.Message;
+                    
+                    return returnModel;
+                })
+                .ToList();
+            
+            return Ok(openChatsWithUsers);
         }
 
         // POST: api/Chat/?

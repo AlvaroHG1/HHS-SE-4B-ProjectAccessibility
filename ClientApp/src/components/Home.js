@@ -32,10 +32,9 @@ export class Home extends Component {
                     <div>
                         <h1> Ontdek hoe je morgen aan de slag kunt  gaan als bedrijf</h1>
                     </div>
-
-                    <div>{/* HIER AANPASSEN OM TE REDIRECTEN NAAR registreer-bedrijf"*/}
-                        <h2>Start je onderzoek!</h2>
-                    </div>
+                    <Link className="StartJeOnderzoekButton" to="/registreer-bedrijf">
+                        Start je onderzoek
+                    </Link>
                 </div>
 
                 <div className="box-welkomOmschrijving">
