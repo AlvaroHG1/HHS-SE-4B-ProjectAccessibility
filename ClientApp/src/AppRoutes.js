@@ -9,6 +9,8 @@ import { Register} from "./components/Register";
 import { RegisterBedrijf} from "./components/RegisterBedrijf";
 import { Onderzoeken} from "./components/Onderzoeken";
 import { BeheerderPortal} from "./components/BeheerderPortal"
+import { BedrijvenPortal} from "./components/BedrijvenPortal";
+import { ProfielUpdaten} from "./components/ProfielUpdaten";
 
 const AppRoutes = [
   {
@@ -48,12 +50,20 @@ const AppRoutes = [
     element: <RegisterBedrijf/>
   },
   {
+    path: '/bedrijvenportal',
+    element: <BedrijvenPortal/>
+  },
+  {
     path: '/onderzoeken',
     element: <Onderzoeken/>
   },
   {
     path: '/beheerder',
     element: <BeheerderPortal/>
+  },
+  {
+    path: '/profielupdaten',
+    element: <ProfielUpdaten/>
   }
 ];
 
