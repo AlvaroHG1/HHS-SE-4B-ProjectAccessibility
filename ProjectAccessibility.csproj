@@ -49,6 +49,7 @@
       <Folder Include="Areas\UserController\Models\" />
       <Folder Include="Areas\UserController\Views\" />
       <Folder Include="Authorization\" />
+      <Folder Include="Test\" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
