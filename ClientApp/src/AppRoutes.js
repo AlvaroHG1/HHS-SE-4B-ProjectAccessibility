@@ -11,7 +11,7 @@ import { Onderzoeken} from "./components/Onderzoeken";
 import { BeheerderPortal} from "./components/BeheerderPortal";
 import { BedrijvenOnderzoek} from "./components/BedrijvenOnderzoek";
 import { BedrijvenPortal} from "./components/BedrijvenPortal";
-// import { ProfielUpdaten} from "./components/ProfielUpdaten";
+import { ProfielUpdaten} from "./components/ProfielUpdaten";
 
 const AppRoutes = [
   {
@@ -58,10 +58,10 @@ const AppRoutes = [
     path: '/onderzoeken',
     element: <Onderzoeken/>
   },
-  // {
-  //   path: '/profielupdaten',
-  //   element: <ProfielUpdaten/>
-  // },
+  {
+    path: '/profielupdaten',
+    element: <ProfielUpdaten/>
+  },
   {
     path: '/beheerder',
     element: <BeheerderPortal/>

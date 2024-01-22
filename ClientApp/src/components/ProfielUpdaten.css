@@ -1,0 +1,46 @@
+/* YourComponent.css */
+
+.Desktop11 {
+    width: 1920px;
+    height: 2043px;
+    position: relative;
+    background: #131B56;
+}
+
+.ProfielUpdaten {
+    left: 731px;
+    top: 5px;
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 64px;
+    font-family: sans-serif;
+    font-weight: 700;
+    word-wrap: break-word;
+}
+
+
+.OpslaanLink {
+    width: 371.14px;
+    height: 94px;
+    left: 84px;
+    top: 1000px;
+    position: absolute;
+    background: #3B987C;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+.OpslaanLink:hover{
+background-color: #EB790B;
+}
+
+.Opslaan {
+    color: #131B56;
+    font-size: 80px;
+    font-family: sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+}

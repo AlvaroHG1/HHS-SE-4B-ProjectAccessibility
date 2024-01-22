@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProjectAccessibility.Context;
 using ProjectAccessibility.Models;
+using ProjectAccessibility.Models.ReturnModels;
+
 
 namespace ProjectAccessibility.Controllers
 {
@@ -24,8 +26,13 @@ namespace ProjectAccessibility.Controllers
             Bedrijf bedrijf = _dbContext.Bedrijven
                 .Single(b => b.Gcode == id);
             
+            BedrijfReturnModel returnModel = new BedrijfReturnModel()
+            {
+                Bedrijf = bedrijf,
+            };
             
-            return Ok(bedrijf);
+            return Ok(returnModel);
+
         }
 
         [HttpPost]

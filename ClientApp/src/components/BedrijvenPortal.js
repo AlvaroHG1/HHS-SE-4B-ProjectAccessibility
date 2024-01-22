@@ -7,14 +7,13 @@ export class BedrijvenPortal extends Component {
     render() {
         return ( 
             <div className="Desktop10" style={{ width: 1920, height: 2043, position: 'relative', background: '#131B56' }}>
-                <div className="BedrijvenPortal" style={{ left: 520, top: 1, position: 'absolute', textAlign: 'center', color: 'white', fontSize: 64, fontFamily: 'Roboto', fontWeight: '700', wordWrap: 'break-word' }}>Bedrijven Portal</div>
-                        <button className="button onderzoekspagina-button" onClick={() => this.handleButtonClick('OnderzoeksPagina')}>
+                        <Link className="button onderzoekspagina-button" to={"/BedrijvenOnderzoek"}>
                             <div className="text onderzoekspagina-text">Onderzoeks Pagina</div>
-                        </button>
-                        <button className="button chats-button" onClick={() => this.handleButtonClick('Chats')}>
+                        </Link>
+                        <Link className="button chats-button" to={"/Chats"} >
                             <div className="text chats-text">Chats</div>
-                        </button>
-                        <Link to={"/ProfielUpdaten"} className="button profiel-updaten-button" onClick={() => this.handleButtonClick('ProfielUpdaten')}>
+                        </Link>
+                        <Link to={"/ProfielUpdaten"} className="button profiel-updaten-button" >
                             <div className="text profiel-updaten-text">Profiel Updaten</div>
                         </Link>
                         <button className="button info-clickstream-button" onClick={() => this.handleButtonClick('InfoClickstream')}>
