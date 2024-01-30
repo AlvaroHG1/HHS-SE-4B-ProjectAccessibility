@@ -63,6 +63,7 @@ namespace ProjectAccessibility.Controllers
         } // EINDE
         
         // berekent de leeftijd v.d gebrujker
+        [ApiExplorerSettings(IgnoreApi = true)]
         public int CalculateAge(DateTime birthDate)
         {
             var today = DateTime.Today;

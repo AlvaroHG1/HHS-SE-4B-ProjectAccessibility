@@ -30,8 +30,7 @@ export class BedrijvenOnderzoek extends Component {
             const openOnderzoeken = await responseOnderzoeken.json();
             console.log(openOnderzoeken.ocode);
             const initialSelectedOnderzoek = openOnderzoeken[0];
-
-            // Make the initial second API call
+            
             await this.fetchOnderzoekData(initialSelectedOnderzoek.ocode);
 
             this.setState({

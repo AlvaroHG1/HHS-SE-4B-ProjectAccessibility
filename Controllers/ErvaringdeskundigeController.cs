@@ -101,7 +101,7 @@ public class ErvaringdeskundigeController : ControllerBase
         _dbContext.Ervaringdeskundiges.Add(newErvaringdeskundige);
         _dbContext.SaveChanges();
         return StatusCode(201, newErvaringdeskundige);
-    }
+   }
 
     // PUT: api/Ervaringdeskundige/?
     [HttpPut("{id}")]
