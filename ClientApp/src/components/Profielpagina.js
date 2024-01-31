@@ -125,7 +125,7 @@ export class Profielpagina extends Component {
                 
             <div className="Info-container2">
                     <div>
-                            <h2>ContactVoorkeur: </h2>
+                            <h2>Contact voorkeur: </h2>
                     </div>
                     <div>
                             <h4 className = 'specialh4'>{ervaringdeskundige.ervaringdeskundige.contactvoorkeur || 'geen'}</h4>
@@ -136,7 +136,7 @@ export class Profielpagina extends Component {
                             <h2>Commercieel geïnteresseerd? </h2>
                     </div>
                     <div>
-                            <h4 className = 'specialh4'>{ervaringdeskundige.ervaringdeskundige.commercieel ? 'JA' : 'NEE'}</h4>
+                            <h4 className = 'specialh4'>{ervaringdeskundige.ervaringdeskundige.commercieel ? 'Ja' : 'Nee'}</h4>
                     </div>
             </div>
                 <h2>Beschikbaarheid</h2>

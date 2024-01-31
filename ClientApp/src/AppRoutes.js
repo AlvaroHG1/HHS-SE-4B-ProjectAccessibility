@@ -12,6 +12,7 @@ import { BeheerderPortal} from "./components/BeheerderPortal";
 import { BedrijvenOnderzoek} from "./components/BedrijvenOnderzoek";
 import { BedrijvenPortal} from "./components/BedrijvenPortal";
 import { ProfielUpdaten} from "./components/ProfielUpdaten";
+import { BeheerOnderzoeken} from "./components/BeheerOnderzoeken"
 
 const AppRoutes = [
   {
@@ -69,7 +70,12 @@ const AppRoutes = [
   {
     path: '/bedrijf',
     element: <BedrijvenOnderzoek/>
+  },
+  {
+    path: '/beheer-onderzoeken',
+    element: <BeheerOnderzoeken/>
   }
+  
 
 ];
 

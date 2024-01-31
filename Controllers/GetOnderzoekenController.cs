@@ -41,6 +41,16 @@ namespace ProjectAccessibility.Controllers
             return Ok(onderzoeken);
             
         } // EINDE Ecode 
+        
+        
+        [HttpGet("GetOnderzoeken")]
+        public IActionResult GetOnderzoeken()
+        {
+            var onderzoeken = _dbContext.Onderzoeken
+                .OrderBy(onderzoek => onderzoek.Ocode)
+                .ToList();
+            return Ok(onderzoeken);
+        }
 
 
         [HttpGet("GetByBedrijf/{Bcode}")]
