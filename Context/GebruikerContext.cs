@@ -6,10 +6,13 @@ namespace ProjectAccessibility.Context
     public class GebruikerContext : DbContext 
     {
         public GebruikerContext(DbContextOptions<GebruikerContext> options)
-            : base(options)
-        {
+            : base(options) {
         }
 
+        public GebruikerContext() : base() 
+        {
+        }
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Gebruiker>()
@@ -178,7 +181,7 @@ namespace ProjectAccessibility.Context
         public DbSet<Gebruiker> Gebruikers { get; set; }
         public DbSet<Beheerder> Beheerders { get; set; }
         public DbSet<Ervaringdeskundige> Ervaringdeskundiges { get; set; }
-        public DbSet<Bedrijf> Bedrijven { get; set; }
+        public virtual DbSet<Bedrijf> Bedrijven { get; set; }
         public DbSet<Aandoening> Aandoeningen { get; set; }
         public DbSet<Beperking> Beperkingen { get; set; }
         public DbSet<Hulpmiddel> Hulpmiddelen { get; set; }

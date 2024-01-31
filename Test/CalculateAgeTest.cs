@@ -27,7 +27,7 @@ namespace ProjectAccessibility.Tests
             Assert.Equal(expectedAge, result);
         }
 
-        [Fact]
+        [Fact] // this method tests the calculation for when 0 is being types from the users keyboard as their birthday
         public void CalculateAge_ReturnsZeroForFutureBirthDate()
         {
             // Arrange
@@ -41,7 +41,7 @@ namespace ProjectAccessibility.Tests
             Assert.Equal(0, result);
         }
 
-        [Fact]
+        [Fact] 
         public void CalculateAge_ReturnsZeroForTodayBirthDate()
         {
             // Arrange
