@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Table } from 'reactstrap';
+import React, {Component} from 'react';
+import {Table} from 'reactstrap';
 import './BeheerOnderzoeken.css';
 
 export class BeheerOnderzoeken extends Component {
@@ -16,25 +16,25 @@ export class BeheerOnderzoeken extends Component {
     componentDidMount() {
         fetch('https://localhost:7216/api/GetOnderzoeken/GetOnderzoeken')
             .then(response => response.json())
-            .then(result => this.setState({ data: result, isLoading: false }))
+            .then(result => this.setState({data: result, isLoading: false}))
             .catch(error => {
                 console.error('Error fetching data:', error);
-                this.setState({ isLoading: false });
+                this.setState({isLoading: false});
             });
     }
 
     handleDoubleClick = (rowIndex, field) => {
-        const selectedCell = { rowIndex, field };
+        const selectedCell = {rowIndex, field};
         const initialText = this.state.data[rowIndex][field];
-        this.setState({ selectedCell, editText: initialText });
+        this.setState({selectedCell, editText: initialText});
     };
 
     handleChange = e => {
-        this.setState({ editText: e.target.value });
+        this.setState({editText: e.target.value});
     };
 
     handleSave = () => {
-        const { selectedCell, editText, data } = this.state;
+        const {selectedCell, editText, data} = this.state;
 
         if (selectedCell) {
             const updatedData = data.map((row, rowIndex) => {
@@ -48,7 +48,7 @@ export class BeheerOnderzoeken extends Component {
             });
 
             const selectedIndex = selectedCell.rowIndex;
-            
+
             const putPayload = updatedData.map(row => ({
                 titel: row.titel,
                 beschrijving: row.beschrijving,
@@ -60,7 +60,7 @@ export class BeheerOnderzoeken extends Component {
                 minLeeftijd: row.minLeeftijd,
                 maxLeeftijd: row.maxLeeftijd,
             }));
-            
+
             fetch(`https://localhost:7216/api/Onderzoek/${selectedIndex + 1}`, {
                 method: 'PUT',
                 headers: {
@@ -78,7 +78,7 @@ export class BeheerOnderzoeken extends Component {
                     console.log('Data updated successfully:', updatedDataFromServer);
                 })
                 .catch(error => console.error('Error updating data:', error));
-            this.setState({ data: updatedData, selectedCell: null, editText: '' });
+            this.setState({data: updatedData, selectedCell: null, editText: ''});
         }
     };
 
@@ -96,14 +96,14 @@ export class BeheerOnderzoeken extends Component {
                 }
             })
             .catch(error => console.error('Error deleting row:', error));
-        
+
         this.setState(prevState => ({
             data: prevState.data.filter(item => item.ocode !== ocode),
         }));
     };
 
     render() {
-        const { data, selectedCell, editText, isLoading } = this.state;
+        const {data, selectedCell, editText, isLoading} = this.state;
 
         return (
             <div>
@@ -111,45 +111,48 @@ export class BeheerOnderzoeken extends Component {
                     <p>Loading...</p>
                 ) : (
                     <>
-                        <Table size="sm" striped bordered hover className="onderzoeken-table">
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Titel</th>
-                                <th>Beschrijving</th>
-                                <th>Locatie</th>
-                                <th>Startdatum</th>
-                                <th>Einddatum</th>
-                                <th>Gezochte Beperking</th>
-                                <th>Gezochte Postcode</th>
-                                <th>Minimale Leeftijd</th>
-                                <th>Maximale Leeftijd</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {data.map((item, rowIndex) => (
-                                <tr key={rowIndex}>
-                                    {Object.keys(item).map((field, colIndex) => (
-                                        <td
-                                            key={colIndex}
-                                            onDoubleClick={() => this.handleDoubleClick(rowIndex, field)}
-                                        >
-                                            {item[field]}
-                                        </td>
-                                    ))}
-                                    <td>
-                                        <button className="custom-button" onClick={() => this.handleDelete(item.ocode)}>
-                                            Delete
-                                        </button>
-                                    </td>
+                        <div className="beheer-onderzoeken-container">
+                            <Table size="sm" bordered hover className="onderzoeken-table">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Titel</th>
+                                    <th>Beschrijving</th>
+                                    <th>Locatie</th>
+                                    <th>Startdatum</th>
+                                    <th>Einddatum</th>
+                                    <th>Gezochte Beperking</th>
+                                    <th>Gezochte Postcode</th>
+                                    <th>Minimale Leeftijd</th>
+                                    <th>Maximale Leeftijd</th>
                                 </tr>
-                            ))}
-                            </tbody>
-                        </Table>
+                                </thead>
+                                <tbody>
+                                {data.map((item, rowIndex) => (
+                                    <tr key={rowIndex}>
+                                        {Object.keys(item).map((field, colIndex) => (
+                                            <td
+                                                key={colIndex}
+                                                onDoubleClick={() => this.handleDoubleClick(rowIndex, field)}
+                                            >
+                                                {item[field]}
+                                            </td>
+                                        ))}
+                                        <td>
+                                            <button className="custom-button"
+                                                    onClick={() => this.handleDelete(item.ocode)}>
+                                                Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                                </tbody>
+                            </Table>
+                        </div>
 
                         {selectedCell && (
                             <div className="onderzoek-verander-container">
-                                <textarea value={editText} onChange={this.handleChange} />
+                                <textarea value={editText} onChange={this.handleChange}/>
                                 <button onClick={this.handleSave}>Save</button>
                             </div>
                         )}
