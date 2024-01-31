@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './Onderzoeken.css';
 
 export class Onderzoeken extends Component {
@@ -30,7 +30,7 @@ export class Onderzoeken extends Component {
             const openOnderzoeken = await responseOnderzoeken.json();
             console.log(openOnderzoeken.ocode);
             const initialSelectedOnderzoek = openOnderzoeken[0];
-            
+
             await this.fetchOnderzoekData(initialSelectedOnderzoek.ocode);
 
             this.setState({
@@ -70,13 +70,13 @@ export class Onderzoeken extends Component {
     };
 
     handleOnderzoekClick = async (onderzoek) => {
-        this.setState({ isLoading: true });
+        this.setState({isLoading: true});
 
         try {
             const response = await fetch(`https://localhost:7216/api/Onderzoek/${onderzoek.ocode}`);
-            
+
             if (!response.ok) {
-               console.error(`Failed to fetch data: ${response.statusText}`);
+                console.error(`Failed to fetch data: ${response.statusText}`);
             }
 
             const data = await response.json();
@@ -96,7 +96,7 @@ export class Onderzoeken extends Component {
     };
 
     render() {
-        const { openOnderzoeken, selectedOnderzoek, onderzoekData, loading } = this.state;
+        const {openOnderzoeken, selectedOnderzoek, onderzoekData, loading} = this.state;
 
         if (loading) {
             return <div>foutje</div>;
@@ -124,14 +124,18 @@ export class Onderzoeken extends Component {
                     <div>
                         {onderzoekData ? (
                             <>
-                                <div className="onderzoek-informatie">
+                                <div className="onderzoek-titel">
                                     <h1>{onderzoekData.titel}</h1>
                                     <br/>
                                     <br/>
+                                </div>
+                                <div className="beschrijving-container">
                                     <h2>Beschrijving: </h2>
-                                    <h3 className="beschrijving">{onderzoekData.beschrijving}</h3>
-                                    <h2 className="gezochte-beperking">Gezochte beperking:</h2>
-                                    <h3 className="gezochte-beperking2">{onderzoekData.gezochteBeperking}</h3>
+                                    <h3>{onderzoekData.beschrijving}</h3>
+                                </div>
+                                <div className="beperking-container">
+                                    <h2>Gezochte beperking:</h2>
+                                    <h3>{onderzoekData.gezochteBeperking}</h3>
                                 </div>
                                 <div className="date-container">
                                     <h2>Periode:</h2>

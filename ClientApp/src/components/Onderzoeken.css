@@ -64,18 +64,14 @@
     flex: 7;
     background: rgb(217, 235, 247, 0.7);
     border-radius: 15px;
-    padding: 10px;
+    padding: 25px;
     margin-left: 25px;
     margin-right: 30px;
     position: relative;
 }
 
 .location-container {
-    position: absolute;
-    margin-left: 5%;
-    margin-bottom: 2%;
-    bottom: 0;
-    left: 0;
+    padding-top: 25px;
     color: #131B56;
 }
 
@@ -90,27 +86,22 @@
 }
 
 .date-container {
-    position: absolute;
-    margin-top: 30%;
-    margin-left: 4.25%;
+    padding-top: 25px;
     color: #131B56;
 }
 
-.onderzoek-informatie {
-    position: absolute;
-    margin-top: 2%;
-    margin-left: 4.25%;
+.onderzoek-titel {
     color: #131B56;
 }
 
-.gezochte-beperking {
-    position: absolute;
-    margin-top: 6%;
+.beperking-container {
+    padding-top: 25px;
+    color: #131B56;
 }
 
-.gezochte-beperking2 {
-    position: absolute;
-    margin-top: 10.8%;
+.beschrijving-container {
+    padding-top: 25px;
+    color: #131B56;
 }
 
 

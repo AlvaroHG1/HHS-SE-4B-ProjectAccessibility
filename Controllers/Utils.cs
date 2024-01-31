@@ -1,4 +1,5 @@
 namespace ProjectAccessibility.Controllers;
+
 using BCrypt.Net;
 
 public class Utils
@@ -7,7 +8,7 @@ public class Utils
     {
         var passwordHash = BCrypt.HashPassword(password);
         return passwordHash;
-}
+    }
 
     public static bool PasswordMatch(string enteredPassword, string hashedPassword)
     {
