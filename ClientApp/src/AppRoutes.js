@@ -68,7 +68,7 @@ const AppRoutes = [
     element: <BeheerderPortal/>
   },
   {
-    path: '/bedrijf',
+    path: '/bedrijvenonderzoek',
     element: <BedrijvenOnderzoek/>
   },
   {
