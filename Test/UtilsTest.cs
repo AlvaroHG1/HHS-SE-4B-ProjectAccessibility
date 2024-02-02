@@ -1,8 +1,9 @@
 using Xunit;
 using ProjectAccessibility.Controllers;
 
-namespace ProjectAccessibility.Tests
+namespace ProjectAccessibility.Test
 {
+    // dit is een security test :D !!!
     public class UtilsTests
     {
         [Fact]
