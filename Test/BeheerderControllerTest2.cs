@@ -7,7 +7,6 @@ using ProjectAccessibility.Controllers;
 using ProjectAccessibility.Context;
 using ProjectAccessibility.Models;
 
-
 namespace ProjectAccessibility.Test;
 
 public class BeheerderControllerTest {
