@@ -7,10 +7,9 @@ using ProjectAccessibility.Controllers;
 using ProjectAccessibility.Context;
 using ProjectAccessibility.Models;
 
-
 namespace ProjectAccessibility.Test;
 
-public class BeheerderControllerTest {
+public class BeheerderControllerTest { // deze kan ik niet runnen (?)
     
     private  Mock<GebruikerContext> _mockContext;
     private  BeheerderController _controller;

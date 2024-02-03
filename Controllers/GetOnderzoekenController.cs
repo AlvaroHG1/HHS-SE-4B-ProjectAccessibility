@@ -19,8 +19,7 @@ namespace ProjectAccessibility.Controllers
         [HttpGet("{Ecode}")]
         public IActionResult Get(int Ecode)
         {
-            Ervaringdeskundige ervaringdeskundige = _dbContext.Ervaringdeskundiges
-                .Single(e => e.Gcode == Ecode);
+            Ervaringdeskundige ervaringdeskundige = _dbContext.Ervaringdeskundiges.FirstOrDefault(e => e.Gcode == Ecode);
 
             List<HeeftBeperking> beperkingcodes = _dbContext.HeeftBeperkingen
                 .Where(hp => hp.Ecode == Ecode)
