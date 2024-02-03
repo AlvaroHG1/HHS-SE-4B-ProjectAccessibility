@@ -14,7 +14,7 @@ namespace ProjectAccessibility.Tests.OnderzoekControllerTest
         public OnderzoekControllerTest()
         {
             var options = new DbContextOptionsBuilder<GebruikerContext>()
-                .UseInMemoryDatabase(databaseName: "Gebruiker")
+                .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
                 .Options;
             _dbContext = new GebruikerContext(options);
         }
@@ -58,8 +58,7 @@ namespace ProjectAccessibility.Tests.OnderzoekControllerTest
 
             // Assert
             Assert.IsType<OkObjectResult>(result);
-
-            // Additional assertions (if needed)
+            
             var okResult = result as OkObjectResult;
             var updatedOnderzoek = okResult?.Value as Onderzoek;
             Assert.NotNull(updatedOnderzoek);
@@ -106,7 +105,7 @@ namespace ProjectAccessibility.Tests.OnderzoekControllerTest
         {
             // Arrange
             var controller = new OnderzoekController(_dbContext);
-            var nonExistingOnderzoekId = 999; // Assuming this ID doesn't exist
+            var nonExistingOnderzoekId = 999; // assuming this ID doesn't exist
 
             // Act
             var result = controller.Delete(nonExistingOnderzoekId);

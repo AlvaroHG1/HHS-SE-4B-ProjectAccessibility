@@ -180,18 +180,18 @@ namespace ProjectAccessibility.Context
 
         public DbSet<Gebruiker> Gebruikers { get; set; }
         public DbSet<Beheerder> Beheerders { get; set; }
-        public DbSet<Ervaringdeskundige> Ervaringdeskundiges { get; set; }
+        public virtual DbSet<Ervaringdeskundige> Ervaringdeskundiges { get; set; }
         public virtual DbSet<Bedrijf> Bedrijven { get; set; }
         public DbSet<Aandoening> Aandoeningen { get; set; }
-        public DbSet<Beperking> Beperkingen { get; set; }
+        public virtual DbSet<Beperking> Beperkingen { get; set; }
         public DbSet<Hulpmiddel> Hulpmiddelen { get; set; }
         public DbSet<Voogd> Voogden { get; set; }
         public DbSet<HeeftVoogd> HeeftVoogden { get; set; }
         public DbSet<Onderzoekstype> Onderzoekstypes { get; set; }
-        public DbSet<Onderzoek> Onderzoeken { get; set; }
+        public virtual DbSet<Onderzoek> Onderzoeken { get; set; }
         public DbSet<HeeftOnderzoek> HeeftOnderzoeken { get; set; }
         public DbSet<Onderzoeksresultaat> Onderzoeksresultaten { get; set; }
-        public DbSet<HeeftBeperking> HeeftBeperkingen { get; set; }
+        public virtual DbSet<HeeftBeperking> HeeftBeperkingen { get; set; }
         public DbSet<HeeftType> HeeftTypes { get; set; }
         public DbSet<VoorkeurType> VoorkeurTypes { get; set; }
         public DbSet<HeeftHulpmiddel> HeeftHulpmiddelen { get; set; }

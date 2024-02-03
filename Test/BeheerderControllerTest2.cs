@@ -7,10 +7,9 @@ using ProjectAccessibility.Controllers;
 using ProjectAccessibility.Context;
 using ProjectAccessibility.Models;
 
-
 namespace ProjectAccessibility.Test;
 
-public class BeheerderControllerTest {
+public class BeheerderControllerTest { // deze kan ik niet runnen (?)
     
     private  Mock<GebruikerContext> _mockContext;
     private  BeheerderController _controller;
@@ -22,7 +21,7 @@ public class BeheerderControllerTest {
         _mockSet = new Mock<DbSet<Beheerder>>();
         var beheerderData = new List<Beheerder>
         {
-            // Voeg hier mock data toe
+        
         }.AsQueryable();
 
         _mockSet.As<IQueryable<Beheerder>>().Setup(m => m.Provider).Returns(beheerderData.Provider);
@@ -30,7 +29,7 @@ public class BeheerderControllerTest {
         _mockSet.As<IQueryable<Beheerder>>().Setup(m => m.ElementType).Returns(beheerderData.ElementType);
         _mockSet.As<IQueryable<Beheerder>>().Setup(m => m.GetEnumerator()).Returns(beheerderData.GetEnumerator());
 
-        // Hier simuleren we het gedrag van DbContext.Add en DbContext.Find
+        
         _mockSet.Setup(m => m.Add(It.IsAny<Beheerder>())).Callback<Beheerder>((s) => beheerderData.ToList().Add(s));
         _mockContext.Setup(m => m.Beheerders).Returns(_mockSet.Object);
 
