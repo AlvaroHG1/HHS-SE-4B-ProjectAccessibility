@@ -14,19 +14,16 @@ namespace ProjectAccessibility.Test
 
         public GetOnderzoekenControllerTest()
         {
-            // Initialiseer de DbContext met een in-memory database
             var options = new DbContextOptionsBuilder<GebruikerContext>()
                 .UseInMemoryDatabase(databaseName: "TestDb")
                 .Options;
 
             _dbContext = new GebruikerContext(options);
             _controller = new GetOnderzoekenController(_dbContext);
-
-            // Zorg ervoor dat de database voor elke test leeg is
+            
             _dbContext.Database.EnsureDeleted();
             _dbContext.Database.EnsureCreated();
-
-            // Voeg testdata toe aan de in-memory database
+            
             SeedTestData();
         }
 
@@ -55,7 +52,7 @@ namespace ProjectAccessibility.Test
         public void Get_ReturnsCorrectType_WhenCalledWithValidEcode()
         {
             // Arrange
-            var ecode = _dbContext.Ervaringdeskundiges.First().Gcode; // Gebruik de Gcode van de toegevoegde ervaringdeskundige
+            var ecode = _dbContext.Ervaringdeskundiges.First().Gcode;
 
             // Act
             var result = _controller.Get(ecode);
@@ -64,7 +61,7 @@ namespace ProjectAccessibility.Test
             Assert.IsType<OkObjectResult>(result);
             var okResult = result as OkObjectResult;
             Assert.NotNull(okResult);
-            Assert.IsType<List<Onderzoek>>(okResult.Value); // Zorg ervoor dat dit overeenkomt met de verwachte output
+            Assert.IsType<List<Onderzoek>>(okResult.Value);
         }
     }
 }
