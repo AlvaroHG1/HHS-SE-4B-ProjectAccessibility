@@ -34,7 +34,7 @@ namespace ProjectAccessibility.Test
         {
             var ervaringdeskundige = new Ervaringdeskundige
             {
-                // Vul alle verplichte velden in
+                
                 Email = "test@example.com",
                 Wachtwoord = "testWachtwoord",
                 Achternaam = "TestAchternaam",
