@@ -14,7 +14,7 @@ namespace ProjectAccessibility.Tests.OnderzoekControllerTest
         public OnderzoekControllerTest()
         {
             var options = new DbContextOptionsBuilder<GebruikerContext>()
-                .UseInMemoryDatabase(databaseName: "Gebruiker")
+                .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
                 .Options;
             _dbContext = new GebruikerContext(options);
         }
