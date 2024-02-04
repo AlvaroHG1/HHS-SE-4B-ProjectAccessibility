@@ -136,7 +136,6 @@ public void Put_Updates_Existing_Ervaringdeskundige()
     Assert.Equal("NieuwStraat", updatedErvaringdeskundige.Straatnaam);
     Assert.Equal("4321 BA", updatedErvaringdeskundige.Postcode);
     Assert.Equal("321", updatedErvaringdeskundige.Huisnummer);
-    // Voeg extra asserts toe indien nodig, bijvoorbeeld voor Geboortedatum als je model dit ondersteunt
 }
 
     
