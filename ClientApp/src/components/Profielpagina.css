@@ -74,3 +74,32 @@
         font-weight: normal;
         font-size: 1.5rem;
 }
+.Janee-button{
+        width: 3em;
+        margin-top: 1em;
+}
+.input-field{
+        margin-top: 0.1em;
+        height: 1.2em;
+        font-size: 0.5em;
+}
+.bewerk-button{
+        text-align: center;
+        font-size: 1.5rem;
+        background-color: #108670;
+        border-radius: 1rem;
+        border-color: #131B56;
+        border-style: solid;
+        border-width: 0.5rem;
+        margin-top: 3rem;
+        margin-left: 3rem;
+        color: white;
+        width: 10rem;
+        height: 5rem;
+}
+.button-container {
+        position: fixed;
+        right: 1rem; 
+        display: flex;
+        flex-direction: column;
+}

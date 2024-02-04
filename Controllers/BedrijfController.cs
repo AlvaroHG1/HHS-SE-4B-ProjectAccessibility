@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProjectAccessibility.Context;
 using ProjectAccessibility.Models;
+using ProjectAccessibility.Models.RequestModels;
 using ProjectAccessibility.Models.ReturnModels;
 
 
@@ -18,6 +19,13 @@ namespace ProjectAccessibility.Controllers
             _dbContext = dbContext;
         }
 
+        [HttpGet]
+        public IActionResult Get()
+        {
+            var bedrijven = _dbContext.Bedrijven.OrderBy(b => b.Gcode).ToList();
+            return Ok(bedrijven);
+        }
+        
         // GET: api/Bedrijf/?
         [HttpGet("{id}")]
         public IActionResult Get(int id)
@@ -44,8 +52,8 @@ namespace ProjectAccessibility.Controllers
                 Link = requestModel.Link,
                 Bedrijfsinformatie = requestModel.Bedrijfsinformatie,
                 Email = requestModel.Email,
-                Wachtwoord = Utils.HashPassword(requestModel.Wachtwoord),
-                Locatie = requestModel.Locatie
+                Locatie = requestModel.Locatie,
+                Wachtwoord = requestModel.Wachtwoord
             };
 
             _dbContext.Bedrijven.Add(newBedrijf);
@@ -55,13 +63,8 @@ namespace ProjectAccessibility.Controllers
 
         // PUT: api/Bedrijf/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] BedrijfRequestModel requestModel)
+        public IActionResult Put(int id, [FromBody] BedrijfPutModel requestModel)
         {
-            if (requestModel == null)
-            {
-                return BadRequest();
-            }
-            
             var existingBedrijf = _dbContext.Bedrijven.Find(id);
 
             if (existingBedrijf == null)
@@ -74,7 +77,6 @@ namespace ProjectAccessibility.Controllers
             existingBedrijf.Bedrijfsinformatie = requestModel.Bedrijfsinformatie;
             existingBedrijf.Locatie = requestModel.Locatie;
             existingBedrijf.Email = requestModel.Email;
-            existingBedrijf.Wachtwoord = Utils.HashPassword(requestModel.Wachtwoord);
 
             _dbContext.Entry(existingBedrijf).State = EntityState.Modified;
             _dbContext.SaveChanges();

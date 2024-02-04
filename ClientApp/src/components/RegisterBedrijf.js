@@ -28,7 +28,7 @@ export class RegisterBedrijf extends Component {
 
         // Check of wachtwoord en bevestiging overeenkomen
         if (wachtwoord !== bevestigWachtwoord) {
-            alert("Wachtwoord en bevestig wachtwoord komen niet overeen.");
+            alert("Wachtwoord en bevestig wachtwoord komen niet overeen. Kan je misschien niet beter een ervaringdeskundige worden, aangezien je zo'n mongool bent!");
             return;
         }
 
