@@ -9,7 +9,7 @@ using ProjectAccessibility.Models;
 
 namespace ProjectAccessibility.Test;
 
-public class BeheerderControllerTest { // deze kan ik niet runnen (?)
+public class BeheerderControllerTest { // hier valt niks te testen oeps xd 
     
     private  Mock<GebruikerContext> _mockContext;
     private  BeheerderController _controller;
