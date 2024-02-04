@@ -87,7 +87,7 @@ export class NavMenu extends Component {
                       </NavLink>
                     </NavItem>
                     <NavItem>
-                      <NavLink tag={Link} className="text-white" to="/beheerder" onClick={() => this.closeNavbar()}>Beheerders Portal
+                      <NavLink tag={Link} className="text-white" to="/beheerdersportal" onClick={() => this.closeNavbar()}>Beheerders Portal
                       </NavLink>
                     </NavItem>
                     </li>
