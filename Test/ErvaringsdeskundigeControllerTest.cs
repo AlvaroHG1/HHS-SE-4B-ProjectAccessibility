@@ -87,54 +87,58 @@ public class ErvaringdeskundigeControllerTest
     }
 
     
-
-    [Fact] // PUT-methode
-    public void Put_Updates_Existing_Ervaringdeskundige()
+[Fact] // PUT-methode
+public void Put_Updates_Existing_Ervaringdeskundige()
+{
+    // Arrange
+    var dbContext = GetInMemoryDbContext();
+    var controller = new ErvaringdeskundigeController(dbContext);
+    var existingErvaringdeskundige = new Ervaringdeskundige
     {
-        // Arrange
-        var dbContext = GetInMemoryDbContext();
-        var controller = new ErvaringdeskundigeController(dbContext);
-        var existingErvaringdeskundige = new Ervaringdeskundige
-        {
-            
-            Voornaam = "OudVoornaam",
-            Achternaam = "OudAchternaam",
-            Email = "oud@example.com",
-            Wachtwoord = "oudWachtwoord",
-            Contactvoorkeur = "Email",
-            Huisnummer = "123",
-            Plaats = "OudPlaats",
-            Postcode = "1234 AB",
-            Straatnaam = "OudStraat",
-            Telefoonnummer = "0123456789",
-        };
-        
-        dbContext.Ervaringdeskundiges.Add(existingErvaringdeskundige);
-        dbContext.SaveChanges();
-        var updatedErvaringdeskundigeRequestModel = new ErvaringsdeskundigePutModel()
-        {
-            
-            Voornaam = "NieuwVoornaam",
-            Achternaam = "NieuwAchternaam",
-            Email = "nieuw@example.com",
-            Huisnummer = "321",
-            Plaats = "NieuwPlaats",
-            Postcode = "4321 BA",
-            Straatnaam = "NieuwStraat",
-            Telefoonnummer = "9876543210",
-        };
-
-        // Act
-        var result = controller.Put(existingErvaringdeskundige.Gcode, updatedErvaringdeskundigeRequestModel) as ObjectResult;
-
-        // Assert
-        Assert.Equal(200, result.StatusCode);
-        var updatedErvaringdeskundige = dbContext.Ervaringdeskundiges.Find(existingErvaringdeskundige.Gcode);
-        Assert.NotNull(updatedErvaringdeskundige);
-        Assert.Equal("NieuwVoornaam", updatedErvaringdeskundige.Voornaam);
-        Assert.Equal("NieuwAchternaam", updatedErvaringdeskundige.Achternaam);
-    }
+        Voornaam = "OudVoornaam",
+        Achternaam = "OudAchternaam",
+        Email = "oud@example.com",
+        Wachtwoord = "oudWachtwoord",
+        Contactvoorkeur = "Email",
+        Huisnummer = "123",
+        Plaats = "OudPlaats",
+        Postcode = "1234 AB",
+        Straatnaam = "OudStraat",
+        Telefoonnummer = "0123456789",
+    };
     
+    dbContext.Ervaringdeskundiges.Add(existingErvaringdeskundige);
+    dbContext.SaveChanges();
+
+    var updatedErvaringdeskundigePutModel = new ErvaringsdeskundigePutModel
+    {
+        Voornaam = "NieuwVoornaam",
+        Achternaam = "NieuwAchternaam",
+        Email = "nieuw@example.com",
+        Telefoonnummer = "9876543210",
+        Straatnaam = "NieuwStraat",
+        Postcode = "4321 BA",
+        Huisnummer = "321",
+        Geboortedatum = new DateTime(1980, 1, 1) // Pas deze datum aan naar een relevante waarde
+    };
+
+    // Act
+    var result = controller.Put(existingErvaringdeskundige.Gcode, updatedErvaringdeskundigePutModel) as ObjectResult;
+
+    // Assert
+    Assert.Equal(200, result.StatusCode);
+    var updatedErvaringdeskundige = dbContext.Ervaringdeskundiges.Find(existingErvaringdeskundige.Gcode);
+    Assert.NotNull(updatedErvaringdeskundige);
+    Assert.Equal("NieuwVoornaam", updatedErvaringdeskundige.Voornaam);
+    Assert.Equal("NieuwAchternaam", updatedErvaringdeskundige.Achternaam);
+    Assert.Equal("nieuw@example.com", updatedErvaringdeskundige.Email);
+    Assert.Equal("9876543210", updatedErvaringdeskundige.Telefoonnummer);
+    Assert.Equal("NieuwStraat", updatedErvaringdeskundige.Straatnaam);
+    Assert.Equal("4321 BA", updatedErvaringdeskundige.Postcode);
+    Assert.Equal("321", updatedErvaringdeskundige.Huisnummer);
+    // Voeg extra asserts toe indien nodig, bijvoorbeeld voor Geboortedatum als je model dit ondersteunt
+}
+
     
     [Fact] // DELETE-methode WERKT !!!
     public void Delete_Removes_Ervaringdeskundige_By_Id()
