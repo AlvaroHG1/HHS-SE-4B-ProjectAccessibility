@@ -6,6 +6,7 @@ using ProjectAccessibility.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ProjectAccessibility.Models.RequestModels;
 using ProjectAccessibility.Models.ReturnModels;
 using Xunit;
 
@@ -110,14 +111,12 @@ public class ErvaringdeskundigeControllerTest
         
         dbContext.Ervaringdeskundiges.Add(existingErvaringdeskundige);
         dbContext.SaveChanges();
-        var updatedErvaringdeskundigeRequestModel = new ErvaringdeskundigeRequestModel
+        var updatedErvaringdeskundigeRequestModel = new ErvaringsdeskundigePutModel()
         {
             
             Voornaam = "NieuwVoornaam",
             Achternaam = "NieuwAchternaam",
             Email = "nieuw@example.com",
-            Wachtwoord = "nieuwWachtwoord",
-            Contactvoorkeur = "Telefoon",
             Huisnummer = "321",
             Plaats = "NieuwPlaats",
             Postcode = "4321 BA",
