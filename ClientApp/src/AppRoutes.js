@@ -8,11 +8,10 @@ import { RegisterErvaringdeskundige} from "./components/RegisterErvaringdeskundi
 import { Register} from "./components/Register";
 import { RegisterBedrijf} from "./components/RegisterBedrijf";
 import { Onderzoeken} from "./components/Onderzoeken";
-import { BeheerderPortal} from "./components/BeheerderPortal";
 import { BedrijvenOnderzoek} from "./components/BedrijvenOnderzoek";
 import { BedrijvenPortal} from "./components/BedrijvenPortal";
 import { ProfielUpdaten} from "./components/ProfielUpdaten";
-import { BeheerOnderzoeken} from "./components/BeheerOnderzoeken"
+import { BeheerdersPortal} from "./components/BeheerdersPortal";
 
 const AppRoutes = [
   {
@@ -64,19 +63,13 @@ const AppRoutes = [
     element: <ProfielUpdaten/>
   },
   {
-    path: '/beheerder',
-    element: <BeheerderPortal/>
-  },
-  {
     path: '/bedrijvenonderzoek',
     element: <BedrijvenOnderzoek/>
   },
   {
-    path: '/beheer-onderzoeken',
-    element: <BeheerOnderzoeken/>
+    path: '/beheerdersportal',
+    element: <BeheerdersPortal/>
   }
-  
-
 ];
 
 export default AppRoutes;

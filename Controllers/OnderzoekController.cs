@@ -21,12 +21,16 @@ public class OnderzoekController : ControllerBase
     [HttpGet("{id}")]
     public IActionResult Get(int id)
     {
-
         Onderzoek onderzoek = _dbContext.Onderzoeken    
             .Single(o => o.Ocode == id);
-        
-        
         return Ok(onderzoek);
+    }
+
+    [HttpGet]
+    public IActionResult Get()
+    {
+        var onderzoeken = _dbContext.Onderzoeken.OrderBy(o => o.Ocode).ToList();
+        return Ok(onderzoeken);
     }
     
     // POST: api/Onderzoek/?

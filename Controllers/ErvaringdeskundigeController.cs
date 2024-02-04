@@ -1,3 +1,4 @@
+using ProjectAccessibility.Models.RequestModels;
 using ProjectAccessibility.Models.ReturnModels;
 
 namespace ProjectAccessibility.Controllers;
@@ -16,6 +17,13 @@ public class ErvaringdeskundigeController : ControllerBase
     public ErvaringdeskundigeController(GebruikerContext dbContext)
     {
         _dbContext = dbContext;
+    }
+    
+    [HttpGet]
+    public IActionResult Get()
+    {
+        var ervaringdeskundiges = _dbContext.Ervaringdeskundiges.OrderBy(e => e.Gcode).ToList();
+        return Ok(ervaringdeskundiges);
     }
 
     // GET: api/Ervaringdeskundige/?
@@ -105,13 +113,8 @@ public class ErvaringdeskundigeController : ControllerBase
 
     // PUT: api/Ervaringdeskundige/?
     [HttpPut("{id}")]
-    public IActionResult Put(int id, [FromBody] ErvaringdeskundigeRequestModel requestModel)
+    public IActionResult Put(int id, [FromBody] ErvaringsdeskundigePutModel requestModel)
     {
-        if (requestModel == null)
-        {
-            return BadRequest();
-        }
-        
         var existingErvaringdeskundige = _dbContext.Ervaringdeskundiges.Find(id);
         
         if (existingErvaringdeskundige == null)
@@ -123,12 +126,9 @@ public class ErvaringdeskundigeController : ControllerBase
         existingErvaringdeskundige.Achternaam = requestModel.Achternaam;
         existingErvaringdeskundige.Email = requestModel.Email;
         existingErvaringdeskundige.Telefoonnummer = requestModel.Telefoonnummer;
-        existingErvaringdeskundige.Wachtwoord = Utils.HashPassword(requestModel.Wachtwoord);
         existingErvaringdeskundige.Straatnaam = requestModel.Straatnaam;
         existingErvaringdeskundige.Postcode = requestModel.Postcode;
         existingErvaringdeskundige.Huisnummer = requestModel.Huisnummer;
-        existingErvaringdeskundige.Commercieel = requestModel.Commercieel;
-        existingErvaringdeskundige.Contactvoorkeur = requestModel.Contactvoorkeur;
         existingErvaringdeskundige.Geboortedatum = requestModel.Geboortedatum;
 
         _dbContext.Entry(existingErvaringdeskundige).State = EntityState.Modified;

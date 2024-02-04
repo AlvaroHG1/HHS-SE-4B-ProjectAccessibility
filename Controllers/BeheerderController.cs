@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProjectAccessibility.Context;
 using ProjectAccessibility.Models;
+using ProjectAccessibility.Models.RequestModels;
+
 namespace ProjectAccessibility.Controllers
 {
     [Route("api/[controller]")]
@@ -13,6 +15,13 @@ namespace ProjectAccessibility.Controllers
         public BeheerderController(GebruikerContext dbContext)
         {
             _dbContext = dbContext;
+        }
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            var beheerders = _dbContext.Beheerders.OrderBy(b => b.Gcode).ToList();
+            return Ok(beheerders);
         }
 
         // GET: api/Beheerder/?
@@ -46,12 +55,8 @@ namespace ProjectAccessibility.Controllers
 
         // PUT: api/Beheerder/?
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] BeheerderRequestModel requestModel)
+        public IActionResult Put(int id, [FromBody] BeheerderPutModel requestModel)
         {
-            if (requestModel == null)
-            {
-                return BadRequest();
-            }
             
             var existingBeheerder = _dbContext.Beheerders.Find(id);
 
@@ -61,10 +66,9 @@ namespace ProjectAccessibility.Controllers
             }
 
             existingBeheerder.Email = requestModel.Email;
-            existingBeheerder.Wachtwoord = requestModel.Wachtwoord;
             existingBeheerder.Voornaam = requestModel.Voornaam;
             existingBeheerder.Achternaam = requestModel.Achternaam;
-            existingBeheerder.Rol = Utils.HashPassword(requestModel.Rol);
+            existingBeheerder.Rol = requestModel.Rol;
 
             _dbContext.Entry(existingBeheerder).State = EntityState.Modified;
             _dbContext.SaveChanges();
