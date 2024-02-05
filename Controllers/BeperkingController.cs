@@ -27,6 +27,13 @@ namespace ProjectAccessibility.Controllers
             
             return Ok(beperking);
         }
+        
+        [HttpGet("Beperkingen")]
+        public IActionResult GetBeperkingen()
+        {
+            var beperkingen = _dbContext.Beperkingen.ToList();
+            return Ok(beperkingen);
+        }
 
         // POST: api/Beperking/?
         [HttpPost]
