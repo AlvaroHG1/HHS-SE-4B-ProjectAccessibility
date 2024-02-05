@@ -64,6 +64,10 @@ const AppRoutes = [
     element: <ProfielUpdaten/>
   },
   {
+    path: '/onderzoekaanmaken',
+    element: <OnderzoekAanmaken/>
+  },
+  {
     path: '/bedrijvenonderzoek',
     element: <BedrijvenOnderzoek/>
   },
