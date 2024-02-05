@@ -11,6 +11,7 @@ import { Onderzoeken} from "./components/Onderzoeken";
 import { BedrijvenOnderzoek} from "./components/BedrijvenOnderzoek";
 import { BedrijvenPortal} from "./components/BedrijvenPortal";
 import { ProfielUpdaten} from "./components/ProfielUpdaten";
+import { OnderzoekAanmaken} from "./components/OnderzoekAanmaken";
 import { BeheerdersPortal} from "./components/BeheerdersPortal";
 
 const AppRoutes = [
