@@ -1,64 +1,125 @@
 import React, { Component } from 'react';
 import './Profielpagina.css';
-export class Profielpagina extends Component {
 
-        constructor(props) {
-                super(props);
-                this.state = {
-                        ervaringdeskundige: null,
-                        bewerkingMode: false,
-                        bewerkteGegevens: {
-                            voornaam: '',
-                            achternaam: '',
-                            email: '',
-                            telefoonnummer: '',
-                            straatnaam: '',
-                            huisnummer: '',
-                            plaats: '',
-                            postcode: '',
-                            commercieel: false,
-                            contactvoorkeur: '',
-                            geboortedatum: '',
-                        },
-                };
+export class Profielpagina extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            ervaringdeskundige: null,
+            bewerkingMode: false,
+            bewerkteGegevens: {
+                voornaam: '',
+                achternaam: '',
+                email: '',
+                telefoonnummer: '',
+                straatnaam: '',
+                huisnummer: '',
+                plaats: '',
+                postcode: '',
+                commercieel: false,
+                contactvoorkeur: '',
+                geboortedatum: '',
+            },
+            password: '',
+            verwijderButtonClicked: false,
+        };
+    }
+
+    getUserId() {
+        return '4';
+    }
+
+    toggleBewerkingsmodus = () => {
+        this.setState(prevState => ({
+            bewerkingMode: !prevState.bewerkingMode,
+            bewerkteGegevens: {
+                ...this.state.ervaringdeskundige.ervaringdeskundige 
+            }
+        }));
+    }
+
+    handlePasswordChange = (event) => {
+        this.setState({ password: event.target.value });
+    }
+
+    handleVerwijderAccountClick = () => {
+        this.setState({ verwijderButtonClicked: true });
+    }
+    handleAnnulerenClick = () => {
+        this.setState({ verwijderButtonClicked: false });
+    }
+    handleVerwijderAccount = async () => {
+        if (!this.state.password) {
+            alert('Vul alstublieft uw wachtwoord in om jouw ervaringsdeskundige account te verwijderen.');
+            return;
         }
-        getUserId() {
-            return '3';
-        }
-        toggleBewerkingsmodus = () => {
-            this.setState(prevState => ({
-                bewerkingMode: !prevState.bewerkingMode,
-                bewerkteGegevens: {
-                    ...this.state.ervaringdeskundige.ervaringdeskundige // Bewerkte gegevens initialiseren met de huidige gegevens
-                }
-            }));
-        }
-        async componentDidMount() {
-                try {
-                    const userId = this.getUserId();
-                    
-                    const response = await fetch(`https://localhost:7216/api/Ervaringdeskundige/${userId}`, {
-                            method: 'GET',
-                            headers: {
-                                    'Accept': 'application/json',
-                                    'Content-Type': 'application/json'
-                            }
-                    });
-                    console.log('Fetch response:', response);
-                    if (!response.ok) {
-                            console.error(`Error: ${response.status} - ${response.statusText}`);
-                            return;
+
+        try {
+            const email = this.state.ervaringdeskundige.ervaringdeskundige.email;
+            const response = await fetch(`https://localhost:7216/api/CheckWachtwoord/${encodeURIComponent(email)},${encodeURIComponent(this.state.password)}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+            });
+            if (!response.ok) {
+                console.error(`Error: ${response.status} - ${response.statusText}`);
+                return;
+            }
+
+            const isPasswordCorrect = await response.json();
+
+            if (isPasswordCorrect) {
+                const userId = this.getUserId();
+                const deleteResponse = await fetch(`https://localhost:7216/api/Ervaringdeskundige/${userId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
                     }
-                    
-                    const ervaringdeskundigeData = await response.json();
-                    
-                    this.setState({ ervaringdeskundige: ervaringdeskundigeData });
-                    console.log('ervaringdeskundige:', ervaringdeskundigeData);
-                        
-                } catch (error) {
-                        console.error('Exception during fetch:', error); 
+                });
+
+                if (!deleteResponse.ok) {
+                    console.error(`Error: ${deleteResponse.status} - ${deleteResponse.statusText}`);
+                    return;
                 }
+
+                window.location.href = '/';
+            } else {
+                alert('Het ingevoerde wachtwoord is onjuist :(');
+            }
+        } catch (error) {
+            console.error('Exception during fetch:', error);
         }
+    }
+
+
+    async componentDidMount() {
+        try {
+            const userId = this.getUserId();
+
+            const response = await fetch(`https://localhost:7216/api/Ervaringdeskundige/${userId}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                console.error(`Error: ${response.status} - ${response.statusText}`);
+                return;
+            }
+
+            const ervaringdeskundigeData = await response.json();
+
+            this.setState({ ervaringdeskundige: ervaringdeskundigeData });
+        } catch (error) {
+            console.error('Exception during fetch:', error);
+        }
+    }
+
     handleInputChange = (event) => {
         const { name, value, type, checked } = event.target;
         const newValue = type === 'checkbox' ? checked : value;
@@ -69,6 +130,7 @@ export class Profielpagina extends Component {
             }
         }));
     }
+
     toggleCommercieel = () => {
         this.setState(prevState => ({
             bewerkteGegevens: {
@@ -82,7 +144,7 @@ export class Profielpagina extends Component {
         event.preventDefault();
         const userId = this.getUserId();
         const bewerkteGegevensCopy = { ...this.state.bewerkteGegevens };
-        // Converteer de geboortedatum naar het ISO-formaat
+        // Converteert de geboortedatum naar het ISO-formaat
         bewerkteGegevensCopy.geboortedatum = new Date(bewerkteGegevensCopy.geboortedatum).toISOString();
         try {
             const response = await fetch(`https://localhost:7216/api/Ervaringdeskundige/${userId}`, {
@@ -114,7 +176,7 @@ export class Profielpagina extends Component {
     }
                 
     render() {
-        const {ervaringdeskundige, bewerkingMode, bewerkteGegevens} = this.state;
+        const {ervaringdeskundige, bewerkingMode, bewerkteGegevens, verwijderButtonClicked} = this.state;
         console.log('ervaringdeskundige:', ervaringdeskundige);
         if (!ervaringdeskundige) {
                 return <div>Loading...</div>; 
@@ -131,6 +193,28 @@ export class Profielpagina extends Component {
                         </button>
                     )}
                 </div>
+                {verwijderButtonClicked && (
+                    <div className="delete-account-container1">
+                        <div className="delete-account-container2">
+                            <h2 style = {{marginTop: "-1rem"}}>Voer uw wachtwoord in om jouw ervaringsdeskundige account te verwijderen:</h2>
+                            <input
+                                type="password"
+                                value={this.state.password}
+                                onChange={this.handlePasswordChange}
+                                className="delete-account-input"
+                            />
+                            <div className="delete-account-buttons">
+                                <button onClick={this.handleVerwijderAccount} className="delete-account-button">Delete Account</button>
+                                <button onClick={this.handleAnnulerenClick} className="delete-account-button">Annuleren</button>
+                            </div>
+                        </div>
+                    </div>
+                )}
+                {!verwijderButtonClicked && (
+                    <button onClick={this.handleVerwijderAccountClick} className="verwijder-button">
+                        Verwijder Account
+                    </button>
+                )}
                 <h1>
                     {bewerkingMode ? (
                         <div>
