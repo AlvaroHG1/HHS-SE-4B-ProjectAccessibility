@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Onderzoeken.css';
+import {Link} from "react-router-dom";
 
 export class BedrijvenOnderzoek extends Component {
     constructor(props) {
@@ -14,7 +15,7 @@ export class BedrijvenOnderzoek extends Component {
 
     async componentDidMount() {
         try {
-            const responseOnderzoeken = await fetch('https://localhost:7216/api/GetOnderzoeken/GetByBedrijf/14', {
+            const responseOnderzoeken = await fetch('https://localhost:7216/api/GetOnderzoeken/GetByBedrijf/3', {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -104,10 +105,18 @@ export class BedrijvenOnderzoek extends Component {
         }
 
         return (
+            <div className="total2-conatainer">
             <div className="total-container">
                 <div className="onderzoeken-container">
+                    <div className="onderzoeken-container" style={{paddingTop: 20}}>
+                        <Link  to={"/onderzoekaanmaken"} className="button2 onderzoek-item">
+                            <div className="text2 profiel-updaten-text2" > Onderzoek Starten</div>
+                        </Link>
+                    </div>
                     <div className="onderzoek-container">
+
                         <div className="onderzoek-list">
+                            
                             {openOnderzoeken.map((onderzoek) => (
                                 <button
                                     key={onderzoek.ocode}
@@ -125,12 +134,12 @@ export class BedrijvenOnderzoek extends Component {
                     <div>
                         {onderzoekData ? (
                             <>
-                                <div className="onderzoek-informatie">
+                                <div className="onderzoek-titel">
                                     <h1>{onderzoekData.titel}</h1>
                                     <br/>
                                     <br/>
-                                    <h2>Beschrijving: </h2>
-                                    <h3 className="beschrijving">{onderzoekData.beschrijving}</h3>
+                                    <h2 className="beschrijving-container">Beschrijving: </h2>
+                                    <h3>{onderzoekData.beschrijving}</h3>
                                     <h2 className="gezochte-beperking">Gezochte beperking:</h2>
                                     <h3 className="gezochte-beperking2">{onderzoekData.gezochteBeperking}</h3>
                                 </div>
@@ -142,7 +151,6 @@ export class BedrijvenOnderzoek extends Component {
                                     <h2>Locatie:</h2>
                                     <h3 className="location">{onderzoekData.locatie}, {onderzoekData.gezochtePostcode}</h3>
                                 </div>
-
                                 <div className="age-container">
                                     <h2>Leeftijdscategorie:</h2>
                                     <h3>{`${onderzoekData.minLeeftijd}-${onderzoekData.maxLeeftijd}`}</h3>
@@ -153,7 +161,11 @@ export class BedrijvenOnderzoek extends Component {
                         )}
                     </div>
                 </div>
+                </div>
+
             </div>
+            
+
         );
     }
 }
