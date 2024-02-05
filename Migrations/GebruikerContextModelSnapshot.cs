@@ -17,7 +17,7 @@ namespace ProjectAccessibility.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.14")
+                .HasAnnotation("ProductVersion", "8.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -231,9 +231,22 @@ namespace ProjectAccessibility.Migrations
                     b.Property<DateOnly>("Einddatum")
                         .HasColumnType("date");
 
+                    b.Property<string>("GezochteBeperking")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("GezochtePostcode")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Locatie")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("MaxLeeftijd")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("MinLeeftijd")
+                        .HasColumnType("integer");
 
                     b.Property<DateOnly>("Startdatum")
                         .HasColumnType("date");
@@ -380,10 +393,6 @@ namespace ProjectAccessibility.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Rol")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.ToTable("Bedrijven", (string)null);
                 });
 
@@ -420,6 +429,9 @@ namespace ProjectAccessibility.Migrations
                     b.Property<string>("Contactvoorkeur")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<DateTime>("Geboortedatum")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Huisnummer")
                         .IsRequired()

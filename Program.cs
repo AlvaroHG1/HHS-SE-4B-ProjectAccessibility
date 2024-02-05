@@ -18,7 +18,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<GebruikerContext>(options =>
 {
-    options.UseNpgsql("User Id=postgres;Password=GaomsRWOhc9Vr38J;Server=db.tezmskemtfwvdzusobph.supabase.co;Port=5432;Database=postgres");
+    options.UseNpgsql("User Id=postgres.fkzzdxnwawvzwwtlqnco;Password=iYN4xL$!-NWfSLZ;Server=aws-0-eu-central-1.pooler.supabase.com;Port=5432;Database=postgres");
 });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
