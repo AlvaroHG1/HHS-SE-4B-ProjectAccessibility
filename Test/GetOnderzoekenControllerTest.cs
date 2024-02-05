@@ -14,13 +14,15 @@ namespace ProjectAccessibility.Test
 
         public GetOnderzoekenControllerTest()
         {
+
             var options = new DbContextOptionsBuilder<GebruikerContext>()
                 .UseInMemoryDatabase(databaseName: "TestDb")
                 .Options;
 
             _dbContext = new GebruikerContext(options);
             _controller = new GetOnderzoekenController(_dbContext);
-            
+
+
             _dbContext.Database.EnsureDeleted();
             _dbContext.Database.EnsureCreated();
             
@@ -31,7 +33,6 @@ namespace ProjectAccessibility.Test
         {
             var ervaringdeskundige = new Ervaringdeskundige
             {
-                
                 Email = "test@example.com",
                 Wachtwoord = "testWachtwoord",
                 Achternaam = "TestAchternaam",
@@ -61,7 +62,7 @@ namespace ProjectAccessibility.Test
             Assert.IsType<OkObjectResult>(result);
             var okResult = result as OkObjectResult;
             Assert.NotNull(okResult);
-            Assert.IsType<List<Onderzoek>>(okResult.Value);
+            Assert.IsType<List<Onderzoek>>(okResult.Value); 
         }
     }
 }

@@ -186,8 +186,8 @@ namespace ProjectAccessibility.Context
         public virtual DbSet<Beperking> Beperkingen { get; set; }
         public DbSet<Hulpmiddel> Hulpmiddelen { get; set; }
         public DbSet<Voogd> Voogden { get; set; }
-        public DbSet<HeeftVoogd> HeeftVoogden { get; set; }
-        public DbSet<Onderzoekstype> Onderzoekstypes { get; set; }
+        public virtual DbSet<HeeftVoogd> HeeftVoogden { get; set; }
+        public virtual DbSet<Onderzoekstype> Onderzoekstypes { get; set; }
         public virtual DbSet<Onderzoek> Onderzoeken { get; set; }
         public DbSet<HeeftOnderzoek> HeeftOnderzoeken { get; set; }
         public DbSet<Onderzoeksresultaat> Onderzoeksresultaten { get; set; }

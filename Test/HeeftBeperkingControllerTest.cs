@@ -18,29 +18,7 @@ namespace ProjectAccessibility.Tests.HeeftBeperkingControllerTest
                 .Options;
             _dbContext = new GebruikerContext(options);
         }
-/*
-        [Fact]
-        public void Post_Returns_CreatedResult()
-        {
-            
-            // Arrange
-            var controller = new HeeftBeperkingController(_dbContext);
-            var requestModel = new HeeftBeperkingRequestModel
-            {
-                Bcode = 1,
-                Ecode = 1
-            };
 
-            // Act
-            var result = controller.Post(requestModel);
-            // Assert
-        //    Assert.IsType<OkObjectResult>(result);
-
-            // Assert
-            Assert.IsType<CreatedAtActionResult>(result);
-            Assert.Equal(201, (result as CreatedAtActionResult).StatusCode);
-        }
-*/
         [Fact]
         public void Delete_Returns_NoContentResult_When_HeeftBeperkingExists()
         {
