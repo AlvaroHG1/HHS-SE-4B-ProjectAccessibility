@@ -14,7 +14,7 @@ export class Onderzoeken extends Component {
 
     async componentDidMount() {
         try {
-            const responseOnderzoeken = await fetch('https://localhost:7216/api/GetOnderzoeken/3', {
+            const responseOnderzoeken = await fetch('https://localhost:7216/api/GetOnderzoeken/4', {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -28,7 +28,6 @@ export class Onderzoeken extends Component {
             }
 
             const openOnderzoeken = await responseOnderzoeken.json();
-            console.log(openOnderzoeken.ocode);
             const initialSelectedOnderzoek = openOnderzoeken[0];
 
             await this.fetchOnderzoekData(initialSelectedOnderzoek.ocode);

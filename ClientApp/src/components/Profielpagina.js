@@ -23,7 +23,7 @@ export class Profielpagina extends Component {
                 };
         }
         getUserId() {
-            return '3';
+            return '4';
         }
         toggleBewerkingsmodus = () => {
             this.setState(prevState => ({

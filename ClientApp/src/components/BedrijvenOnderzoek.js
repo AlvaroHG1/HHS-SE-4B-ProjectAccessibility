@@ -14,7 +14,7 @@ export class BedrijvenOnderzoek extends Component {
 
     async componentDidMount() {
         try {
-            const responseOnderzoeken = await fetch('https://localhost:7216/api/GetOnderzoeken/GetByBedrijf/14', {
+            const responseOnderzoeken = await fetch('https://localhost:7216/api/GetOnderzoeken/GetByBedrijf/3', {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -125,12 +125,12 @@ export class BedrijvenOnderzoek extends Component {
                     <div>
                         {onderzoekData ? (
                             <>
-                                <div className="onderzoek-informatie">
+                                <div className="onderzoek-titel">
                                     <h1>{onderzoekData.titel}</h1>
                                     <br/>
                                     <br/>
-                                    <h2>Beschrijving: </h2>
-                                    <h3 className="beschrijving">{onderzoekData.beschrijving}</h3>
+                                    <h2 className="beschrijving-container">Beschrijving: </h2>
+                                    <h3>{onderzoekData.beschrijving}</h3>
                                     <h2 className="gezochte-beperking">Gezochte beperking:</h2>
                                     <h3 className="gezochte-beperking2">{onderzoekData.gezochteBeperking}</h3>
                                 </div>

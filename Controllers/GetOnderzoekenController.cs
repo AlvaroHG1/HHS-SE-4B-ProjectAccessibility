@@ -17,12 +17,12 @@ namespace ProjectAccessibility.Controllers
 
         // GET: api/Onderzoeken
         [HttpGet("{Ecode}")]
-        public IActionResult Get(int Ecode)
+        public IActionResult Get(int ecode)
         {
-            Ervaringdeskundige ervaringdeskundige = _dbContext.Ervaringdeskundiges.FirstOrDefault(e => e.Gcode == Ecode);
+            Ervaringdeskundige? ervaringdeskundige = _dbContext.Ervaringdeskundiges.FirstOrDefault(e => e.Gcode == ecode);
 
             List<HeeftBeperking> beperkingcodes = _dbContext.HeeftBeperkingen
-                .Where(hp => hp.Ecode == Ecode)
+                .Where(hp => hp.Ecode == ecode)
                 .ToList();
             
             List<int> bCodes = beperkingcodes.Select(hp => hp.Bcode).ToList();
