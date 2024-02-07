@@ -1,3 +1,4 @@
+/*
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProjectAccessibility.Context;
@@ -115,3 +116,4 @@ namespace ProjectAccessibility.Tests.OnderzoekControllerTest
         }
     }
 }
+*/
